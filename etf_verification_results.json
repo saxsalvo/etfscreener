@@ -431,15 +431,6 @@
     ]
   },
   {
-    "ticker": "BHF",
-    "ok": true,
-    "name": "Brighthouse Financial, Inc.",
-    "quoteType": "EQUITY",
-    "categories": [
-      "extendedThematicSector"
-    ]
-  },
-  {
     "ticker": "BIL",
     "ok": true,
     "name": "State Street SPDR Bloomberg 1-3 Month T-Bill ETF",
@@ -1337,15 +1328,6 @@
     "quoteType": "ETF",
     "categories": [
       "income"
-    ]
-  },
-  {
-    "ticker": "DJIA",
-    "ok": true,
-    "name": "Global X Dow 30 Covered Call ETF",
-    "quoteType": "ETF",
-    "categories": [
-      "extendedThematicSector"
     ]
   },
   {
@@ -4348,15 +4330,6 @@
     ]
   },
   {
-    "ticker": "KRC",
-    "ok": true,
-    "name": "Kilroy Realty Corporation",
-    "quoteType": "EQUITY",
-    "categories": [
-      "extendedOther"
-    ]
-  },
-  {
     "ticker": "KRE",
     "ok": true,
     "name": "State Street SPDR S&P Regional Banking ETF",
@@ -5279,24 +5252,6 @@
     "quoteType": "ETF",
     "categories": [
       "extendedBonds"
-    ]
-  },
-  {
-    "ticker": "RBOT",
-    "ok": true,
-    "name": "Vicarious Surgical Inc.",
-    "quoteType": "EQUITY",
-    "categories": [
-      "extendedThematicSector"
-    ]
-  },
-  {
-    "ticker": "RBOT.MI",
-    "ok": true,
-    "name": "iShares Automation & Robotics UCITS ETF USD (Acc)",
-    "quoteType": "ETF",
-    "categories": [
-      "extendedEuropeUCITS"
     ]
   },
   {
@@ -6597,15 +6552,6 @@
     ]
   },
   {
-    "ticker": "TOL",
-    "ok": true,
-    "name": "Toll Brothers, Inc.",
-    "quoteType": "EQUITY",
-    "categories": [
-      "extendedThematicSector"
-    ]
-  },
-  {
     "ticker": "TOTL",
     "ok": true,
     "name": "State Street DoubleLine Total Return Tactical ETF",
@@ -7809,6 +7755,14 @@
     "ok": true,
     "name": "Xtrackers MSCI World UCITS ETF 1C",
     "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "XDWH",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "europeUCITS"
     ]

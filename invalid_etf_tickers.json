@@ -536,6 +536,14 @@
     ]
   },
   {
+    "ticker": "XDWH",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
     "ticker": "XEON",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
