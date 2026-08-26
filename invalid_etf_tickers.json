@@ -1,0 +1,42 @@
+[
+  {
+    "ticker": "BCLN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "CSPX.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "IUSN.L",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "RJI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "XMWO.DE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "europeUCITS"
+    ]
+  }
+]

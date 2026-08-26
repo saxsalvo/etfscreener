@@ -1,0 +1,4442 @@
+[
+  {
+    "ticker": "AAXJ",
+    "ok": true,
+    "name": "iShares MSCI All Country Asia ex Japan ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "ACES",
+    "ok": true,
+    "name": "ALPS Clean Energy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ACWI",
+    "ok": true,
+    "name": "iShares MSCI ACWI ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "ACWX",
+    "ok": true,
+    "name": "iShares MSCI ACWI ex U.S. ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "AGG",
+    "ok": true,
+    "name": "iShares Core U.S. Aggregate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "AGGH.MI",
+    "ok": true,
+    "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "AIEQ",
+    "ok": true,
+    "name": "Amplify AI Powered Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "AIQ",
+    "ok": true,
+    "name": "Global X Artificial Intelligence & Technology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ANGL",
+    "ok": true,
+    "name": "VanEck Fallen Angel High Yield Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "AOA",
+    "ok": true,
+    "name": "iShares Core 80/20 Aggressive Allocation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "allocation"
+    ]
+  },
+  {
+    "ticker": "AOK",
+    "ok": true,
+    "name": "iShares Core 30/70 Conservative Allocation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "allocation"
+    ]
+  },
+  {
+    "ticker": "AOM",
+    "ok": true,
+    "name": "iShares Core 40/60 Moderate Allocation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "allocation"
+    ]
+  },
+  {
+    "ticker": "AOR",
+    "ok": true,
+    "name": "iShares Core 60/40 Balanced Allocation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "allocation"
+    ]
+  },
+  {
+    "ticker": "ARGT",
+    "ok": true,
+    "name": "Global X MSCI Argentina ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "ARKB",
+    "ok": true,
+    "name": "ARK 21Shares Bitcoin ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "ARKF",
+    "ok": true,
+    "name": "ARK Blockchain & Fintech Innovation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ARKG",
+    "ok": true,
+    "name": "ARK Genomic Revolution ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ARKK",
+    "ok": true,
+    "name": "ARK Innovation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ARKQ",
+    "ok": true,
+    "name": "ARK Autonomous Technology & Robotics ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ARKW",
+    "ok": true,
+    "name": "ARK Next Generation Internet ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ARKX",
+    "ok": true,
+    "name": "ARK Space & Defense Innovation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ARTY",
+    "ok": true,
+    "name": "iShares Future AI & Tech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ASHR",
+    "ok": true,
+    "name": "Xtrackers Harvest CSI 300 China A-Shares ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "AVLV",
+    "ok": true,
+    "name": "Avantis US Large Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "AVMV",
+    "ok": true,
+    "name": "Avantis U.S. Mid Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "AVUV",
+    "ok": true,
+    "name": "Avantis US Small Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "BAR",
+    "ok": true,
+    "name": "GraniteShares Gold Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "gold"
+    ]
+  },
+  {
+    "ticker": "BATT",
+    "ok": true,
+    "name": "Amplify Lithium & Battery Technology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "BBH",
+    "ok": true,
+    "name": "VanEck Biotech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "BBRE",
+    "ok": true,
+    "name": "JPMorgan BetaBuilders MSCI U.S. REIT ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "BCI",
+    "ok": true,
+    "name": "abrdn Bloomberg All Commodity Strategy K-1 Free ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "BCLN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "BIL",
+    "ok": true,
+    "name": "State Street SPDR Bloomberg 1-3 Month T-Bill ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "BITB",
+    "ok": true,
+    "name": "Bitwise Bitcoin ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "BITO",
+    "ok": true,
+    "name": "ProShares Bitcoin ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "BITQ",
+    "ok": true,
+    "name": "Bitwise Crypto Industry Innovators ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic",
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "BIV",
+    "ok": true,
+    "name": "Vanguard Intermediate-Term Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "BKCH",
+    "ok": true,
+    "name": "Global X Blockchain ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic",
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "BLOK",
+    "ok": true,
+    "name": "Amplify Blockchain Technology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic",
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "BLV",
+    "ok": true,
+    "name": "Vanguard Long-Term Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "BND",
+    "ok": true,
+    "name": "Vanguard Total Bond Market Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "BNDX",
+    "ok": true,
+    "name": "Vanguard Total International Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "BOTZ",
+    "ok": true,
+    "name": "Global X Robotics & Artificial Intelligence ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "BRRR",
+    "ok": true,
+    "name": "CoinShares Bitcoin ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "BSV",
+    "ok": true,
+    "name": "Vanguard Short-Term Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "BTCO",
+    "ok": true,
+    "name": "Invesco Galaxy Bitcoin ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "BTCW",
+    "ok": true,
+    "name": "WisdomTree Bitcoin Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "BUG",
+    "ok": true,
+    "name": "Global X Cybersecurity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "CALF",
+    "ok": true,
+    "name": "Pacer US Small Cap Cash Cows 100 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "CGW",
+    "ok": true,
+    "name": "Invesco S&P Global Water Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "CHAT",
+    "ok": true,
+    "name": "Roundhill Generative AI & Technology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "CIBR",
+    "ok": true,
+    "name": "First Trust NASDAQ Cybersecurity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "CLOU",
+    "ok": true,
+    "name": "Global X Cloud Computing ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "CNRG",
+    "ok": true,
+    "name": "State Street SPDR S&P Kensho Clean Power ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "COMT",
+    "ok": true,
+    "name": "iShares GSCI Commodity Dynamic Roll Strategy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "COPX",
+    "ok": true,
+    "name": "Global X Copper Miners ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "CORN",
+    "ok": true,
+    "name": "Teucrium Corn Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "COWZ",
+    "ok": true,
+    "name": "Pacer US Cash Cows 100 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "CPER",
+    "ok": true,
+    "name": "United States Copper Index Fund, LP",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "CQQQ",
+    "ok": true,
+    "name": "Invesco China Technology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "CSPX.L",
+    "ok": true,
+    "name": "iShares Core S&P 500 UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "CSPX.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "CUT",
+    "ok": true,
+    "name": "Invesco MSCI Global Timber ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "DAPP",
+    "ok": true,
+    "name": "VanEck Digital Transformation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic",
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "DBA",
+    "ok": true,
+    "name": "Invesco DB Agriculture Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "DBB",
+    "ok": true,
+    "name": "Invesco DB Base Metals Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "DBC",
+    "ok": true,
+    "name": "Invesco DB Commodity Index Tracking Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "DBE",
+    "ok": true,
+    "name": "Invesco DB Energy Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "DDM",
+    "ok": true,
+    "name": "ProShares Ultra Dow30",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "DES",
+    "ok": true,
+    "name": "WisdomTree U.S. SmallCap Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DFAC",
+    "ok": true,
+    "name": "Dimensional U.S. Core Equity 2 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "DFAI",
+    "ok": true,
+    "name": "Dimensional International Core Equity Market ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "DFAU",
+    "ok": true,
+    "name": "Dimensional US Core Equity Market ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "DFAX",
+    "ok": true,
+    "name": "Dimensional World ex U.S. Core Equity 2 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "DGRO",
+    "ok": true,
+    "name": "iShares Core Dividend Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DGRW",
+    "ok": true,
+    "name": "WisdomTree U.S. Quality Dividend Growth Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DHS",
+    "ok": true,
+    "name": "WisdomTree U.S. High Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DIA",
+    "ok": true,
+    "name": "State Street SPDR Dow Jones Industrial Average ETF Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "DIVB",
+    "ok": true,
+    "name": "iShares Core Dividend ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DIVO",
+    "ok": true,
+    "name": "Amplify CWP Enhanced Dividend Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "DJP",
+    "ok": true,
+    "name": "iPath Bloomberg Commodity Index Total Return(SM) ETN",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "DON",
+    "ok": true,
+    "name": "WisdomTree U.S. MidCap Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DRIV",
+    "ok": true,
+    "name": "Global X Autonomous & Electric Vehicles ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "DSI",
+    "ok": true,
+    "name": "iShares ESG MSCI KLD 400 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
+    ]
+  },
+  {
+    "ticker": "DTD",
+    "ok": true,
+    "name": "WisdomTree U.S. Total Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DUST",
+    "ok": true,
+    "name": "Direxion Daily Gold Miners Index Bear 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "DVY",
+    "ok": true,
+    "name": "iShares Select Dividend ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DXD",
+    "ok": true,
+    "name": "ProShares UltraShort Dow30",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "EATV",
+    "ok": true,
+    "name": "VegTech Food Innovation & Climate ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "EDV",
+    "ok": true,
+    "name": "Vanguard Extended Duration Treasury Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "EEM",
+    "ok": true,
+    "name": "iShares MSCI Emerging Markets ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EFA",
+    "ok": true,
+    "name": "iShares MSCI EAFE ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EFG",
+    "ok": true,
+    "name": "iShares MSCI EAFE Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EFV",
+    "ok": true,
+    "name": "iShares MSCI EAFE Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EIDO",
+    "ok": true,
+    "name": "iShares MSCI Indonesia ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EIMI.L",
+    "ok": true,
+    "name": "iShares Core MSCI EM IMI UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "EIMI.MI",
+    "ok": true,
+    "name": "iShares Core MSCI EM IMI UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "EMB",
+    "ok": true,
+    "name": "iShares J.P. Morgan USD Emerging Markets Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "EPI",
+    "ok": true,
+    "name": "WisdomTree India Earnings Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "ERX",
+    "ok": true,
+    "name": "Direxion Daily Energy Bull 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "ERY",
+    "ok": true,
+    "name": "Direxion Daily Energy Bear 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "ESGD",
+    "ok": true,
+    "name": "iShares ESG Aware MSCI EAFE ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
+    ]
+  },
+  {
+    "ticker": "ESGE",
+    "ok": true,
+    "name": "iShares ESG Aware MSCI EM ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
+    ]
+  },
+  {
+    "ticker": "ESGU",
+    "ok": true,
+    "name": "iShares ESG Aware MSCI USA ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
+    ]
+  },
+  {
+    "ticker": "ESGV",
+    "ok": true,
+    "name": "Vanguard ESG U.S. Stock ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
+    ]
+  },
+  {
+    "ticker": "ESPO",
+    "ok": true,
+    "name": "VanEck Video Gaming and eSports ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ETHA",
+    "ok": true,
+    "name": "iShares Ethereum Trust ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "ETHE",
+    "ok": true,
+    "name": "Grayscale Ethereum Staking ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "EUNK.DE",
+    "ok": true,
+    "name": "iShares Core MSCI Europe UCITS ETF EUR (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "EUNL.DE",
+    "ok": true,
+    "name": "iShares Core MSCI World UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "EWA",
+    "ok": true,
+    "name": "iShares MSCI Australia ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWC",
+    "ok": true,
+    "name": "iShares MSCI Canada ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWD",
+    "ok": true,
+    "name": "iShares MSCI Sweden ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWG",
+    "ok": true,
+    "name": "iShares MSCI Germany ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWH",
+    "ok": true,
+    "name": "iShares MSCI Hong Kong ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWI",
+    "ok": true,
+    "name": "iShares MSCI Italy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWJ",
+    "ok": true,
+    "name": "iShares MSCI Japan ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWL",
+    "ok": true,
+    "name": "iShares MSCI Switzerland ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWN",
+    "ok": true,
+    "name": "iShares MSCI Netherlands ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWP",
+    "ok": true,
+    "name": "iShares MSCI Spain ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWQ",
+    "ok": true,
+    "name": "iShares MSCI France ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWS",
+    "ok": true,
+    "name": "iShares MSCI Singapore ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWT",
+    "ok": true,
+    "name": "iShares MSCI Taiwan ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWU",
+    "ok": true,
+    "name": "iShares MSCI United Kingdom ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWW",
+    "ok": true,
+    "name": "iShares MSCI Mexico ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWY",
+    "ok": true,
+    "name": "iShares MSCI South Korea ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EWZ",
+    "ok": true,
+    "name": "iShares MSCI Brazil ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EXSA.DE",
+    "ok": true,
+    "name": "iShares STOXX Europe 600 UCITS ETF (DE) EUR (Dist)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "EZA",
+    "ok": true,
+    "name": "iShares MSCI South Africa ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EZBC",
+    "ok": true,
+    "name": "Franklin Bitcoin ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "FALN",
+    "ok": true,
+    "name": "iShares Fallen Angels USD Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "FAN",
+    "ok": true,
+    "name": "First Trust Global Wind Energy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "FAS",
+    "ok": true,
+    "name": "Direxion Daily Financial Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "FAZ",
+    "ok": true,
+    "name": "Direxion Daily Financial Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "FBND",
+    "ok": true,
+    "name": "Fidelity Total Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "FBT",
+    "ok": true,
+    "name": "First Trust NYSE Arca Biotechnology Index Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "FBTC",
+    "ok": true,
+    "name": "Fidelity Wise Origin Bitcoin Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "FCG",
+    "ok": true,
+    "name": "First Trust Natural Gas ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "FDN",
+    "ok": true,
+    "name": "First Trust Dow Jones Internet Index Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "FDVV",
+    "ok": true,
+    "name": "Fidelity High Dividend ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "FEZ",
+    "ok": true,
+    "name": "State Street SPDR EURO STOXX 50 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "FINX",
+    "ok": true,
+    "name": "Global X FinTech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "FIVG",
+    "ok": true,
+    "name": "Defiance Connective Technologies ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "FIW",
+    "ok": true,
+    "name": "First Trust Water ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "FLIN",
+    "ok": true,
+    "name": "Franklin FTSE India ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "FLJP",
+    "ok": true,
+    "name": "Franklin FTSE Japan ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "FLKR",
+    "ok": true,
+    "name": "Franklin FTSE South Korea ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "FNDE",
+    "ok": true,
+    "name": "Schwab Fundamental Emerging Markets Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "FNDF",
+    "ok": true,
+    "name": "Schwab Fundamental International Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "FNDX",
+    "ok": true,
+    "name": "Schwab Fundamental U.S. Large Company ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "FREL",
+    "ok": true,
+    "name": "Fidelity MSCI Real Estate Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "FTEC",
+    "ok": true,
+    "name": "Fidelity MSCI Information Technology Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "FTXL",
+    "ok": true,
+    "name": "First Trust Nasdaq Semiconductor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "FVD",
+    "ok": true,
+    "name": "First Trust Value Line Dividend Index Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "FXI",
+    "ok": true,
+    "name": "iShares China Large-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "GAL",
+    "ok": true,
+    "name": "State Street Global Allocation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "allocation"
+    ]
+  },
+  {
+    "ticker": "GAMR",
+    "ok": true,
+    "name": "Amplify Video Game Leaders ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "GBTC",
+    "ok": true,
+    "name": "Grayscale Bitcoin Trust ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "GDX",
+    "ok": true,
+    "name": "VanEck Gold Miners ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic",
+      "gold"
+    ]
+  },
+  {
+    "ticker": "GDXJ",
+    "ok": true,
+    "name": "VanEck Junior Gold Miners ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic",
+      "gold"
+    ]
+  },
+  {
+    "ticker": "GLD",
+    "ok": true,
+    "name": "SPDR Gold Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities",
+      "gold"
+    ]
+  },
+  {
+    "ticker": "GLDM",
+    "ok": true,
+    "name": "SPDR Gold MiniShares",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities",
+      "gold"
+    ]
+  },
+  {
+    "ticker": "GNOM",
+    "ok": true,
+    "name": "Global X Genomics & Biotechnology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "GOVT",
+    "ok": true,
+    "name": "iShares U.S. Treasury Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "GREK",
+    "ok": true,
+    "name": "Global X MSCI Greece ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "GRID",
+    "ok": true,
+    "name": "First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "GSG",
+    "ok": true,
+    "name": "iShares S&P GSCI Commodity-Indexed Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "HACK",
+    "ok": true,
+    "name": "Amplify Cybersecurity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "HAIL",
+    "ok": true,
+    "name": "State Street SPDR S&P Kensho Smart Mobility ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "HDRO",
+    "ok": true,
+    "name": "Defiance Next Gen H2 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "HDV",
+    "ok": true,
+    "name": "iShares Core High Dividend ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "HERO",
+    "ok": true,
+    "name": "Global X Video Games & Esports ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "HODL",
+    "ok": true,
+    "name": "VanEck Bitcoin ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "HYD",
+    "ok": true,
+    "name": "VanEck High Yield Muni ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "municipalBonds"
+    ]
+  },
+  {
+    "ticker": "HYDR",
+    "ok": true,
+    "name": "Global X Hydrogen ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "HYG",
+    "ok": true,
+    "name": "iShares iBoxx $ High Yield Corporate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "IAI",
+    "ok": true,
+    "name": "iShares U.S. Broker-Dealers & Securities Exchanges ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "IAU",
+    "ok": true,
+    "name": "iShares Gold Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities",
+      "gold"
+    ]
+  },
+  {
+    "ticker": "IBB",
+    "ok": true,
+    "name": "iShares Biotechnology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IBIT",
+    "ok": true,
+    "name": "iShares Bitcoin Trust ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "crypto"
+    ]
+  },
+  {
+    "ticker": "ICLN",
+    "ok": true,
+    "name": "iShares Global Clean Energy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IDNA",
+    "ok": true,
+    "name": "iShares Genomics Immunology and Healthcare ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IDRV",
+    "ok": true,
+    "name": "iShares Self-Driving EV and Tech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IEF",
+    "ok": true,
+    "name": "iShares 7-10 Year Treasury Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "IEFA",
+    "ok": true,
+    "name": "iShares Core MSCI EAFE ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "IEMG",
+    "ok": true,
+    "name": "iShares Core MSCI Emerging Markets ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "IEO",
+    "ok": true,
+    "name": "iShares U.S. Oil & Gas Exploration & Production ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "IFRA",
+    "ok": true,
+    "name": "iShares U.S. Infrastructure ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IGF",
+    "ok": true,
+    "name": "iShares Global Infrastructure ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IGIB",
+    "ok": true,
+    "name": "iShares 5-10 Year Investment Grade Corporate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "IGSB",
+    "ok": true,
+    "name": "iShares 1-5 Year Investment Grade Corporate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "IGV",
+    "ok": true,
+    "name": "iShares Expanded Tech-Software Sector ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "IHAK",
+    "ok": true,
+    "name": "iShares Cybersecurity and Tech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IHI",
+    "ok": true,
+    "name": "iShares U.S. Medical Devices ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IJH",
+    "ok": true,
+    "name": "iShares Core S&P Mid-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IJJ",
+    "ok": true,
+    "name": "iShares S&P Mid-Cap 400 Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IJK",
+    "ok": true,
+    "name": "iShares S&P Mid-Cap 400 Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IJR",
+    "ok": true,
+    "name": "iShares Core S&P Small-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IJS",
+    "ok": true,
+    "name": "iShares S&P Small-Cap 600 Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS",
+      "factor"
+    ]
+  },
+  {
+    "ticker": "IJT",
+    "ok": true,
+    "name": "iShares S&P Small-Cap 600 Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "INDA",
+    "ok": true,
+    "name": "iShares MSCI India ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "INDS",
+    "ok": true,
+    "name": "Pacer Benchmark Industrial Real Estate SCTR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "IPAY",
+    "ok": true,
+    "name": "Amplify Digital Payments ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IRBO",
+    "ok": true,
+    "name": "iShares Future AI & Tech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IS3N.DE",
+    "ok": true,
+    "name": "iShares Core MSCI EM IMI UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "ITA",
+    "ok": true,
+    "name": "iShares U.S. Aerospace & Defense ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ITB",
+    "ok": true,
+    "name": "iShares U.S. Home Construction ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "ITOT",
+    "ok": true,
+    "name": "iShares Core S&P Total U.S. Stock Market ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IUSA.L",
+    "ok": true,
+    "name": "iShares Core S&P 500 UCITS ETF USD Dist",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "IUSB",
+    "ok": true,
+    "name": "iShares Core Universal USD Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "IUSG",
+    "ok": true,
+    "name": "iShares Core S&P U.S. Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IUSN.L",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "IUSV",
+    "ok": true,
+    "name": "iShares Core S&P U.S. Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IVE",
+    "ok": true,
+    "name": "iShares S&P 500 Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IVES",
+    "ok": true,
+    "name": "Dan IVES Wedbush AI Revolution ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "IVV",
+    "ok": true,
+    "name": "iShares Core S&P 500 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IVW",
+    "ok": true,
+    "name": "iShares S&P 500 Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWB",
+    "ok": true,
+    "name": "iShares Russell 1000 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWD",
+    "ok": true,
+    "name": "iShares Russell 1000 Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWDA.L",
+    "ok": true,
+    "name": "iShares Core MSCI World UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "IWF",
+    "ok": true,
+    "name": "iShares Russell 1000 Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWM",
+    "ok": true,
+    "name": "iShares Russell 2000 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWN",
+    "ok": true,
+    "name": "iShares Russell 2000 Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWO",
+    "ok": true,
+    "name": "iShares Russell 2000 Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWP",
+    "ok": true,
+    "name": "iShares Russell Mid-Cap Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWR",
+    "ok": true,
+    "name": "iShares Russell Mid-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWS",
+    "ok": true,
+    "name": "iShares Russell Mid-Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWV",
+    "ok": true,
+    "name": "iShares Russell 3000 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IXUS",
+    "ok": true,
+    "name": "iShares Core MSCI Total International Stock ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "IYR",
+    "ok": true,
+    "name": "iShares U.S. Real Estate ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "IYT",
+    "ok": true,
+    "name": "iShares Transportation Average ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "IYW",
+    "ok": true,
+    "name": "iShares U.S. Technology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "JDST",
+    "ok": true,
+    "name": "Direxion Daily Junior Gold Miners Index Bear 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "JEPI",
+    "ok": true,
+    "name": "JPMorgan Equity Premium Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "JEPQ",
+    "ok": true,
+    "name": "JPMorgan Nasdaq Equity Premium Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "JJG",
+    "ok": true,
+    "name": "iPath Series B Bloomberg Grains Subindex Total Return ETN",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "JNK",
+    "ok": true,
+    "name": "State Street SPDR Bloomberg High Yield Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "JNUG",
+    "ok": true,
+    "name": "Direxion Daily Junior Gold Miners Index Bull 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "JQUA",
+    "ok": true,
+    "name": "JPMorgan U.S. Quality Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "KARS",
+    "ok": true,
+    "name": "KraneShares Electric Vehicles and Future Mobility Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "KBE",
+    "ok": true,
+    "name": "State Street SPDR S&P Bank ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "KRE",
+    "ok": true,
+    "name": "State Street SPDR S&P Regional Banking ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "KWEB",
+    "ok": true,
+    "name": "KraneShares CSI China Internet ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "LABD",
+    "ok": true,
+    "name": "Direxion Daily S&P Biotech Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "LABU",
+    "ok": true,
+    "name": "Direxion Daily S&P Biotech Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "LIT",
+    "ok": true,
+    "name": "Global X Lithium & Battery Tech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "LQD",
+    "ok": true,
+    "name": "iShares iBoxx $ Investment Grade Corporate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "LTPZ",
+    "ok": true,
+    "name": "PIMCO 15+ Year U.S. TIPS Index Exchange-Traded Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "inflationBonds"
+    ]
+  },
+  {
+    "ticker": "MAGS",
+    "ok": true,
+    "name": "Roundhill Magnificent Seven ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "MBB",
+    "ok": true,
+    "name": "iShares MBS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "MCHI",
+    "ok": true,
+    "name": "iShares MSCI China ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "MDY",
+    "ok": true,
+    "name": "State Street SPDR S&P MIDCAP 400 ETF Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "METV",
+    "ok": true,
+    "name": "Roundhill Ball Metaverse ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "MGC",
+    "ok": true,
+    "name": "Vanguard Morningstar Mega Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "MGK",
+    "ok": true,
+    "name": "Vanguard Morningstar Mega Cap Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "MGV",
+    "ok": true,
+    "name": "Vanguard Morningstar Mega Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "MJ",
+    "ok": true,
+    "name": "Amplify Alternative Harvest ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "MOAT",
+    "ok": true,
+    "name": "VanEck Morningstar Wide Moat ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "MOO",
+    "ok": true,
+    "name": "VanEck Agribusiness ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic",
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "MSOS",
+    "ok": true,
+    "name": "AdvisorShares Pure US Cannabis ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "MTUM",
+    "ok": true,
+    "name": "iShares MSCI USA Momentum Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor",
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "MUB",
+    "ok": true,
+    "name": "iShares National Muni Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "municipalBonds"
+    ]
+  },
+  {
+    "ticker": "NERD",
+    "ok": true,
+    "name": "Roundhill Video Games ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "NFRA",
+    "ok": true,
+    "name": "Northern Trust STOXX Global Broad Infrastructure ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "NLR",
+    "ok": true,
+    "name": "VanEck Uranium and Nuclear ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "NOBL",
+    "ok": true,
+    "name": "ProShares S&P 500 Dividend Aristocrats ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "NUGT",
+    "ok": true,
+    "name": "Direxion Daily Gold Miners Index Bull 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "NXTG",
+    "ok": true,
+    "name": "First Trust IndXX NextG ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "OIH",
+    "ok": true,
+    "name": "VanEck Oil Services ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "OMFL",
+    "ok": true,
+    "name": "Invesco Russell 1000 Dynamic Multifactor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "OUNZ",
+    "ok": true,
+    "name": "VanEck Merk Gold Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "gold"
+    ]
+  },
+  {
+    "ticker": "PALL",
+    "ok": true,
+    "name": "abrdn Physical Palladium Shares ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "PAVE",
+    "ok": true,
+    "name": "Global X U.S. Infrastructure Development ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "PBW",
+    "ok": true,
+    "name": "Invesco WilderHill Clean Energy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "PDBC",
+    "ok": true,
+    "name": "Invesco Optimum Yield Diversified Commodity Strategy No K-1 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "PFF",
+    "ok": true,
+    "name": "iShares Preferred and Income Securities ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "PFFD",
+    "ok": true,
+    "name": "Global X U.S. Preferred ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "PGX",
+    "ok": true,
+    "name": "Invesco Preferred ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "PHDG",
+    "ok": true,
+    "name": "Invesco S&P 500 Downside Hedged ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "PHO",
+    "ok": true,
+    "name": "Invesco Water Resources ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "PIO",
+    "ok": true,
+    "name": "Invesco Global Water ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "PNQI",
+    "ok": true,
+    "name": "Invesco NASDAQ Internet ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "PPA",
+    "ok": true,
+    "name": "Invesco Aerospace & Defense ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "PPFB.DE",
+    "ok": true,
+    "name": "iShares Physical Gold ETC",
+    "quoteType": "EQUITY",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "PPLT",
+    "ok": true,
+    "name": "abrdn Physical Platinum Shares ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "PRNT",
+    "ok": true,
+    "name": "The 3D Printing ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "PSI",
+    "ok": true,
+    "name": "Invesco Semiconductors ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "QCLN",
+    "ok": true,
+    "name": "First Trust NASDAQ Clean Edge Green Energy Index Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "QID",
+    "ok": true,
+    "name": "ProShares UltraShort QQQ",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "QLD",
+    "ok": true,
+    "name": "ProShares Ultra QQQ",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "QQQ",
+    "ok": true,
+    "name": "Invesco QQQ Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "QQQI",
+    "ok": true,
+    "name": "NEOS NASDAQ-100(R) High Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "QQQM",
+    "ok": true,
+    "name": "Invesco NASDAQ 100 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "QTUM",
+    "ok": true,
+    "name": "Defiance Quantum ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "QUAL",
+    "ok": true,
+    "name": "iShares MSCI USA Quality Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor",
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "QYLD",
+    "ok": true,
+    "name": "Global X NASDAQ 100 Covered Call ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "RDVY",
+    "ok": true,
+    "name": "First Trust Rising Dividend Achievers ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "REET",
+    "ok": true,
+    "name": "iShares Global REIT ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "REM",
+    "ok": true,
+    "name": "iShares Mortgage Real Estate Capped ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "REMX",
+    "ok": true,
+    "name": "VanEck Rare Earth and Strategic Metals ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "REZ",
+    "ok": true,
+    "name": "iShares Residential and Multisector Real Estate ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "RING",
+    "ok": true,
+    "name": "iShares MSCI Global Gold Miners ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "gold"
+    ]
+  },
+  {
+    "ticker": "RJA",
+    "ok": true,
+    "name": "ELEMENTS Linked to the Rogers International Commodity Index - Agriculture Total Return",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "RJI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "RJN",
+    "ok": true,
+    "name": "ELEMENTS Linked to the Rogers International Commodity Index - Energy Total Return",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "ROBO",
+    "ok": true,
+    "name": "Robo Global Robotics and Automation Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ROBT",
+    "ok": true,
+    "name": "First Trust Nasdaq Artificial Intelligence and Robotics ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "ROKT",
+    "ok": true,
+    "name": "State Street SPDR S&P Kensho Final Frontiers ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "RPAR",
+    "ok": true,
+    "name": "RPAR Risk Parity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "allocation"
+    ]
+  },
+  {
+    "ticker": "RSP",
+    "ok": true,
+    "name": "Invesco S&P 500 Equal Weight ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "RWR",
+    "ok": true,
+    "name": "State Street SPDR Dow Jones REIT ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "RYLD",
+    "ok": true,
+    "name": "Global X Russell 2000 Covered Call ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "SCHA",
+    "ok": true,
+    "name": "Schwab U.S. Small-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "SCHB",
+    "ok": true,
+    "name": "Schwab U.S. Broad Market ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "SCHD",
+    "ok": true,
+    "name": "Schwab U.S. Dividend Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "SCHE",
+    "ok": true,
+    "name": "Schwab Emerging Markets Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "SCHF",
+    "ok": true,
+    "name": "Schwab International Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "SCHG",
+    "ok": true,
+    "name": "Schwab U.S. Large-Cap Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "SCHH",
+    "ok": true,
+    "name": "Schwab U.S. REIT ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "SCHO",
+    "ok": true,
+    "name": "Schwab Short-Term U.S. Treasury ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "SCHP",
+    "ok": true,
+    "name": "Schwab U.S. TIPS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "inflationBonds"
+    ]
+  },
+  {
+    "ticker": "SCHR",
+    "ok": true,
+    "name": "Schwab Intermediate-Term U.S. Treasury ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "SCHV",
+    "ok": true,
+    "name": "Schwab U.S. Large-Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "SCHZ",
+    "ok": true,
+    "name": "Schwab U.S. Aggregate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "SDOW",
+    "ok": true,
+    "name": "ProShares UltraPro Short Dow30",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "SDS",
+    "ok": true,
+    "name": "ProShares UltraShort S&P500",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "SDY",
+    "ok": true,
+    "name": "State Street SPDR S&P Dividend ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "SGLD.L",
+    "ok": true,
+    "name": "Invesco Physical Gold ETC",
+    "quoteType": "EQUITY",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "SGOL",
+    "ok": true,
+    "name": "abrdn Physical Gold Shares ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities",
+      "gold"
+    ]
+  },
+  {
+    "ticker": "SGOV",
+    "ok": true,
+    "name": "iShares 0-3 Month Treasury Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "SHLD",
+    "ok": true,
+    "name": "Global X Defense Tech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "SHV",
+    "ok": true,
+    "name": "iShares 0–1 Year Treasury Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "SHY",
+    "ok": true,
+    "name": "iShares 1-3 Year Treasury Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "SHYG",
+    "ok": true,
+    "name": "iShares 0-5 Year High Yield Corporate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "SIL",
+    "ok": true,
+    "name": "Global X Silver Miners ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "SILJ",
+    "ok": true,
+    "name": "Amplify Junior Silver Miners ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "SIVR",
+    "ok": true,
+    "name": "abrdn Physical Silver Shares ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "SIZE",
+    "ok": true,
+    "name": "iShares MSCI USA Size Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "SJNK",
+    "ok": true,
+    "name": "State Street SPDR Bloomberg Short Term High Yield Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "SKYY",
+    "ok": true,
+    "name": "First Trust Cloud Computing ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "SLV",
+    "ok": true,
+    "name": "iShares Silver Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "SMH",
+    "ok": true,
+    "name": "VanEck Semiconductor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "SNSR",
+    "ok": true,
+    "name": "Global X Internet of Things ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "SOXL",
+    "ok": true,
+    "name": "Direxion Daily Semiconductor Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "SOXQ",
+    "ok": true,
+    "name": "Invesco PHLX Semiconductor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "SOXS",
+    "ok": true,
+    "name": "Direxion Daily Semiconductor Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "SOXX",
+    "ok": true,
+    "name": "iShares Semiconductor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "SOYB",
+    "ok": true,
+    "name": "Teucrium Soybean Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "SPDW",
+    "ok": true,
+    "name": "State Street SPDR Portfolio Developed World ex-US ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "SPEM",
+    "ok": true,
+    "name": "State Street SPDR Portfolio Emerging Markets ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "SPHD",
+    "ok": true,
+    "name": "Invesco S&P 500 High Dividend Low Volatility ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "SPHQ",
+    "ok": true,
+    "name": "Invesco S&P 500 Quality ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "SPLG",
+    "ok": true,
+    "name": "State Street SPDR Portfolio S&P 500 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "SPLV",
+    "ok": true,
+    "name": "Invesco S&P 500 Low Volatility ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "SPTL",
+    "ok": true,
+    "name": "State Street SPDR Portfolio Long Term Treasury ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "SPTS",
+    "ok": true,
+    "name": "State Street SPDR Portfolio Short Term Treasury ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "SPXL",
+    "ok": true,
+    "name": "Direxion Daily S&P500 Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "SPXS",
+    "ok": true,
+    "name": "Direxion Daily S&P 500 Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "SPXU",
+    "ok": true,
+    "name": "ProShares UltraPro Short S&P500",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "SPY",
+    "ok": true,
+    "name": "State Street SPDR S&P 500 ETF Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "SPYD",
+    "ok": true,
+    "name": "State Street SPDR Portfolio S&P 500 High Dividend ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "SPYG",
+    "ok": true,
+    "name": "State Street SPDR Portfolio S&P 500 Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "SPYI",
+    "ok": true,
+    "name": "Neos S&P 500(R) High Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "SPYV",
+    "ok": true,
+    "name": "State Street SPDR Portfolio S&P 500 Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "SQQQ",
+    "ok": true,
+    "name": "ProShares UltraPro Short QQQ",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "SRVR",
+    "ok": true,
+    "name": "Pacer Data & Infrastructure Real Estate ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic",
+      "reit"
+    ]
+  },
+  {
+    "ticker": "SSO",
+    "ok": true,
+    "name": "ProShares Ultra S&P500",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "STIP",
+    "ok": true,
+    "name": "iShares 0-5 Year TIPS Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "inflationBonds"
+    ]
+  },
+  {
+    "ticker": "SUB",
+    "ok": true,
+    "name": "iShares Short-Term National Muni Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "municipalBonds"
+    ]
+  },
+  {
+    "ticker": "SUSA",
+    "ok": true,
+    "name": "iShares ESG Optimized MSCI USA ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
+    ]
+  },
+  {
+    "ticker": "SUSL",
+    "ok": true,
+    "name": "iShares ESG MSCI USA Leaders ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
+    ]
+  },
+  {
+    "ticker": "SUSW.L",
+    "ok": true,
+    "name": "iShares MSCI World SRI UCITS ETF EUR (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "SVXY",
+    "ok": true,
+    "name": "ProShares Short VIX Short-Term Futures ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse",
+      "volatility"
+    ]
+  },
+  {
+    "ticker": "SWDA.L",
+    "ok": true,
+    "name": "iShares Core MSCI World UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "SXR8.DE",
+    "ok": true,
+    "name": "iShares Core S&P 500 UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "SXRV.DE",
+    "ok": true,
+    "name": "iShares NASDAQ 100 UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "TAN",
+    "ok": true,
+    "name": "Invesco Solar ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "TECL",
+    "ok": true,
+    "name": "Direxion Daily Technology Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "TECS",
+    "ok": true,
+    "name": "Direxion Daily Technology Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "TFI",
+    "ok": true,
+    "name": "State Street SPDR Nuveen ICE Municipal Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "municipalBonds"
+    ]
+  },
+  {
+    "ticker": "THD",
+    "ok": true,
+    "name": "iShares MSCI Thailand ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "THNQ",
+    "ok": true,
+    "name": "Robo Global Artificial Intelligence ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "TIP",
+    "ok": true,
+    "name": "iShares TIPS Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "inflationBonds"
+    ]
+  },
+  {
+    "ticker": "TLT",
+    "ok": true,
+    "name": "iShares 20+ Year Treasury Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "TMF",
+    "ok": true,
+    "name": "Direxion Daily 20+ Year Treasury Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "TMV",
+    "ok": true,
+    "name": "Direxion Daily 20+ Year Treasury Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "TNA",
+    "ok": true,
+    "name": "Direxion Daily Small Cap Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "TOTL",
+    "ok": true,
+    "name": "State Street DoubleLine Total Return Tactical ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "TPAY",
+    "ok": true,
+    "name": "Roundhill ETF Trust - Roundhill S&P 500 Target 10 Managed Distribution ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "TQQQ",
+    "ok": true,
+    "name": "ProShares UltraPro QQQ",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "TUR",
+    "ok": true,
+    "name": "iShares MSCI Turkey ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "TZA",
+    "ok": true,
+    "name": "Direxion Daily Small Cap Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "UDOW",
+    "ok": true,
+    "name": "ProShares UltraPro Dow30",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "UFO",
+    "ok": true,
+    "name": "Procure Space ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "UGA",
+    "ok": true,
+    "name": "United States Gasoline Fund, LP",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "UNG",
+    "ok": true,
+    "name": "United States Natural Gas Fund, LP",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "UPRO",
+    "ok": true,
+    "name": "ProShares UltraPro S&P500",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "URA",
+    "ok": true,
+    "name": "Global X Uranium ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "URNM",
+    "ok": true,
+    "name": "Sprott Uranium Miners ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "URTH",
+    "ok": true,
+    "name": "iShares MSCI World ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "USCI",
+    "ok": true,
+    "name": "United States Commodity Index Fund, LP",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "USHY",
+    "ok": true,
+    "name": "iShares Broad USD High Yield Corporate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "USMV",
+    "ok": true,
+    "name": "iShares MSCI USA Min Vol Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor",
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "USO",
+    "ok": true,
+    "name": "United States Oil Fund, LP",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "USRT",
+    "ok": true,
+    "name": "iShares Core U.S. REIT ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "UVXY",
+    "ok": true,
+    "name": "ProShares Ultra VIX Short-Term Futures ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse",
+      "volatility"
+    ]
+  },
+  {
+    "ticker": "VAW",
+    "ok": true,
+    "name": "Vanguard Materials Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VB",
+    "ok": true,
+    "name": "Vanguard Morningstar Small-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VBR",
+    "ok": true,
+    "name": "Vanguard Morningstar Small-Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "VCIT",
+    "ok": true,
+    "name": "Vanguard Intermediate-Term Corporate Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "VCR",
+    "ok": true,
+    "name": "Vanguard Consumer Discretionary Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VCSH",
+    "ok": true,
+    "name": "Vanguard Short-Term Corporate Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "VDC",
+    "ok": true,
+    "name": "Vanguard Consumer Staples Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VDE",
+    "ok": true,
+    "name": "Vanguard Energy Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VEA",
+    "ok": true,
+    "name": "Vanguard FTSE Developed Markets Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "VEGI",
+    "ok": true,
+    "name": "iShares MSCI Agriculture Producers ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "VEU",
+    "ok": true,
+    "name": "Vanguard FTSE All-World ex-US Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "VFH",
+    "ok": true,
+    "name": "Vanguard Financials Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VGIT",
+    "ok": true,
+    "name": "Vanguard Intermediate-Term Treasury Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "VGLT",
+    "ok": true,
+    "name": "Vanguard Long-Term Treasury Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds",
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "VGSH",
+    "ok": true,
+    "name": "Vanguard Short-Term Treasury Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  },
+  {
+    "ticker": "VGT",
+    "ok": true,
+    "name": "Vanguard Information Technology Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "VHT",
+    "ok": true,
+    "name": "Vanguard Health Care Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VIG",
+    "ok": true,
+    "name": "Vanguard Dividend Appreciation Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "VIOV",
+    "ok": true,
+    "name": "Vanguard S&P Small-Cap 600 Value Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "factor"
+    ]
+  },
+  {
+    "ticker": "VIS",
+    "ok": true,
+    "name": "Vanguard Industrials Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VIXM",
+    "ok": true,
+    "name": "ProShares VIX Mid-Term Futures ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "volatility"
+    ]
+  },
+  {
+    "ticker": "VIXY",
+    "ok": true,
+    "name": "ProShares VIX Short-Term Futures ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "volatility"
+    ]
+  },
+  {
+    "ticker": "VLUE",
+    "ok": true,
+    "name": "iShares MSCI USA Value Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "factor",
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "VNQ",
+    "ok": true,
+    "name": "Vanguard Real Estate Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard",
+      "reit"
+    ]
+  },
+  {
+    "ticker": "VNQI",
+    "ok": true,
+    "name": "Vanguard Global ex-U.S. Real Estate Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "reit"
+    ]
+  },
+  {
+    "ticker": "VO",
+    "ok": true,
+    "name": "Vanguard Morningstar Mid-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VOO",
+    "ok": true,
+    "name": "Vanguard S&P 500 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VOX",
+    "ok": true,
+    "name": "Vanguard Communication Services Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VPN",
+    "ok": true,
+    "name": "Global X Data Center & Digital Infrastructure ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "VPU",
+    "ok": true,
+    "name": "Vanguard Utilities Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VSS",
+    "ok": true,
+    "name": "Vanguard FTSE All-World ex-US Small-Cap Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "VT",
+    "ok": true,
+    "name": "Vanguard Total World Stock Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "VTEB",
+    "ok": true,
+    "name": "Vanguard Tax-Exempt Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "municipalBonds"
+    ]
+  },
+  {
+    "ticker": "VTI",
+    "ok": true,
+    "name": "Vanguard Morningstar Total Stock Market ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VTIP",
+    "ok": true,
+    "name": "Vanguard Short-Term Inflation-Protected Securities Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "inflationBonds"
+    ]
+  },
+  {
+    "ticker": "VTV",
+    "ok": true,
+    "name": "Vanguard Morningstar Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VUG",
+    "ok": true,
+    "name": "Vanguard Morningstar Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VUSA.L",
+    "ok": true,
+    "name": "Vanguard S&P 500 UCITS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "VUSA.MI",
+    "ok": true,
+    "name": "Vanguard S&P 500 UCITS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "VV",
+    "ok": true,
+    "name": "Vanguard Morningstar Large-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VWCE.DE",
+    "ok": true,
+    "name": "Vanguard FTSE All-World UCITS ETF USD Accumulation",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "VWCE.MI",
+    "ok": true,
+    "name": "Vanguard FTSE All-World UCITS ETF USD Accumulation",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "VWO",
+    "ok": true,
+    "name": "Vanguard FTSE Emerging Markets Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "VWRL.L",
+    "ok": true,
+    "name": "Vanguard FTSE All-World UCITS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "VWRL.MI",
+    "ok": true,
+    "name": "Vanguard FTSE All-World UCITS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "VXF",
+    "ok": true,
+    "name": "Vanguard Extended Market Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VXUS",
+    "ok": true,
+    "name": "Vanguard Total International Stock Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "VXX",
+    "ok": true,
+    "name": "iPath Series B S&P 500 VIX Short-Term Futures ETN",
+    "quoteType": "ETF",
+    "categories": [
+      "volatility"
+    ]
+  },
+  {
+    "ticker": "VYM",
+    "ok": true,
+    "name": "Vanguard High Dividend Yield Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "dividendValue"
+    ]
+  },
+  {
+    "ticker": "WCLD",
+    "ok": true,
+    "name": "WisdomTree Cloud Computing Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "WEAT",
+    "ok": true,
+    "name": "Teucrium Wheat Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "WOOD",
+    "ok": true,
+    "name": "iShares Global Timber & Forestry ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "WSML.L",
+    "ok": true,
+    "name": "iShares MSCI World Small Cap UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "WTAI",
+    "ok": true,
+    "name": "WisdomTree Artificial Intelligence and Innovation Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "XAR",
+    "ok": true,
+    "name": "State Street SPDR S&P Aerospace & Defense ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "XBI",
+    "ok": true,
+    "name": "State Street SPDR S&P Biotech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "XDWD.DE",
+    "ok": true,
+    "name": "Xtrackers MSCI World UCITS ETF 1C",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "XHB",
+    "ok": true,
+    "name": "State Street SPDR S&P Homebuilders ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "XLB",
+    "ok": true,
+    "name": "State Street Materials Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR"
+    ]
+  },
+  {
+    "ticker": "XLC",
+    "ok": true,
+    "name": "State Street Communication Services Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR"
+    ]
+  },
+  {
+    "ticker": "XLE",
+    "ok": true,
+    "name": "State Street Energy Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR"
+    ]
+  },
+  {
+    "ticker": "XLF",
+    "ok": true,
+    "name": "State Street Financial Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR"
+    ]
+  },
+  {
+    "ticker": "XLI",
+    "ok": true,
+    "name": "State Street Industrial Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR"
+    ]
+  },
+  {
+    "ticker": "XLK",
+    "ok": true,
+    "name": "State Street Technology Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "XLP",
+    "ok": true,
+    "name": "State Street Consumer Staples Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR"
+    ]
+  },
+  {
+    "ticker": "XLRE",
+    "ok": true,
+    "name": "State Street Real Estate Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR",
+      "reit"
+    ]
+  },
+  {
+    "ticker": "XLU",
+    "ok": true,
+    "name": "State Street Utilities Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR"
+    ]
+  },
+  {
+    "ticker": "XLV",
+    "ok": true,
+    "name": "State Street Health Care Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR"
+    ]
+  },
+  {
+    "ticker": "XLY",
+    "ok": true,
+    "name": "State Street Consumer Discretionary Select Sector SPDR ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "sectorSPDR"
+    ]
+  },
+  {
+    "ticker": "XME",
+    "ok": true,
+    "name": "State Street SPDR S&P Metals & Mining ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "XMWO.DE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "XOP",
+    "ok": true,
+    "name": "State Street SPDR S&P Oil & Gas Exploration & Production ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "XPH",
+    "ok": true,
+    "name": "State Street SPDR S&P Pharmaceuticals ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "XRT",
+    "ok": true,
+    "name": "State Street SPDR S&P Retail ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "XSD",
+    "ok": true,
+    "name": "State Street SPDR S&P Semiconductor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry",
+      "thematic"
+    ]
+  },
+  {
+    "ticker": "XTN",
+    "ok": true,
+    "name": "State Street SPDR S&P Transportation ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "industry"
+    ]
+  },
+  {
+    "ticker": "XYLD",
+    "ok": true,
+    "name": "Global X S&P 500 Covered Call ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "YANG",
+    "ok": true,
+    "name": "Direxion Daily FTSE China Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "YINN",
+    "ok": true,
+    "name": "Direxion Daily FTSE China Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "ZROZ",
+    "ok": true,
+    "name": "PIMCO 25+ Year Zero Coupon U.S. Treasury Index Exchange-Traded Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "treasury"
+    ]
+  }
+]
