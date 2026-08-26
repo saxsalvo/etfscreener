@@ -327,7 +327,7 @@ async function getOne(ticker, forceRefresh = false) {
       rvol,
       volatility20d,
       distance52wHigh,
-      maxDrawdown52w,
+      maxDrawdown52w: drawdown52w,
       monthReturn: pctReturn(current, monthAgoPrice),
       quality,
     });

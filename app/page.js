@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 
+import { mergeVisibleColumns } from "../lib/visible-columns.js";
+
 const PAGE_SIZE = 25;
 const CAPITAL_FLOW_LIMIT = 10;
 const COOKIE_VISIBLE_COLUMNS = "visible_etf_columns";
@@ -1219,10 +1221,8 @@ export default function Home() {
 
     if (savedConsent === "accepted") {
       const savedColumns = readCookieJson(COOKIE_VISIBLE_COLUMNS);
-      if (Array.isArray(savedColumns)) {
-        const sanitized = ALL_COLUMN_KEYS.filter((key) => savedColumns.includes(key));
-        if (sanitized.length) setVisibleColumns(sanitized);
-      }
+      const merged = mergeVisibleColumns(savedColumns, ALL_COLUMN_KEYS);
+      if (merged.length) setVisibleColumns(merged);
 
       const savedSort = readCookieJson(COOKIE_SORT);
       if (
