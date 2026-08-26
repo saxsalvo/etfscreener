@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Next.js build output
+.next/
+out/
+
+# Production build
+build/
+dist/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor folders/files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Coverage / test output
+coverage/
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Package manager lockfiles (keep if you want them tracked)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Optional: local data folders
+/tmp/
+/temp/
+
+# Optional: certs / secrets
+*.pem
+*.key
+*.crt
+
+# Misc
+*.local
+node_modules/
