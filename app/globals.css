@@ -416,6 +416,54 @@ select {
   color: #7cd6ff;
 }
 
+.filterButton {
+  background: transparent;
+  border: none;
+  color: inherit;
+  opacity: 0.55;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+}
+
+.filterButton:hover {
+  opacity: 0.9;
+}
+
+.filterButton.active {
+  opacity: 1;
+  color: #7cd6ff;
+}
+
+.filterPanel {
+  width: min(230px, 60vw);
+  z-index: 25;
+  cursor: default;
+}
+
+.filterRangeRow {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.filterRangeInput {
+  width: 0;
+  flex: 1;
+}
+
+.filterSearchInput {
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.filterOptionsList {
+  max-height: 180px;
+}
+
 .headerTooltip {
   position: absolute;
   left: 0;

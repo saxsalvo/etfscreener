@@ -122,6 +122,12 @@ const I18N = {
     exclude: "Escludi",
     minSuccessLabel: "Success rate stagionale min. (%)",
     resetFilters: "Azzera filtri",
+    filterButtonLabel: "Filtra colonna",
+    filterMin: "Min",
+    filterMax: "Max",
+    filterClear: "Rimuovi filtro",
+    filterSearchPlaceholder: "Cerca valore...",
+    filterNoOptions: "Nessun valore",
     refreshQuotes: "Aggiorna quotazioni",
     capitalFlows: "Flussi di capitale",
     futureSeasonality: "Stagionalita future",
@@ -565,6 +571,12 @@ const I18N = {
     exclude: "Exclude",
     minSuccessLabel: "Min seasonal success rate (%)",
     resetFilters: "Reset filters",
+    filterButtonLabel: "Filter column",
+    filterMin: "Min",
+    filterMax: "Max",
+    filterClear: "Clear filter",
+    filterSearchPlaceholder: "Search value...",
+    filterNoOptions: "No values",
     refreshQuotes: "Refresh quotes",
     capitalFlows: "Capital flows",
     futureSeasonality: "Future seasonality",
@@ -1019,6 +1031,62 @@ function localizedTrendLabel(value, t) {
   return t.trendWeak;
 }
 
+const NUMERIC_COLUMN_KEYS = new Set([
+  "score",
+  "dailyReturn",
+  "threeDayReturn",
+  "weekReturn",
+  "monthReturn",
+  "year1Return",
+  "year3Return",
+  "year5Return",
+  "year10Return",
+  "rsi14",
+  "positive10",
+  "positive20",
+  "streak",
+  "distanceSma20",
+  "rvol",
+  "volatility20d",
+  "distance52wHigh",
+  "maxDrawdown52w",
+  "netAssets",
+]);
+
+function getColumnNumericValue(key, row) {
+  if (key === "rvol") return row.relativeVolume;
+  return row[key];
+}
+
+function getColumnFilterValues(key, row, t, seasonCache, minSuccess) {
+  if (key === "ticker") return [row.ticker];
+  if (key === "name") return [row.name || row.ticker];
+  if (key === "category") return row.categories && row.categories.length ? row.categories : ["-"];
+  if (key === "trend") return [localizedTrendLabel(row.trend, t)];
+  if (key === "borsa") return [row.exchange || "-"];
+  if (key === "seasonality") {
+    const season = seasonCache[row.ticker];
+    const activeWindow = (season?.seasonalWindows || []).find((w) => (w.minSuccessRate ?? 0) >= minSuccess) || null;
+    const score = row.score ?? 0;
+    return [activeWindow ? (score >= 80 ? t.aligned : t.watch) : "-"];
+  }
+  return [];
+}
+
+function columnPassesFilter(key, filterValue, row, t, seasonCache, minSuccess) {
+  if (!filterValue) return true;
+  if (NUMERIC_COLUMN_KEYS.has(key)) {
+    const { min, max } = filterValue;
+    const value = getColumnNumericValue(key, row);
+    if (min !== "" && min != null && (value == null || !Number.isFinite(Number(value)) || Number(value) < Number(min))) return false;
+    if (max !== "" && max != null && (value == null || !Number.isFinite(Number(value)) || Number(value) > Number(max))) return false;
+    return true;
+  }
+  if (!filterValue.length) return true;
+  const values = getColumnFilterValues(key, row, t, seasonCache, minSuccess);
+  return values.some((v) => filterValue.includes(v));
+}
+
 function tooltip(title, body) {
   return `${title}: ${body}`;
 }
@@ -1078,6 +1146,8 @@ export default function Home() {
   const [minSuccess, setMinSuccess] = useState(60);
   const [flowOpen, setFlowOpen] = useState(false);
   const [openHeaderKey, setOpenHeaderKey] = useState(null);
+  const [columnFilters, setColumnFilters] = useState({});
+  const [openFilterKey, setOpenFilterKey] = useState(null);
   const [guideOpen, setGuideOpen] = useState(false);
   const [cookieConsent, setCookieConsent] = useState(null);
   const abortRef = useRef(null);
@@ -1129,7 +1199,10 @@ export default function Home() {
 
   useEffect(() => {
     function closeTooltipOnOutsideClick(event) {
-      if (!event.target?.closest?.(".columnHead")) setOpenHeaderKey(null);
+      if (!event.target?.closest?.(".columnHead")) {
+        setOpenHeaderKey(null);
+        setOpenFilterKey(null);
+      }
     }
     document.addEventListener("mousedown", closeTooltipOnOutsideClick);
     return () => document.removeEventListener("mousedown", closeTooltipOnOutsideClick);
@@ -1177,6 +1250,16 @@ export default function Home() {
 
   const categories = useMemo(() => [...new Set(rows.flatMap((r) => r.categories || []))].sort(), [rows]);
 
+  const columnOptionsMap = useMemo(() => {
+    const ok = rows.filter((r) => r.ok);
+    const map = {};
+    for (const key of ["ticker", "name", "category", "trend", "borsa", "seasonality"]) {
+      const values = ok.flatMap((r) => getColumnFilterValues(key, r, t, seasonCache, minSuccess));
+      map[key] = [...new Set(values)].sort((a, b) => String(a).localeCompare(String(b)));
+    }
+    return map;
+  }, [rows, t, seasonCache, minSuccess]);
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     const min = minAum === "" ? null : Number(minAum) * 1e6;
@@ -1198,6 +1281,9 @@ export default function Home() {
       if (min != null && (x.netAssets == null ? missing !== "include" : x.netAssets < min)) return false;
       if (mt != null && (x.ter == null ? missing !== "include" : x.ter > mt)) return false;
       if (missing === "exclude" && (x.netAssets == null || x.ter == null)) return false;
+      for (const [key, value] of Object.entries(columnFilters)) {
+        if (!columnPassesFilter(key, value, x, t, seasonCache, minSuccess)) return false;
+      }
       return true;
     });
 
@@ -1216,7 +1302,7 @@ export default function Home() {
     });
 
     return data;
-  }, [rows, search, only, excluded, minAum, maxTer, missing, sort]);
+  }, [rows, search, only, excluded, minAum, maxTer, missing, sort, columnFilters, t, seasonCache, minSuccess]);
 
   const capitalFlow = useMemo(() => {
     const ranked = [...rows]
@@ -1286,6 +1372,7 @@ export default function Home() {
     setMinAum("");
     setMaxTer("");
     setMissing("include");
+    setColumnFilters({});
   }
 
   async function getSeasonality(ticker, open = true) {
@@ -1546,6 +1633,20 @@ export default function Home() {
                     isOpen={openHeaderKey === key}
                     onToggle={() => setOpenHeaderKey((prev) => (prev === key ? null : key))}
                     onSort={() => doSort(key)}
+                    filterType={NUMERIC_COLUMN_KEYS.has(key) ? "numeric" : "categorical"}
+                    filterOptions={columnOptionsMap[key]}
+                    filterValue={columnFilters[key]}
+                    isFilterOpen={openFilterKey === key}
+                    onToggleFilter={() => setOpenFilterKey((prev) => (prev === key ? null : key))}
+                    onFilterChange={(value) => setColumnFilters((prev) => ({ ...prev, [key]: value }))}
+                    onClearFilter={() =>
+                      setColumnFilters((prev) => {
+                        const next = { ...prev };
+                        delete next[key];
+                        return next;
+                      })
+                    }
+                    t={t}
                   />
                 </Th>
               ))}
@@ -1724,9 +1825,29 @@ function CategoryMultiSelect({ options, selected, onChange, placeholder, clearLa
   );
 }
 
-function ColumnHeader({ label, keyName, activeKey, dir, helpText, isOpen, onToggle, onSort }) {
+function ColumnHeader({
+  label,
+  keyName,
+  activeKey,
+  dir,
+  helpText,
+  isOpen,
+  onToggle,
+  onSort,
+  filterType,
+  filterOptions,
+  filterValue,
+  isFilterOpen,
+  onToggleFilter,
+  onFilterChange,
+  onClearFilter,
+  t,
+}) {
   const isActive = activeKey === keyName;
   const sortChar = isActive ? (dir > 0 ? "▲" : "▼") : "↕";
+  const hasFilter = filterType === "numeric"
+    ? !!(filterValue && (filterValue.min !== "" && filterValue.min != null || filterValue.max !== "" && filterValue.max != null))
+    : !!(filterValue && filterValue.length);
 
   return (
     <span className="columnHead">
@@ -1752,8 +1873,95 @@ function ColumnHeader({ label, keyName, activeKey, dir, helpText, isOpen, onTogg
       >
         <span className={`sortArrow ${isActive ? "active" : ""}`}>{sortChar}</span>
       </button>
+      {filterType && (
+        <button
+          type="button"
+          className={`filterButton ${hasFilter ? "active" : ""}`}
+          onClick={(event) => {
+            event.stopPropagation();
+            onToggleFilter();
+          }}
+          aria-label={t.filterButtonLabel}
+          title={t.filterButtonLabel}
+        >
+          <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true">
+            <path d="M1 1.8h14L9.6 8.4v5l-3.2 1.8v-6.8L1 1.8z" fill="currentColor" />
+          </svg>
+        </button>
+      )}
       {isOpen && <span className="headerTooltip" role="tooltip">{helpText || label}</span>}
+      {isFilterOpen && (
+        <ColumnFilterPanel
+          type={filterType}
+          options={filterOptions || []}
+          value={filterValue}
+          onChange={onFilterChange}
+          onClear={onClearFilter}
+          t={t}
+        />
+      )}
     </span>
+  );
+}
+
+function ColumnFilterPanel({ type, options, value, onChange, onClear, t }) {
+  const [query, setQuery] = useState("");
+
+  if (type === "numeric") {
+    const min = value?.min ?? "";
+    const max = value?.max ?? "";
+    return (
+      <div className="headerTooltip filterPanel" role="dialog" onClick={(e) => e.stopPropagation()}>
+        <div className="filterRangeRow">
+          <input
+            type="number"
+            className="filterRangeInput"
+            placeholder={t.filterMin}
+            value={min}
+            onChange={(e) => onChange({ min: e.target.value, max })}
+          />
+          <input
+            type="number"
+            className="filterRangeInput"
+            placeholder={t.filterMax}
+            value={max}
+            onChange={(e) => onChange({ min, max: e.target.value })}
+          />
+        </div>
+        <button type="button" className="button small ghost" onClick={onClear}>{t.filterClear}</button>
+      </div>
+    );
+  }
+
+  const selected = value || [];
+  const q = query.trim().toLowerCase();
+  const filteredOptions = q ? options.filter((o) => String(o).toLowerCase().includes(q)) : options;
+
+  function toggle(opt) {
+    onChange(selected.includes(opt) ? selected.filter((x) => x !== opt) : [...selected, opt]);
+  }
+
+  return (
+    <div className="headerTooltip filterPanel" role="dialog" onClick={(e) => e.stopPropagation()}>
+      {options.length > 8 && (
+        <input
+          className="filterSearchInput"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={t.filterSearchPlaceholder}
+        />
+      )}
+      <div className="multiOptions filterOptionsList">
+        {filteredOptions.map((opt) => (
+          <label key={opt} className="multiOption">
+            <input type="checkbox" checked={selected.includes(opt)} onChange={() => toggle(opt)} />
+            <span>{opt}</span>
+          </label>
+        ))}
+        {!filteredOptions.length && <div className="muted">{t.filterNoOptions}</div>}
+      </div>
+      <button type="button" className="button small ghost" onClick={() => onChange([])}>{t.filterClear}</button>
+    </div>
   );
 }
 

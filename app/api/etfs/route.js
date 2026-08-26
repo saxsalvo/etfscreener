@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ALL_FAMOUS_ETF_TICKERS, getTickerCategories } from "../../../lib/etfs";
-import { yahooFinance, priceOf, pctReturn, normalizeExpenseRatio, normalizeDateValue, ageInYears, withTimeout } from "../../../lib/yahoo";
+import { yahooFinance, priceOf, pctReturn, normalizeExpenseRatio, normalizeDateValue, ageInYears, withTimeout, NO_VALIDATE } from "../../../lib/yahoo";
 import { cacheGet, cacheSet } from "../../../lib/cache";
 
 export const runtime = "nodejs";
@@ -136,8 +136,8 @@ async function getOne(ticker, forceRefresh = false) {
     period1.setUTCDate(period1.getUTCDate() - HISTORY_DAYS);
 
     const [quote, chart] = await Promise.all([
-      withTimeout(yahooFinance.quote(ticker), 12000, "quote " + ticker),
-      withTimeout(yahooFinance.chart(ticker, { period1, interval: "1d", return: "array" }), 15000, "chart " + ticker),
+      withTimeout(yahooFinance.quote(ticker, {}, NO_VALIDATE), 12000, "quote " + ticker),
+      withTimeout(yahooFinance.chart(ticker, { period1, interval: "1d", return: "array" }, NO_VALIDATE), 15000, "chart " + ticker),
     ]);
 
     const quotes = (chart?.quotes || [])
@@ -198,7 +198,7 @@ async function getOne(ticker, forceRefresh = false) {
     if (ter == null || inceptionDate == null) {
       try {
         summary = await withTimeout(
-          yahooFinance.quoteSummary(ticker, { modules: ["defaultKeyStatistics"] }),
+          yahooFinance.quoteSummary(ticker, { modules: ["defaultKeyStatistics"] }, NO_VALIDATE),
           10000,
           "statistiche " + ticker
         );

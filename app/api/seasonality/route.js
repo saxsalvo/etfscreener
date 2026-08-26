@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ALL_FAMOUS_ETF_TICKERS } from "../../../lib/etfs";
-import { yahooFinance, withTimeout } from "../../../lib/yahoo";
+import { yahooFinance, withTimeout, NO_VALIDATE } from "../../../lib/yahoo";
 import { buildSeasonality } from "../../../lib/seasonality";
 import { cacheGet, cacheSet } from "../../../lib/cache";
 
@@ -31,8 +31,8 @@ export async function GET(request) {
     period1.setUTCFullYear(period1.getUTCFullYear() - Math.max(...windows) - 1);
 
     const [chart, quote] = await Promise.all([
-      withTimeout(yahooFinance.chart(ticker, { period1, interval: "1d", return: "array" }), 25000, "storico " + ticker),
-      withTimeout(yahooFinance.quote(ticker), 12000, "quote " + ticker).catch(() => null),
+      withTimeout(yahooFinance.chart(ticker, { period1, interval: "1d", return: "array" }, NO_VALIDATE), 25000, "storico " + ticker),
+      withTimeout(yahooFinance.quote(ticker, {}, NO_VALIDATE), 12000, "quote " + ticker).catch(() => null),
     ]);
 
     const seasonality = buildSeasonality(chart?.quotes || [], windows);
