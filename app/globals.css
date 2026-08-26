@@ -54,6 +54,8 @@ select {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .title {
@@ -334,8 +336,12 @@ select {
 .table,
 .miniTable {
   width: 100%;
-  min-width: 1480px;
+  min-width: 1200px;
   border-collapse: collapse;
+}
+
+.table {
+  table-layout: fixed;
 }
 
 .miniTable {
@@ -394,6 +400,22 @@ select {
   color: #7cd6ff;
 }
 
+.sortArrowButton {
+  background: transparent;
+  border: none;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+}
+
+.sortArrowButton.active .sortArrow {
+  color: #7cd6ff;
+}
+
 .headerTooltip {
   position: absolute;
   left: 0;
@@ -412,6 +434,37 @@ select {
 
 .tickerCell {
   min-width: 72px;
+}
+
+.tickerCellInner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chartLink {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px solid rgba(96, 145, 197, 0.45);
+  background: rgba(35, 57, 85, 0.65);
+  color: #bcdcff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex: 0 0 auto;
+  transition: border-color 0.14s ease, background 0.14s ease;
+}
+
+.chartLink:hover {
+  border-color: #6caee6;
+  background: rgba(53, 84, 122, 0.85);
+}
+
+.chartIcon {
+  width: 13px;
+  height: 13px;
 }
 
 .tickerButton {
@@ -434,6 +487,13 @@ select {
   white-space: nowrap;
 }
 
+.categoryCell {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .name {
   max-width: 280px;
   min-width: 220px;
@@ -442,9 +502,10 @@ select {
 
 .trendBadge {
   display: inline-block;
-  padding: 4px 8px;
+  padding: 2px 6px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 11px;
+  line-height: 1.2;
   border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
@@ -480,10 +541,12 @@ select {
 
 .scoreBadge {
   display: inline-block;
-  min-width: 38px;
+  min-width: 32px;
   text-align: center;
   border-radius: 999px;
-  padding: 3px 8px;
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 1.2;
   font-weight: 700;
 }
 
@@ -513,6 +576,48 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+}
+
+.seasonDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.seasonDot.aligned {
+  background: #39d98a;
+}
+
+.seasonDot.watch {
+  background: #f4c046;
+}
+
+.seasonDot.off {
+  background: rgba(164, 181, 201, 0.45);
+}
+
+.table th.col-trend,
+.table td.col-trend {
+  min-width: 82px;
+  width: 82px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table th.col-score,
+.table td.col-score {
+  min-width: 66px;
+  width: 66px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table td.col-trend .trendBadge,
+.table td.col-score .scoreBadge {
+  margin: 0 auto;
 }
 
 .loadingBox {
@@ -550,6 +655,47 @@ select {
   width: min(980px, 94vw);
 }
 
+.columnModal {
+  width: min(760px, 94vw);
+}
+
+.cookieModal {
+  width: min(520px, 92vw);
+}
+
+.cookieActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.columnActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.columnGrid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 8px;
+}
+
+.columnOption {
+  border: 1px solid rgba(90, 132, 176, 0.35);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: rgba(16, 30, 48, 0.72);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.columnOption input {
+  accent-color: #66b7ff;
+}
+
 .guideBody {
   margin-top: 12px;
   display: grid;
@@ -576,6 +722,56 @@ select {
   display: grid;
   gap: 6px;
   line-height: 1.45;
+}
+
+.guideHeadActions {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.metricGrid {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.metricChip {
+  border: 1px solid rgba(96, 145, 197, 0.45);
+  background: rgba(35, 57, 85, 0.75);
+  color: #d2e6ff;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.metricChip:hover {
+  border-color: #6caee6;
+  background: rgba(53, 84, 122, 0.9);
+}
+
+.metricDetailCard {
+  margin-top: 12px;
+  border: 1px solid rgba(90, 132, 176, 0.35);
+  border-radius: 12px;
+  padding: 14px;
+  background: rgba(16, 30, 48, 0.72);
+  display: grid;
+  gap: 8px;
+}
+
+.metricDetailCard h3 {
+  margin: 0;
+  color: #d6e9ff;
+}
+
+.metricDetailCard p {
+  margin: 0;
+  color: #bed4ea;
+  line-height: 1.5;
 }
 
 .modalHead {
@@ -712,7 +908,8 @@ select {
 
   .cards,
   .grid2,
-  .flowGrid {
+  .flowGrid,
+  .columnGrid {
     grid-template-columns: 1fr;
   }
 }

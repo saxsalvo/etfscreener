@@ -1,10 +1,42 @@
 [
   {
+    "ticker": "AGED",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "BATG.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "BCLN",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "commodities"
+    ]
+  },
+  {
+    "ticker": "BITE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "CBRN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -16,11 +48,283 @@
     ]
   },
   {
+    "ticker": "CSSX5",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "CSSX5.DE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "CSX5",
+    "ok": false,
+    "error": "Failed Yahoo Schema validation",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "CYBP.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "DBXD",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "DBXN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "DFEN.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "ECAR",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "EMIM",
+    "ok": false,
+    "error": "Failed Yahoo Schema validation",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EMIM.DE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EQAC",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EUNL",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EXS1",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EXXT",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "FALP",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "FGEN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "FLKN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "FM",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "FNCB",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "FWRA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "GLDV",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "IEAC",
+    "ok": false,
+    "error": "Failed Yahoo Schema validation",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "INDDS",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedReit"
+    ]
+  },
+  {
+    "ticker": "IS3N",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "IUIT",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "IUIT.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "IUSN.L",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "IUSQ",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "IWDA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "KURS",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "LCWD",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "MEUD",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "NREZ",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedReit"
+    ]
+  },
+  {
+    "ticker": "PHAU",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "PHGP",
+    "ok": false,
+    "error": "Failed Yahoo Schema validation",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -32,11 +336,315 @@
     ]
   },
   {
+    "ticker": "SAEM",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SAME",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SEGA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SEGH",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SLY",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "SPTMI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "STHE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SUAS",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SUSM",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SUSW",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SWDA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SXR8",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SXRV",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VAGF",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VDUA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VDUA.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VFEA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA20",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA40",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA60",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA80",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VUAA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VWCE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "WCBD",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "XACT.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XEON",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XETR",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XMFT",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "XMME",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XMTD.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "XMWO.DE",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU03.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU05.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU06.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU07.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU08.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU09.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU10.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XUSD.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   }
 ]

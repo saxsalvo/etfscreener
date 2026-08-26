@@ -27,12 +27,47 @@
     ]
   },
   {
+    "ticker": "ACWV",
+    "ok": true,
+    "name": "iShares MSCI Global Min Vol Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "ACWX",
     "ok": true,
     "name": "iShares MSCI ACWI ex U.S. ETF",
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "AFK",
+    "ok": true,
+    "name": "VanEck Africa Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "AGED",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "AGED.MI",
+    "ok": true,
+    "name": "iShares Ageing Population UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -45,12 +80,30 @@
     ]
   },
   {
+    "ticker": "AGGH",
+    "ok": true,
+    "name": "Simplify Aggregate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "AGGH.MI",
     "ok": true,
     "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
     "quoteType": "ETF",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "AGQ",
+    "ok": true,
+    "name": "ProShares Ultra Silver",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
     ]
   },
   {
@@ -69,6 +122,33 @@
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "AIRR",
+    "ok": true,
+    "name": "First Trust RBA American Industrial RenaissanceTM ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "ALTY",
+    "ok": true,
+    "name": "Global X Alternative Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "AMLP",
+    "ok": true,
+    "name": "Alerian MLP ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -171,6 +251,15 @@
     ]
   },
   {
+    "ticker": "ARKR",
+    "ok": true,
+    "name": "Ark Restaurants Corp.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "ARKW",
     "ok": true,
     "name": "ARK Next Generation Internet ETF",
@@ -234,6 +323,24 @@
     ]
   },
   {
+    "ticker": "AWAY",
+    "ok": true,
+    "name": "Amplify Travel Tech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "BAB",
+    "ok": true,
+    "name": "Invesco Taxable Municipal Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "BAL",
     "ok": true,
     "name": "iPath Series B Bloomberg Cotton Subindex Total Return ETN",
@@ -253,6 +360,14 @@
     ]
   },
   {
+    "ticker": "BATG.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "BATT",
     "ok": true,
     "name": "Amplify Lithium & Battery Technology ETF",
@@ -269,6 +384,15 @@
     "categories": [
       "industry",
       "thematic"
+    ]
+  },
+  {
+    "ticker": "BBJP",
+    "ok": true,
+    "name": "JPMorgan BetaBuilders Japan ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -298,6 +422,24 @@
     ]
   },
   {
+    "ticker": "BETZ",
+    "ok": true,
+    "name": "Roundhill Sports Betting & iGaming ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "BHF",
+    "ok": true,
+    "name": "Brighthouse Financial, Inc.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "BIL",
     "ok": true,
     "name": "State Street SPDR Bloomberg 1-3 Month T-Bill ETF",
@@ -313,6 +455,14 @@
     "quoteType": "ETF",
     "categories": [
       "crypto"
+    ]
+  },
+  {
+    "ticker": "BITE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -344,6 +494,15 @@
     ]
   },
   {
+    "ticker": "BKAG",
+    "ok": true,
+    "name": "BNY Mellon Core Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "BKCH",
     "ok": true,
     "name": "Global X Blockchain ETF",
@@ -354,12 +513,102 @@
     ]
   },
   {
+    "ticker": "BKEM",
+    "ok": true,
+    "name": "BNY Mellon Emerging Markets Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "BKF",
     "ok": true,
     "name": "iShares MSCI BIC ETF",
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "BKIE",
+    "ok": true,
+    "name": "BNY Mellon International Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "BKLC",
+    "ok": true,
+    "name": "BNY Mellon US Large Cap Core Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "BKLN",
+    "ok": true,
+    "name": "Invesco Senior Loan ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "BKMC",
+    "ok": true,
+    "name": "BNY Mellon US Mid Cap Core Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "BKMU",
+    "ok": true,
+    "name": "379394",
+    "quoteType": "MUTUALFUND",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "BKSB",
+    "ok": true,
+    "name": "BNY Mellon Short Duration Corporate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "BKSC",
+    "ok": true,
+    "name": "Bank of South Carolina Corporation",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "BKSE",
+    "ok": true,
+    "name": "BNY Mellon US Small Cap Core Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "BKUS",
+    "ok": true,
+    "name": "BNY Mellon Sustainable US Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
     ]
   },
   {
@@ -409,6 +658,15 @@
     ]
   },
   {
+    "ticker": "BOIL",
+    "ok": true,
+    "name": "ProShares Ultra Bloomberg Natural Gas",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
     "ticker": "BOND",
     "ok": true,
     "name": "PIMCO Active Bond Exchange-Traded Fund",
@@ -433,6 +691,24 @@
     "quoteType": "ETF",
     "categories": [
       "crypto"
+    ]
+  },
+  {
+    "ticker": "BRZU",
+    "ok": true,
+    "name": "Direxion Daily MSCI Brazil Bull 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "BST",
+    "ok": true,
+    "name": "BlackRock Science and Technology Trust",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedDividendIncome"
     ]
   },
   {
@@ -492,6 +768,41 @@
     ]
   },
   {
+    "ticker": "CBRN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "CDC",
+    "ok": true,
+    "name": "VictoryShares US EQ Income Enhanced Volatility Wtd ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "CDL",
+    "ok": true,
+    "name": "VictoryShares US Large Cap High Div Volatility Wtd ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "CEW",
+    "ok": true,
+    "name": "WisdomTree Emerging Currency Strategy Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
+    ]
+  },
+  {
     "ticker": "CGW",
     "ok": true,
     "name": "Invesco S&P Global Water Index ETF",
@@ -520,6 +831,15 @@
     ]
   },
   {
+    "ticker": "CLIX",
+    "ok": true,
+    "name": "ProShares Long Online/Short Stores ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "CLOU",
     "ok": true,
     "name": "Global X Cloud Computing ETF",
@@ -530,12 +850,39 @@
     ]
   },
   {
+    "ticker": "CLTL",
+    "ok": true,
+    "name": "Invesco Short Term Treasury ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "CMF",
+    "ok": true,
+    "name": "iShares California Muni Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "CNRG",
     "ok": true,
     "name": "State Street SPDR S&P Kensho Clean Power ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "COMP",
+    "ok": true,
+    "name": "Compass, Inc.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -585,12 +932,30 @@
     ]
   },
   {
+    "ticker": "CPI",
+    "ok": true,
+    "name": "IQ Real Return ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "CQQQ",
     "ok": true,
     "name": "Invesco China Technology ETF",
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "CSD",
+    "ok": true,
+    "name": "Invesco S&P Spin-Off ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
     ]
   },
   {
@@ -611,12 +976,98 @@
     ]
   },
   {
+    "ticker": "CSSPX.MI",
+    "ok": true,
+    "name": "iShares Core S&P 500 UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "CSSX5",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "CSSX5.DE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "CSX5",
+    "ok": false,
+    "error": "Failed Yahoo Schema validation",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "CTEC",
+    "ok": true,
+    "name": "Global X ClimateTech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "CUT",
     "ok": true,
     "name": "Invesco MSCI Global Timber ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "CWEB",
+    "ok": true,
+    "name": "Direxion Daily CSI China Internet Bull 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "CXSE",
+    "ok": true,
+    "name": "WisdomTree China ex-State-Owned Enterprises Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "CYB",
+    "ok": true,
+    "name": "WisdomTree Chinese Yuan Strategy Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
+    ]
+  },
+  {
+    "ticker": "CYBP.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "CZA",
+    "ok": true,
+    "name": "Invesco Zacks Mid-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -627,6 +1078,15 @@
     "categories": [
       "thematic",
       "crypto"
+    ]
+  },
+  {
+    "ticker": "DAXEX",
+    "ok": true,
+    "name": "Desjardins Sustainable Canadian Equity Fund I Class NL (453393A2)",
+    "quoteType": "MUTUALFUND",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -664,6 +1124,40 @@
     "quoteType": "ETF",
     "categories": [
       "commodities"
+    ]
+  },
+  {
+    "ticker": "DBEF",
+    "ok": true,
+    "name": "Xtrackers MSCI EAFE Hedged Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "DBMF",
+    "ok": true,
+    "name": "iMGP DBi Managed Futures Strategy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "DBXD",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "DBXN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -730,6 +1224,32 @@
     ]
   },
   {
+    "ticker": "DFEN",
+    "ok": true,
+    "name": "Direxion Daily Aerospace & Defense Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "DFEN.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "DGRE",
+    "ok": true,
+    "name": "WisdomTree Emerging Markets Quality Dividend Growth Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "DGRO",
     "ok": true,
     "name": "iShares Core Dividend Growth ETF",
@@ -775,12 +1295,39 @@
     ]
   },
   {
+    "ticker": "DIM",
+    "ok": true,
+    "name": "WisdomTree International MidCap Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "DIV",
+    "ok": true,
+    "name": "Global X SuperDividend U.S. ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
     "ticker": "DIVB",
     "ok": true,
     "name": "iShares Core Dividend ETF",
     "quoteType": "ETF",
     "categories": [
       "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DIVI",
+    "ok": true,
+    "name": "Franklin International Core Dividend Tilt Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
     ]
   },
   {
@@ -793,6 +1340,15 @@
     ]
   },
   {
+    "ticker": "DJIA",
+    "ok": true,
+    "name": "Global X Dow 30 Covered Call ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "DJP",
     "ok": true,
     "name": "iPath Bloomberg Commodity Index Total Return(SM) ETN",
@@ -802,12 +1358,48 @@
     ]
   },
   {
+    "ticker": "DLN",
+    "ok": true,
+    "name": "WisdomTree U.S. LargeCap Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "DLS",
+    "ok": true,
+    "name": "WisdomTree International SmallCap Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "DOL",
+    "ok": true,
+    "name": "WisdomTree True Developed International Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
     "ticker": "DON",
     "ok": true,
     "name": "WisdomTree U.S. MidCap Dividend Fund",
     "quoteType": "ETF",
     "categories": [
       "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DRIP",
+    "ok": true,
+    "name": "Direxion Daily S&P Oil & Gas Exp. & Prod. Bear 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
     ]
   },
   {
@@ -838,6 +1430,15 @@
     ]
   },
   {
+    "ticker": "DTH",
+    "ok": true,
+    "name": "WisdomTree International High Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
     "ticker": "DUST",
     "ok": true,
     "name": "Direxion Daily Gold Miners Index Bear 2X Shares",
@@ -865,12 +1466,47 @@
     ]
   },
   {
+    "ticker": "DXJ",
+    "ok": true,
+    "name": "WisdomTree Japan Hedged Equity Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "EATV",
     "ok": true,
     "name": "VegTech Food Innovation & Climate ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "EATZ",
+    "ok": true,
+    "name": "AdvisorShares Restaurant ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "ECAR",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "ECAR.MI",
+    "ok": true,
+    "name": "iShares Electric Vehicles and Driving Technology UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -883,12 +1519,57 @@
     ]
   },
   {
+    "ticker": "EDC",
+    "ok": true,
+    "name": "Direxion Daily MSCI Emerging Markets Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "EDEN",
+    "ok": true,
+    "name": "iShares MSCI Denmark ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "EDIV",
+    "ok": true,
+    "name": "State Street SPDR S&P Emerging Markets Dividend ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
     "ticker": "EDV",
     "ok": true,
     "name": "Vanguard Extended Duration Treasury Index Fund ETF Shares",
     "quoteType": "ETF",
     "categories": [
       "treasury"
+    ]
+  },
+  {
+    "ticker": "EDZ",
+    "ok": true,
+    "name": "Direxion Daily MSCI Emerging Markets Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "EEB",
+    "ok": true,
+    "name": "Invesco BRIC ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -901,6 +1582,15 @@
     ]
   },
   {
+    "ticker": "EEMV",
+    "ok": true,
+    "name": "iShares MSCI Emerging Markets Min Vol Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "EFA",
     "ok": true,
     "name": "iShares MSCI EAFE ETF",
@@ -910,12 +1600,39 @@
     ]
   },
   {
+    "ticker": "EFAS",
+    "ok": true,
+    "name": "Global X MSCI SuperDividend EAFE ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "EFAV",
+    "ok": true,
+    "name": "iShares MSCI EAFE Min Vol Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "EFG",
     "ok": true,
     "name": "iShares MSCI EAFE Growth ETF",
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "EFNL",
+    "ok": true,
+    "name": "iShares MSCI Finland ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -973,6 +1690,49 @@
     ]
   },
   {
+    "ticker": "EMIM",
+    "ok": false,
+    "error": "Failed Yahoo Schema validation",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EMIM.DE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EMLC",
+    "ok": true,
+    "name": "VanEck J.P. Morgan EM Local Currency Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "EMQQ",
+    "ok": true,
+    "name": "EMQQ The Emerging Markets Internet ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "EMXC",
+    "ok": true,
+    "name": "iShares MSCI Emerging Markets ex China ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "ENZL",
     "ok": true,
     "name": "iShares MSCI New Zealand ETF",
@@ -1000,12 +1760,38 @@
     ]
   },
   {
+    "ticker": "EPOL",
+    "ok": true,
+    "name": "iShares MSCI Poland ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "EPU",
     "ok": true,
     "name": "iShares MSCI Peru ETF",
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "EQAC",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EQAC.MI",
+    "ok": true,
+    "name": "Invesco EQQQ NASDAQ-100 UCITS ETF Acc",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -1090,6 +1876,24 @@
     ]
   },
   {
+    "ticker": "ETHW",
+    "ok": true,
+    "name": "Bitwise Ethereum ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "EUM",
+    "ok": true,
+    "name": "ProShares Short MSCI Emerging Markets",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
     "ticker": "EUNK.DE",
     "ok": true,
     "name": "iShares Core MSCI Europe UCITS ETF EUR (Acc)",
@@ -1099,12 +1903,29 @@
     ]
   },
   {
+    "ticker": "EUNL",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "EUNL.DE",
     "ok": true,
     "name": "iShares Core MSCI World UCITS ETF USD (Acc)",
     "quoteType": "ETF",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "EURL",
+    "ok": true,
+    "name": "Direxion Daily FTSE Europe Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
     ]
   },
   {
@@ -1180,12 +2001,30 @@
     ]
   },
   {
+    "ticker": "EWM",
+    "ok": true,
+    "name": "iShares MSCI Malaysia ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "EWN",
     "ok": true,
     "name": "iShares MSCI Netherlands ETF",
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "EWO",
+    "ok": true,
+    "name": "iShares MSCI Austria ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -1261,12 +2100,37 @@
     ]
   },
   {
+    "ticker": "EXS1",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "EXSA.DE",
     "ok": true,
     "name": "iShares STOXX Europe 600 UCITS ETF (DE) EUR (Dist)",
     "quoteType": "ETF",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "EXXT",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EXXT.DE",
+    "ok": true,
+    "name": "iShares NASDAQ-100 UCITS ETF (DE)",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -1288,12 +2152,29 @@
     ]
   },
   {
+    "ticker": "EZU",
+    "ok": true,
+    "name": "iShares MSCI Eurozone ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "FALN",
     "ok": true,
     "name": "iShares Fallen Angels USD Bond ETF",
     "quoteType": "ETF",
     "categories": [
       "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "FALP",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedOther"
     ]
   },
   {
@@ -1361,6 +2242,42 @@
     ]
   },
   {
+    "ticker": "FCON",
+    "ok": true,
+    "name": "13632",
+    "quoteType": "MUTUALFUND",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "FCOR",
+    "ok": true,
+    "name": "Fidelity Corporate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "FDD",
+    "ok": true,
+    "name": "First Trust STOXX European Select Dividend Index Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "FDIS",
+    "ok": true,
+    "name": "Fidelity MSCI Consumer Discretionary Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "FDN",
     "ok": true,
     "name": "First Trust Dow Jones Internet Index Fund",
@@ -1379,12 +2296,56 @@
     ]
   },
   {
+    "ticker": "FENY",
+    "ok": true,
+    "name": "Fidelity MSCI Energy Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "FETH",
+    "ok": true,
+    "name": "Fidelity Ethereum Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
     "ticker": "FEZ",
     "ok": true,
     "name": "State Street SPDR EURO STOXX 50 ETF",
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "FGEN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "FHLC",
+    "ok": true,
+    "name": "Fidelity MSCI Health Care Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "FIDU",
+    "ok": true,
+    "name": "Fidelity MSCI Industrials Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -1415,6 +2376,33 @@
     ]
   },
   {
+    "ticker": "FIXD",
+    "ok": true,
+    "name": "First Trust Smith Opportunistic Fixed Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "FLBR",
+    "ok": true,
+    "name": "Franklin FTSE Brazil ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "FLDR",
+    "ok": true,
+    "name": "Fidelity Low Duration Bond Factor ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "FLIN",
     "ok": true,
     "name": "Franklin FTSE India ETF",
@@ -1433,6 +2421,14 @@
     ]
   },
   {
+    "ticker": "FLKN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "FLKR",
     "ok": true,
     "name": "Franklin FTSE South Korea ETF",
@@ -1448,6 +2444,94 @@
     "quoteType": "ETF",
     "categories": [
       "bonds"
+    ]
+  },
+  {
+    "ticker": "FLRN",
+    "ok": true,
+    "name": "State Street SPDR Bloomberg Investment Grade Floating Rate ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "FLXE.MI",
+    "ok": true,
+    "name": "Franklin EM Multi-Factor Equity UCITS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "FM",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "FMAT",
+    "ok": true,
+    "name": "Fidelity MSCI Materials Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "FMQQ",
+    "ok": true,
+    "name": "FMQQ The Next Frontier Internet ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "FMY",
+    "ok": true,
+    "name": "First Trust Mortgage Income Fund",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedReit"
+    ]
+  },
+  {
+    "ticker": "FNCB",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "FNDA",
+    "ok": true,
+    "name": "Schwab Fundamental U.S. Small Company ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "FNDB",
+    "ok": true,
+    "name": "Schwab Fundamental U.S. Broad Market ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "FNDC",
+    "ok": true,
+    "name": "Schwab Fundamental International Small Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
     ]
   },
   {
@@ -1496,12 +2580,30 @@
     ]
   },
   {
+    "ticker": "FSTA",
+    "ok": true,
+    "name": "Fidelity MSCI Consumer Staples Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "FTEC",
     "ok": true,
     "name": "Fidelity MSCI Information Technology Index ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "FTSL",
+    "ok": true,
+    "name": "First Trust Senior Loan Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
     ]
   },
   {
@@ -1515,6 +2617,15 @@
     ]
   },
   {
+    "ticker": "FUTY",
+    "ok": true,
+    "name": "Fidelity MSCI Utilities Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "FVD",
     "ok": true,
     "name": "First Trust Value Line Dividend Index Fund",
@@ -1524,12 +2635,65 @@
     ]
   },
   {
+    "ticker": "FWRA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "FXB",
+    "ok": true,
+    "name": "Invesco CurrencyShares British Pound Sterling Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
+    ]
+  },
+  {
+    "ticker": "FXC",
+    "ok": true,
+    "name": "Invesco CurrencyShares Canadian Dollar Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
+    ]
+  },
+  {
+    "ticker": "FXE",
+    "ok": true,
+    "name": "Invesco CurrencyShares Euro Currency Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
+    ]
+  },
+  {
+    "ticker": "FXF",
+    "ok": true,
+    "name": "Invesco CurrencyShares Swiss Franc Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
+    ]
+  },
+  {
     "ticker": "FXI",
     "ok": true,
     "name": "iShares China Large-Cap ETF",
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "FXY",
+    "ok": true,
+    "name": "Invesco CurrencyShares Japanese Yen Trust",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
     ]
   },
   {
@@ -1548,6 +2712,15 @@
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "GBIL",
+    "ok": true,
+    "name": "Goldman Sachs Access Treasury 0-1 Year ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
     ]
   },
   {
@@ -1582,6 +2755,33 @@
     ]
   },
   {
+    "ticker": "GEM",
+    "ok": true,
+    "name": "Goldman Sachs ActiveBeta Emerging Markets Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "GENY",
+    "ok": true,
+    "name": "Principal Millennial Global Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "GINN",
+    "ok": true,
+    "name": "Goldman Sachs Innovate Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "GLD",
     "ok": true,
     "name": "SPDR Gold Shares",
@@ -1599,6 +2799,32 @@
     "categories": [
       "commodities",
       "gold"
+    ]
+  },
+  {
+    "ticker": "GLDV",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "GLDV.MI",
+    "ok": true,
+    "name": "State Street SPDR S&P Global Dividend Aristocrats UCITS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "GLTR",
+    "ok": true,
+    "name": "abrdn Physical Precious Metals Basket Shares ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
     ]
   },
   {
@@ -1639,12 +2865,93 @@
     ]
   },
   {
+    "ticker": "GRN",
+    "ok": true,
+    "name": "iPath Series B Carbon ETN",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "GSEW",
+    "ok": true,
+    "name": "Goldman Sachs Equal Weight U.S. Large Cap Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "GSG",
     "ok": true,
     "name": "iShares S&P GSCI Commodity-Indexed Trust",
     "quoteType": "ETF",
     "categories": [
       "commodities"
+    ]
+  },
+  {
+    "ticker": "GSLC",
+    "ok": true,
+    "name": "Goldman Sachs ActiveBeta U.S. Large Cap Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "GSY",
+    "ok": true,
+    "name": "Invesco Ultra Short Duration ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "GUR",
+    "ok": true,
+    "name": "SPDR S&P Emerging Europe ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "GUSH",
+    "ok": true,
+    "name": "Direxion Daily S&P Oil & Gas Exp. & Prod. Bull 2X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "GWX",
+    "ok": true,
+    "name": "State Street SPDR S&P International Small Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "GXC",
+    "ok": true,
+    "name": "State Street SPDR S&P China ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "GXG",
+    "ok": true,
+    "name": "Global X MSCI Colombia ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -1685,6 +2992,42 @@
     ]
   },
   {
+    "ticker": "HEAL",
+    "ok": true,
+    "name": "Global X HealthTech ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "HEAL.MI",
+    "ok": true,
+    "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "HEDJ",
+    "ok": true,
+    "name": "WisdomTree Europe Hedged Equity Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "HEFA",
+    "ok": true,
+    "name": "iShares Currency Hedged MSCI EAFE ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "HERO",
     "ok": true,
     "name": "Global X Video Games & Esports ETF",
@@ -1700,6 +3043,24 @@
     "quoteType": "ETF",
     "categories": [
       "crypto"
+    ]
+  },
+  {
+    "ticker": "HOLD",
+    "ok": true,
+    "name": "Harbor Alpha Layering ETF",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "HOMZ",
+    "ok": true,
+    "name": "The Hoya Capital Housing ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedReit"
     ]
   },
   {
@@ -1731,6 +3092,15 @@
     ]
   },
   {
+    "ticker": "HYIN",
+    "ok": true,
+    "name": "WisdomTree Private Credit & Alternative Income Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "HYLB",
     "ok": true,
     "name": "Xtrackers USD High Yield Corporate Bond ETF",
@@ -1740,12 +3110,30 @@
     ]
   },
   {
+    "ticker": "HYMB",
+    "ok": true,
+    "name": "State Street SPDR Nuveen ICE High Yield Municipal Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "IAI",
     "ok": true,
     "name": "iShares U.S. Broker-Dealers & Securities Exchanges ETF",
     "quoteType": "ETF",
     "categories": [
       "industry"
+    ]
+  },
+  {
+    "ticker": "IAT",
+    "ok": true,
+    "name": "iShares U.S. Regional Banks ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -1769,12 +3157,48 @@
     ]
   },
   {
+    "ticker": "IBGL",
+    "ok": true,
+    "name": "iShares iBonds Dec 2055 Term Treasury ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "IBGL.MI",
+    "ok": true,
+    "name": "iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist)",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "IBIT",
     "ok": true,
     "name": "iShares Bitcoin Trust ETF",
     "quoteType": "ETF",
     "categories": [
       "crypto"
+    ]
+  },
+  {
+    "ticker": "IBUY",
+    "ok": true,
+    "name": "Amplify Online Retail ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "ICF",
+    "ok": true,
+    "name": "iShares Select U.S. REIT ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedReit"
     ]
   },
   {
@@ -1805,6 +3229,32 @@
     ]
   },
   {
+    "ticker": "IDU",
+    "ok": true,
+    "name": "iShares U.S. Utilities ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "IDV",
+    "ok": true,
+    "name": "iShares International Select Dividend ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "IEAC",
+    "ok": false,
+    "error": "Failed Yahoo Schema validation",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "IEF",
     "ok": true,
     "name": "iShares 7-10 Year Treasury Bond ETF",
@@ -1824,6 +3274,15 @@
     ]
   },
   {
+    "ticker": "IEI",
+    "ok": true,
+    "name": "iShares 3-7 Year Treasury Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "IEMG",
     "ok": true,
     "name": "iShares Core MSCI Emerging Markets ETF",
@@ -1839,6 +3298,33 @@
     "quoteType": "ETF",
     "categories": [
       "industry"
+    ]
+  },
+  {
+    "ticker": "IEUR",
+    "ok": true,
+    "name": "iShares Core MSCI Europe ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "IEV",
+    "ok": true,
+    "name": "iShares Europe ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "IFGL",
+    "ok": true,
+    "name": "iShares International Developed Real Estate ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedReit"
     ]
   },
   {
@@ -1900,6 +3386,15 @@
     ]
   },
   {
+    "ticker": "IHE",
+    "ok": true,
+    "name": "iShares U.S. Pharmaceuticals ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "IHI",
     "ok": true,
     "name": "iShares U.S. Medical Devices ETF",
@@ -1907,6 +3402,15 @@
     "categories": [
       "industry",
       "thematic"
+    ]
+  },
+  {
+    "ticker": "IIGD",
+    "ok": true,
+    "name": "Invesco Investment Grade Defensive ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
     ]
   },
   {
@@ -1965,6 +3469,33 @@
     ]
   },
   {
+    "ticker": "ILF",
+    "ok": true,
+    "name": "iShares Latin America 40 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "ILTB",
+    "ok": true,
+    "name": "iShares Core 10+ Year USD Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "IMTB",
+    "ok": true,
+    "name": "iShares Core 5-10 Year USD Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "INDA",
     "ok": true,
     "name": "iShares MSCI India ETF",
@@ -1974,12 +3505,56 @@
     ]
   },
   {
+    "ticker": "INDDS",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedReit"
+    ]
+  },
+  {
+    "ticker": "INDL",
+    "ok": true,
+    "name": "Direxion Daily MSCI India Bull 2x Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
     "ticker": "INDS",
     "ok": true,
     "name": "Pacer Benchmark Industrial Real Estate SCTR ETF",
     "quoteType": "ETF",
     "categories": [
       "reit"
+    ]
+  },
+  {
+    "ticker": "INDY",
+    "ok": true,
+    "name": "iShares India 50 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "INRG",
+    "ok": true,
+    "name": "iShares Global Clean Energy ETF USD Dist",
+    "quoteType": "MUTUALFUND",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "INRG.MI",
+    "ok": true,
+    "name": "iShares Global Clean Energy Transition UCITS ETF USD (Dist)",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -2001,12 +3576,29 @@
     ]
   },
   {
+    "ticker": "IS3N",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "IS3N.DE",
     "ok": true,
     "name": "iShares Core MSCI EM IMI UCITS ETF USD (Acc)",
     "quoteType": "ETF",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "ISTB",
+    "ok": true,
+    "name": "iShares Core 1-5 Year USD Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
     ]
   },
   {
@@ -2029,12 +3621,37 @@
     ]
   },
   {
+    "ticker": "ITM",
+    "ok": true,
+    "name": "VanEck Intermediate Muni ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "ITOT",
     "ok": true,
     "name": "iShares Core S&P Total U.S. Stock Market ETF",
     "quoteType": "ETF",
     "categories": [
       "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IUIT",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "IUIT.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -2073,12 +3690,29 @@
     ]
   },
   {
+    "ticker": "IUSQ",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "IUSV",
     "ok": true,
     "name": "iShares Core S&P U.S. Value ETF",
     "quoteType": "ETF",
     "categories": [
       "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IVDG",
+    "ok": true,
+    "name": "Invesco Focused Discovery Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
     ]
   },
   {
@@ -2097,6 +3731,33 @@
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "IVI",
+    "ok": true,
+    "name": "IVI",
+    "quoteType": "ECNQUOTE",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "IVOL",
+    "ok": true,
+    "name": "Quadratic Interest Rate Volatility and Inflation Hedge ETF New",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "IVOO",
+    "ok": true,
+    "name": "Vanguard S&P Mid-Cap 400 Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
     ]
   },
   {
@@ -2127,12 +3788,38 @@
     ]
   },
   {
+    "ticker": "IWC",
+    "ok": true,
+    "name": "iShares Micro-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "IWD",
     "ok": true,
     "name": "iShares Russell 1000 Value ETF",
     "quoteType": "ETF",
     "categories": [
       "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IWDA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "IWDA.AS",
+    "ok": true,
+    "name": "iShares Core MSCI World UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -2235,6 +3922,69 @@
     ]
   },
   {
+    "ticker": "IYC",
+    "ok": true,
+    "name": "iShares US Consumer Discretionary ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "IYE",
+    "ok": true,
+    "name": "iShares U.S. Energy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "IYF",
+    "ok": true,
+    "name": "iShares U.S. Financials ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "IYH",
+    "ok": true,
+    "name": "iShares U.S. Healthcare ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "IYJ",
+    "ok": true,
+    "name": "iShares U.S. Industrials ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "IYK",
+    "ok": true,
+    "name": "iShares US Consumer Staples ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "IYM",
+    "ok": true,
+    "name": "iShares U.S. Basic Materials ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "IYR",
     "ok": true,
     "name": "iShares U.S. Real Estate ETF",
@@ -2268,6 +4018,24 @@
     "quoteType": "ETF",
     "categories": [
       "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IYZ",
+    "ok": true,
+    "name": "iShares U.S. Telecommunications ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "IZRL",
+    "ok": true,
+    "name": "ARK Israel Innovative Technology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -2313,6 +4081,114 @@
     "quoteType": "ETF",
     "categories": [
       "income"
+    ]
+  },
+  {
+    "ticker": "JETS",
+    "ok": true,
+    "name": "U.S. Global Jets ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "JHMA",
+    "ok": true,
+    "name": "John Hancock Multifactor Materials ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JHMC",
+    "ok": true,
+    "name": "John Hancock Multifactor Consumer Discretionary ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JHMD",
+    "ok": true,
+    "name": "John Hancock Multifactor Developed International ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JHME",
+    "ok": true,
+    "name": "John Hancock Multifactor Energy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JHMF",
+    "ok": true,
+    "name": "John Hancock Multifactor Financials ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JHMH",
+    "ok": true,
+    "name": "John Hancock Multifactor Health Care ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JHMI",
+    "ok": true,
+    "name": "John Hancock Multifactor Industrials ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JHML",
+    "ok": true,
+    "name": "John Hancock Multifactor Large Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JHMM",
+    "ok": true,
+    "name": "John Hancock Multifactor Mid Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JHMU",
+    "ok": true,
+    "name": "John Hancock Dynamic Municipal Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "JJCTF",
+    "ok": true,
+    "name": "iPath Bloomberg Copper Subindex Total Return(SM) ETN",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
     ]
   },
   {
@@ -2391,12 +4267,119 @@
     ]
   },
   {
+    "ticker": "KBWB",
+    "ok": true,
+    "name": "Invesco KBW Bank ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "KBWD",
+    "ok": true,
+    "name": "Invesco KBW High Dividend Yield Financial ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "KBWR",
+    "ok": true,
+    "name": "Invesco KBW Regional Banking ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "KBWY",
+    "ok": true,
+    "name": "Invesco KBW Premium Yield Equity REIT ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "KCE",
+    "ok": true,
+    "name": "State Street SPDR S&P Capital Markets ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "KFYP",
+    "ok": true,
+    "name": "KraneShares CICC China Leaders 100 Index ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "KIE",
+    "ok": true,
+    "name": "State Street SPDR S&P Insurance ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "KOLD",
+    "ok": true,
+    "name": "ProShares UltraShort Bloomberg Natural Gas",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "KRBN",
+    "ok": true,
+    "name": "KraneShares Global Carbon ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "KRC",
+    "ok": true,
+    "name": "Kilroy Realty Corporation",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
     "ticker": "KRE",
     "ok": true,
     "name": "State Street SPDR S&P Regional Banking ETF",
     "quoteType": "ETF",
     "categories": [
       "industry"
+    ]
+  },
+  {
+    "ticker": "KSA",
+    "ok": true,
+    "name": "iShares MSCI Saudi Arabia ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "KURS",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedLeveragedInverse"
     ]
   },
   {
@@ -2428,12 +4411,47 @@
     ]
   },
   {
+    "ticker": "LCWD",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "LEON",
+    "ok": true,
+    "name": "Leone Asset Management, Inc.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "LIT",
     "ok": true,
     "name": "Global X Lithium & Battery Tech ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "LOCK",
+    "ok": true,
+    "name": "LifeLock, Inc.",
+    "quoteType": "MUTUALFUND",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "LOCK.MI",
+    "ok": true,
+    "name": "iShares Digital Security UCITS ETF USD Acc",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -2498,6 +4516,32 @@
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "MEUD",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "MEUD.PA",
+    "ok": true,
+    "name": "Amundi Core Stoxx Europe 600 UCITS ETF Acc",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "MEXX",
+    "ok": true,
+    "name": "Direxion Daily MSCI Mexico Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -2566,6 +4610,24 @@
     ]
   },
   {
+    "ticker": "MOON",
+    "ok": true,
+    "name": "Direxion Moonshot Innovators ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "MORT",
+    "ok": true,
+    "name": "VanEck Mortgage REIT Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedReit"
+    ]
+  },
+  {
     "ticker": "MSOS",
     "ok": true,
     "name": "AdvisorShares Pure US Cannabis ETF",
@@ -2595,12 +4657,39 @@
     ]
   },
   {
+    "ticker": "MUNI",
+    "ok": true,
+    "name": "PIMCO Intermediate Municipal Bond Active Exchange-Traded Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "NEAR",
+    "ok": true,
+    "name": "iShares Short Duration Bond Active ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "NERD",
     "ok": true,
     "name": "Roundhill Video Games ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "NETL",
+    "ok": true,
+    "name": "Colterpoint Net Lease Real Estate ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedReit"
     ]
   },
   {
@@ -2641,6 +4730,14 @@
     ]
   },
   {
+    "ticker": "NREZ",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedReit"
+    ]
+  },
+  {
     "ticker": "NUDM",
     "ok": true,
     "name": "Nuveen ESG International Developed Markets Equity ETF",
@@ -2677,12 +4774,30 @@
     ]
   },
   {
+    "ticker": "NUSI",
+    "ok": true,
+    "name": "NEOS Nasdaq-100 Hedged Equity Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
     "ticker": "NXTG",
     "ok": true,
     "name": "First Trust IndXX NextG ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "NYF",
+    "ok": true,
+    "name": "iShares New York Muni Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
     ]
   },
   {
@@ -2695,6 +4810,15 @@
     ]
   },
   {
+    "ticker": "OLD",
+    "ok": true,
+    "name": "The Long-Term Care ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "OMFL",
     "ok": true,
     "name": "Invesco Russell 1000 Dynamic Multifactor ETF",
@@ -2704,12 +4828,30 @@
     ]
   },
   {
+    "ticker": "ONLN",
+    "ok": true,
+    "name": "ProShares Online Retail ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "OUNZ",
     "ok": true,
     "name": "VanEck Merk Gold Trust",
     "quoteType": "ETF",
     "categories": [
       "gold"
+    ]
+  },
+  {
+    "ticker": "PAK",
+    "ok": true,
+    "name": "Global X MSCI Pakistan ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -2732,6 +4874,15 @@
     ]
   },
   {
+    "ticker": "PBE",
+    "ok": true,
+    "name": "Invesco Biotechnology & Genome ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "PBW",
     "ok": true,
     "name": "Invesco WilderHill Clean Energy ETF",
@@ -2741,12 +4892,30 @@
     ]
   },
   {
+    "ticker": "PCY",
+    "ok": true,
+    "name": "Invesco Emerging Markets Sovereign Debt ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "PDBC",
     "ok": true,
     "name": "Invesco Optimum Yield Diversified Commodity Strategy No K-1 ETF",
     "quoteType": "ETF",
     "categories": [
       "commodities"
+    ]
+  },
+  {
+    "ticker": "PEJ",
+    "ok": true,
+    "name": "Invesco Dynamic Leisure and Entertainment ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -2768,12 +4937,47 @@
     ]
   },
   {
+    "ticker": "PFIX",
+    "ok": true,
+    "name": "Simplify Interest Rate Hedge ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "PFXF",
+    "ok": true,
+    "name": "VanEck Preferred Securities ex Financials ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "PGF",
+    "ok": true,
+    "name": "Invesco Financial Preferred ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
     "ticker": "PGX",
     "ok": true,
     "name": "Invesco Preferred ETF",
     "quoteType": "ETF",
     "categories": [
       "income"
+    ]
+  },
+  {
+    "ticker": "PHAU",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -2786,6 +4990,14 @@
     ]
   },
   {
+    "ticker": "PHGP",
+    "ok": false,
+    "error": "Failed Yahoo Schema validation",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "PHO",
     "ok": true,
     "name": "Invesco Water Resources ETF",
@@ -2795,12 +5007,48 @@
     ]
   },
   {
+    "ticker": "PICK",
+    "ok": true,
+    "name": "iShares MSCI Global Metals & Mining Producers ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
+    ]
+  },
+  {
+    "ticker": "PID",
+    "ok": true,
+    "name": "Invesco International Dividend Achievers ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
     "ticker": "PIO",
     "ok": true,
     "name": "Invesco Global Water ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "PJP",
+    "ok": true,
+    "name": "Invesco Pharmaceuticals ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "PKB",
+    "ok": true,
+    "name": "Invesco Building & Construction ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -2841,12 +5089,30 @@
     ]
   },
   {
+    "ticker": "PPTY",
+    "ok": true,
+    "name": "Vident U.S. Diversified Real Estate ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedReit"
+    ]
+  },
+  {
     "ticker": "PRNT",
     "ok": true,
     "name": "The 3D Printing ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "PSCH",
+    "ok": true,
+    "name": "Invesco S&P SmallCap Health Care ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -2860,12 +5126,66 @@
     ]
   },
   {
+    "ticker": "PSK",
+    "ok": true,
+    "name": "State Street SPDR ICE Preferred Securities ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "PSQ",
+    "ok": true,
+    "name": "ProShares Short QQQ",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "PTF",
+    "ok": true,
+    "name": "Invesco Dorsey Wright Technology Momentum ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "PULS",
+    "ok": true,
+    "name": "PGIM Ultra Short Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "PZA",
+    "ok": true,
+    "name": "Invesco National AMT-Free Municipal Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "QCLN",
     "ok": true,
     "name": "First Trust NASDAQ Clean Edge Green Energy Index Fund",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "QETH",
+    "ok": true,
+    "name": "Invesco Galaxy Ethereum ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
     ]
   },
   {
@@ -2906,6 +5226,15 @@
     ]
   },
   {
+    "ticker": "QQQJ",
+    "ok": true,
+    "name": "Invesco NASDAQ Next Gen 100 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "QQQM",
     "ok": true,
     "name": "Invesco NASDAQ 100 ETF",
@@ -2941,6 +5270,42 @@
     "quoteType": "ETF",
     "categories": [
       "income"
+    ]
+  },
+  {
+    "ticker": "RAVI",
+    "ok": true,
+    "name": "Northern Trust Ultra-Short Fixed Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "RBOT",
+    "ok": true,
+    "name": "Vicarious Surgical Inc.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "RBOT.MI",
+    "ok": true,
+    "name": "iShares Automation & Robotics UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "RDIV",
+    "ok": true,
+    "name": "Invesco S&P Ultra Dividend Revenue ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
     ]
   },
   {
@@ -2989,6 +5354,33 @@
     ]
   },
   {
+    "ticker": "RFG",
+    "ok": true,
+    "name": "Invesco S&P MidCap 400 Pure Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "RFV",
+    "ok": true,
+    "name": "Invesco S&P MidCap 400 Pure Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "RINF",
+    "ok": true,
+    "name": "ProShares Inflation Expectations ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "RING",
     "ok": true,
     "name": "iShares MSCI Global Gold Miners ETF",
@@ -3025,6 +5417,24 @@
     ]
   },
   {
+    "ticker": "RLY",
+    "ok": true,
+    "name": "State Street Multi-Asset Real Return ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "RNRG",
+    "ok": true,
+    "name": "Global X Renewable Energy Producers ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "ROBO",
     "ok": true,
     "name": "Robo Global Robotics and Automation Index ETF",
@@ -3052,12 +5462,39 @@
     ]
   },
   {
+    "ticker": "ROOF",
+    "ok": true,
+    "name": "NYLI CBRE NextGen Real Estate ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedReit"
+    ]
+  },
+  {
     "ticker": "RPAR",
     "ok": true,
     "name": "RPAR Risk Parity ETF",
     "quoteType": "ETF",
     "categories": [
       "allocation"
+    ]
+  },
+  {
+    "ticker": "RPG",
+    "ok": true,
+    "name": "Invesco S&P 500 Pure Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "RPV",
+    "ok": true,
+    "name": "Invesco S&P 500 Pure Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
     ]
   },
   {
@@ -3085,6 +5522,40 @@
     "quoteType": "ETF",
     "categories": [
       "income"
+    ]
+  },
+  {
+    "ticker": "RZG",
+    "ok": true,
+    "name": "Invesco S&P SmallCap 600 Pure Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "RZV",
+    "ok": true,
+    "name": "Invesco S&P SmallCap 600 Pure Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "SAEM",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SAME",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -3160,6 +5631,15 @@
     ]
   },
   {
+    "ticker": "SCHM",
+    "ok": true,
+    "name": "Schwab U.S. Mid-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "SCHO",
     "ok": true,
     "name": "Schwab Short-Term U.S. Treasury ETF",
@@ -3214,6 +5694,24 @@
     ]
   },
   {
+    "ticker": "SCZ",
+    "ok": true,
+    "name": "iShares MSCI EAFE Small-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
+    "ticker": "SDIV",
+    "ok": true,
+    "name": "Global X SuperDividend ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
     "ticker": "SDOW",
     "ok": true,
     "name": "ProShares UltraPro Short Dow30",
@@ -3241,12 +5739,64 @@
     ]
   },
   {
+    "ticker": "SEAG",
+    "ok": true,
+    "name": "SEAG",
+    "quoteType": "MUTUALFUND",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SEGA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SEGH",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SFIG",
+    "ok": true,
+    "name": "WisdomTree U.S. Short-Term Corporate Bond Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "SGLD",
+    "ok": true,
+    "name": "Scorpio Gold Corporation American Depositary Shares",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "SGLD.L",
     "ok": true,
     "name": "Invesco Physical Gold ETC",
     "quoteType": "EQUITY",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "SGLN",
+    "ok": true,
+    "name": "SurgLine International, Inc.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -3266,6 +5816,15 @@
     "quoteType": "ETF",
     "categories": [
       "treasury"
+    ]
+  },
+  {
+    "ticker": "SH",
+    "ok": true,
+    "name": "ProShares Short S&P500",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
     ]
   },
   {
@@ -3327,6 +5886,15 @@
     ]
   },
   {
+    "ticker": "SIMS",
+    "ok": true,
+    "name": "State Street SPDR S&P Kensho Intelligent Structures ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "SIVR",
     "ok": true,
     "name": "abrdn Physical Silver Shares ETF",
@@ -3373,6 +5941,41 @@
     ]
   },
   {
+    "ticker": "SLX",
+    "ok": true,
+    "name": "VanEck Steel ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "SLY",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "SLYG",
+    "ok": true,
+    "name": "State Street SPDR S&P 600 Small Cap Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "SLYV",
+    "ok": true,
+    "name": "State Street SPDR S&P 600 Small Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "SMH",
     "ok": true,
     "name": "VanEck Semiconductor ETF",
@@ -3383,12 +5986,39 @@
     ]
   },
   {
+    "ticker": "SMOG",
+    "ok": true,
+    "name": "VanEck Low Carbon Energy ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
+    "ticker": "SNPE",
+    "ok": true,
+    "name": "Xtrackers S&P 500 Scored & Screened ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "SNSR",
     "ok": true,
     "name": "Global X Internet of Things ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "SOCL",
+    "ok": true,
+    "name": "Global X Social Media ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -3494,12 +6124,38 @@
     ]
   },
   {
+    "ticker": "SPTI",
+    "ok": true,
+    "name": "State Street SPDR Portfolio Intermediate Term Treasury ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "SPTL",
     "ok": true,
     "name": "State Street SPDR Portfolio Long Term Treasury ETF",
     "quoteType": "ETF",
     "categories": [
       "treasury"
+    ]
+  },
+  {
+    "ticker": "SPTM",
+    "ok": true,
+    "name": "State Street SPDR Portfolio S&P 1500 Composite Stock Market ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "SPTMI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedFactorSmartBeta"
     ]
   },
   {
@@ -3593,6 +6249,33 @@
     ]
   },
   {
+    "ticker": "SRET",
+    "ok": true,
+    "name": "Global X SuperDividend REIT ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "SRLN",
+    "ok": true,
+    "name": "State Street Blackstone Senior Loan ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "SRTY",
+    "ok": true,
+    "name": "ProShares UltraPro Short Russell2000",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
     "ticker": "SRVR",
     "ok": true,
     "name": "Pacer Data & Infrastructure Real Estate ETF",
@@ -3612,6 +6295,14 @@
     ]
   },
   {
+    "ticker": "STHE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "STIP",
     "ok": true,
     "name": "iShares 0-5 Year TIPS Bond ETF",
@@ -3621,12 +6312,29 @@
     ]
   },
   {
+    "ticker": "SUAS",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "SUB",
     "ok": true,
     "name": "iShares Short-Term National Muni Bond ETF",
     "quoteType": "ETF",
     "categories": [
       "municipalBonds"
+    ]
+  },
+  {
+    "ticker": "SUBZ",
+    "ok": true,
+    "name": "Roundhill Streaming Services & Technology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -3648,12 +6356,37 @@
     ]
   },
   {
+    "ticker": "SUSM",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SUSW",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "SUSW.L",
     "ok": true,
     "name": "iShares MSCI World SRI UCITS ETF EUR (Acc)",
     "quoteType": "ETF",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "SVOL",
+    "ok": true,
+    "name": "Simplify Volatility Premium ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
     ]
   },
   {
@@ -3667,6 +6400,14 @@
     ]
   },
   {
+    "ticker": "SWDA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "SWDA.L",
     "ok": true,
     "name": "iShares Core MSCI World UCITS ETF USD (Acc)",
@@ -3676,12 +6417,37 @@
     ]
   },
   {
+    "ticker": "SWDA.MI",
+    "ok": true,
+    "name": "iShares Core MSCI World UCITS ETF USD (Acc)",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SXR8",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "SXR8.DE",
     "ok": true,
     "name": "iShares Core S&P 500 UCITS ETF USD (Acc)",
     "quoteType": "ETF",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "SXRV",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -3703,12 +6469,30 @@
     ]
   },
   {
+    "ticker": "TAIL",
+    "ok": true,
+    "name": "Cambria Tail Risk ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
     "ticker": "TAN",
     "ok": true,
     "name": "Invesco Solar ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "TDIV",
+    "ok": true,
+    "name": "First Trust NASDAQ Technology Dividend Index Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
     ]
   },
   {
@@ -3813,6 +6597,15 @@
     ]
   },
   {
+    "ticker": "TOL",
+    "ok": true,
+    "name": "Toll Brothers, Inc.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "TOTL",
     "ok": true,
     "name": "State Street DoubleLine Total Return Tactical ETF",
@@ -3858,6 +6651,15 @@
     ]
   },
   {
+    "ticker": "UAE",
+    "ok": true,
+    "name": "iShares MSCI UAE ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "UDOW",
     "ok": true,
     "name": "ProShares UltraPro Dow30",
@@ -3882,6 +6684,24 @@
     "quoteType": "ETF",
     "categories": [
       "commodities"
+    ]
+  },
+  {
+    "ticker": "UGL",
+    "ok": true,
+    "name": "ProShares Ultra Gold",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "ULST",
+    "ok": true,
+    "name": "State Street Ultra Short Term Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
     ]
   },
   {
@@ -3939,12 +6759,30 @@
     ]
   },
   {
+    "ticker": "URTY",
+    "ok": true,
+    "name": "ProShares UltraPro Russell2000",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
     "ticker": "USCI",
     "ok": true,
     "name": "United States Commodity Index Fund, LP",
     "quoteType": "ETF",
     "categories": [
       "commodities"
+    ]
+  },
+  {
+    "ticker": "USDU",
+    "ok": true,
+    "name": "WisdomTree Bloomberg U.S. Dollar Bullish Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
     ]
   },
   {
@@ -4003,6 +6841,15 @@
     ]
   },
   {
+    "ticker": "UUP",
+    "ok": true,
+    "name": "Invesco DB US Dollar Index Bullish Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedCommoditiesCurrency"
+    ]
+  },
+  {
     "ticker": "UVXY",
     "ok": true,
     "name": "ProShares Ultra VIX Short-Term Futures ETF",
@@ -4010,6 +6857,32 @@
     "categories": [
       "leveragedInverse",
       "volatility"
+    ]
+  },
+  {
+    "ticker": "VAGF",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VAGF.MI",
+    "ok": true,
+    "name": "Vanguard Global Aggregate Bond UCITS ETF EUR Hedged Accumulation",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VAGP.L",
+    "ok": true,
+    "name": "Vanguard Global Aggregate Bond UCITS ETF GBP Hedged Income",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -4050,6 +6923,15 @@
     ]
   },
   {
+    "ticker": "VCLT",
+    "ok": true,
+    "name": "Vanguard Long-Term Corporate Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
     "ticker": "VCR",
     "ok": true,
     "name": "Vanguard Consumer Discretionary Index Fund ETF Shares",
@@ -4087,6 +6969,22 @@
     ]
   },
   {
+    "ticker": "VDUA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VDUA.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "VEA",
     "ok": true,
     "name": "Vanguard FTSE Developed Markets Index Fund ETF Shares",
@@ -4106,12 +7004,38 @@
     ]
   },
   {
+    "ticker": "VETY",
+    "ok": true,
+    "name": "Vanguard EUR Eurozone Gov Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VETY.MI",
+    "ok": true,
+    "name": "Vanguard EUR Eurozone Government Bond UCITS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "VEU",
     "ok": true,
     "name": "Vanguard FTSE All-World ex-US Index Fund ETF Shares",
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "VFEA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -4131,6 +7055,15 @@
     "categories": [
       "bonds",
       "treasury"
+    ]
+  },
+  {
+    "ticker": "VGK",
+    "ok": true,
+    "name": "Vanguard FTSE Europe ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -4181,6 +7114,24 @@
     ]
   },
   {
+    "ticker": "VIOG",
+    "ok": true,
+    "name": "Vanguard S&P Small-Cap 600 Growth Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "VIOO",
+    "ok": true,
+    "name": "Vanguard S&P Small-Cap 600 Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "VIOV",
     "ok": true,
     "name": "Vanguard S&P Small-Cap 600 Value Index Fund ETF Shares",
@@ -4227,6 +7178,92 @@
     ]
   },
   {
+    "ticker": "VMBS",
+    "ok": true,
+    "name": "Vanguard Mortgage-Backed Securities Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "VNGA20",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA20.MI",
+    "ok": true,
+    "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA40",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA40.MI",
+    "ok": true,
+    "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA60",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA60.MI",
+    "ok": true,
+    "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA80",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNGA80.MI",
+    "ok": true,
+    "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VNM",
+    "ok": true,
+    "name": "VanEck Vietnam ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
+    ]
+  },
+  {
     "ticker": "VNQ",
     "ok": true,
     "name": "Vanguard Real Estate Index Fund ETF Shares",
@@ -4255,6 +7292,15 @@
     ]
   },
   {
+    "ticker": "VOE",
+    "ok": true,
+    "name": "Vanguard Morningstar Mid-Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "VONE",
     "ok": true,
     "name": "Vanguard Russell 1000 Index Fund ETF Shares",
@@ -4264,12 +7310,48 @@
     ]
   },
   {
+    "ticker": "VONV",
+    "ok": true,
+    "name": "Vanguard Russell 1000 Value Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
     "ticker": "VOO",
     "ok": true,
     "name": "Vanguard S&P 500 ETF",
     "quoteType": "ETF",
     "categories": [
       "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VOOG",
+    "ok": true,
+    "name": "Vanguard S&P 500 Growth Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "VOOV",
+    "ok": true,
+    "name": "Vanguard S&P 500 Value Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "VOT",
+    "ok": true,
+    "name": "Vanguard Morningstar Mid-Cap Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
     ]
   },
   {
@@ -4297,6 +7379,33 @@
     "quoteType": "ETF",
     "categories": [
       "sectorVanguard"
+    ]
+  },
+  {
+    "ticker": "VRIG",
+    "ok": true,
+    "name": "Invesco Variable Rate Investment Grade ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "VRP",
+    "ok": true,
+    "name": "Invesco Variable Rate Preferred ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "VSGX",
+    "ok": true,
+    "name": "Vanguard ESG International Stock ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedInternational"
     ]
   },
   {
@@ -4363,12 +7472,65 @@
     ]
   },
   {
+    "ticker": "VTWG",
+    "ok": true,
+    "name": "Vanguard Russell 2000 Growth Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "VTWO",
+    "ok": true,
+    "name": "Vanguard Russell 2000 Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "VTWV",
+    "ok": true,
+    "name": "Vanguard Russell 2000 Value Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedFactorSmartBeta"
+    ]
+  },
+  {
+    "ticker": "VUAA",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "VUAA.MI",
+    "ok": true,
+    "name": "Vanguard S&P 500 UCITS ETF USD Accumulation",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "VUG",
     "ok": true,
     "name": "Vanguard Morningstar Growth ETF",
     "quoteType": "ETF",
     "categories": [
       "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "VUSA",
+    "ok": true,
+    "name": "Vanguard S&amp;P 500 ETF",
+    "quoteType": "MUTUALFUND",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -4399,6 +7561,14 @@
     ]
   },
   {
+    "ticker": "VWCE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "VWCE.DE",
     "ok": true,
     "name": "Vanguard FTSE All-World UCITS ETF USD Accumulation",
@@ -4423,6 +7593,15 @@
     "quoteType": "ETF",
     "categories": [
       "international"
+    ]
+  },
+  {
+    "ticker": "VWOB",
+    "ok": true,
+    "name": "Vanguard Emerging Markets Government Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedBonds"
     ]
   },
   {
@@ -4480,6 +7659,23 @@
     ]
   },
   {
+    "ticker": "VYMI",
+    "ok": true,
+    "name": "Vanguard International High Dividend Yield Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedDividendIncome"
+    ]
+  },
+  {
+    "ticker": "WCBD",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "WCLD",
     "ok": true,
     "name": "WisdomTree Cloud Computing Fund",
@@ -4500,12 +7696,39 @@
     ]
   },
   {
+    "ticker": "WEBL",
+    "ok": true,
+    "name": "Direxion Daily Dow Jones Internet Bull 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
+    "ticker": "WEBS",
+    "ok": true,
+    "name": "Direxion Daily Dow Jones Internet Bear 3X Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedLeveragedInverse"
+    ]
+  },
+  {
     "ticker": "WOOD",
     "ok": true,
     "name": "iShares Global Timber & Forestry ETF",
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "WREI",
+    "ok": true,
+    "name": "Invesco Wilshire US REIT ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedReit"
     ]
   },
   {
@@ -4524,6 +7747,23 @@
     "quoteType": "ETF",
     "categories": [
       "thematic"
+    ]
+  },
+  {
+    "ticker": "WTAI.MI",
+    "ok": true,
+    "name": "WisdomTree Artificial Intelligence UCITS ETF - USD Acc",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XACT.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {
@@ -4547,6 +7787,24 @@
     ]
   },
   {
+    "ticker": "XDER.MI",
+    "ok": true,
+    "name": "Xtrackers FTSE Developed Europe Real Estate UCITS ETF 1C",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XDEV.MI",
+    "ok": true,
+    "name": "Xtrackers MSCI World Value UCITS ETF 1C",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "XDWD.DE",
     "ok": true,
     "name": "Xtrackers MSCI World UCITS ETF 1C",
@@ -4556,12 +7814,82 @@
     ]
   },
   {
+    "ticker": "XEON",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XEON.DE",
+    "ok": true,
+    "name": "Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XETR",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XG7S.MI",
+    "ok": true,
+    "name": "Xtrackers II Global Government Bond UCITS ETF 5C",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XGIN.MI",
+    "ok": true,
+    "name": "Xtrackers II Global Inflation-Linked Bond UCITS ETF 1C - EUR Hedged",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XGSD.MI",
+    "ok": true,
+    "name": "Xtrackers Stoxx Global Select Dividend 100 Swap UCITS ETF 1D",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XGSH.MI",
+    "ok": true,
+    "name": "Xtrackers II Global Government Bond UCITS ETF 1C - EUR Hedged",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "XHB",
     "ok": true,
     "name": "State Street SPDR S&P Homebuilders ETF",
     "quoteType": "ETF",
     "categories": [
       "industry"
+    ]
+  },
+  {
+    "ticker": "XHS",
+    "ok": true,
+    "name": "State Street SPDR S&P Health Care Services ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -4675,11 +8003,53 @@
     ]
   },
   {
+    "ticker": "XMFT",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedOther"
+    ]
+  },
+  {
+    "ticker": "XMME",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XMME.DE",
+    "ok": true,
+    "name": "Xtrackers MSCI Emerging Markets UCITS ETF 1C",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XMTD.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
     "ticker": "XMWO.DE",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "XNTK",
+    "ok": true,
+    "name": "State Street SPDR NYSE Technology ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
     ]
   },
   {
@@ -4720,12 +8090,112 @@
     ]
   },
   {
+    "ticker": "XSTR.MI",
+    "ok": true,
+    "name": "Xtrackers II GBP Overnight Rate Swap UCITS ETF 1D",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XSW",
+    "ok": true,
+    "name": "State Street SPDR S&P Software & Services ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedThematicSector"
+    ]
+  },
+  {
     "ticker": "XTN",
     "ok": true,
     "name": "State Street SPDR S&P Transportation ETF",
     "quoteType": "ETF",
     "categories": [
       "industry"
+    ]
+  },
+  {
+    "ticker": "XU03.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU05.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU06.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU07.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU08.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU09.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XU10.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XUEM.MI",
+    "ok": true,
+    "name": "Xtrackers II J.P. Morgan USD Emerging Markets Bond UCITS ETF 2D",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XUSD.MI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XUTD.MI",
+    "ok": true,
+    "name": "Xtrackers II US Treasuries UCITS ETF 1D",
+    "quoteType": "ETF",
+    "categories": [
+      "extendedEuropeUCITS"
     ]
   },
   {

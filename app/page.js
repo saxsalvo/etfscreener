@@ -1,10 +1,88 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 
 const PAGE_SIZE = 25;
 const CAPITAL_FLOW_LIMIT = 10;
+const COOKIE_VISIBLE_COLUMNS = "visible_etf_columns";
+const COOKIE_SORT = "etf_sort";
+const COOKIE_CONSENT_KEY = "cookie_consent_choice";
+
+const ALL_COLUMN_KEYS = [
+  "ticker",
+  "name",
+  "category",
+  "score",
+  "dailyReturn",
+  "threeDayReturn",
+  "weekReturn",
+  "monthReturn",
+  "year1Return",
+  "year3Return",
+  "year5Return",
+  "year10Return",
+  "trend",
+  "rsi14",
+  "positive10",
+  "positive20",
+  "streak",
+  "distanceSma20",
+  "rvol",
+  "volatility20d",
+  "distance52wHigh",
+  "maxDrawdown52w",
+  "netAssets",
+  "seasonality",
+  "borsa",
+];
+
+const DEFAULT_VISIBLE_COLUMNS = [
+  "ticker",
+  "name",
+  "category",
+  "trend",
+  "score",
+  "dailyReturn",
+  "threeDayReturn",
+  "weekReturn",
+  "rsi14",
+  "positive20",
+  "streak",
+  "distanceSma20",
+  "rvol",
+  "volatility20d",
+  "seasonality",
+  "borsa",
+];
+
+const COLUMN_WIDTHS = {
+  ticker: "94px",
+  name: "250px",
+  category: "160px",
+  trend: "82px",
+  score: "66px",
+  dailyReturn: "88px",
+  threeDayReturn: "88px",
+  weekReturn: "88px",
+  monthReturn: "88px",
+  year1Return: "92px",
+  year3Return: "92px",
+  year5Return: "92px",
+  year10Return: "92px",
+  rsi14: "84px",
+  positive10: "96px",
+  positive20: "96px",
+  streak: "96px",
+  distanceSma20: "102px",
+  rvol: "86px",
+  volatility20d: "90px",
+  distance52wHigh: "96px",
+  maxDrawdown52w: "112px",
+  netAssets: "96px",
+  seasonality: "150px",
+  borsa: "120px",
+};
 
 const I18N = {
   it: {
@@ -13,6 +91,19 @@ const I18N = {
     langItalian: "Italiano",
     langEnglish: "Inglese",
     guideButton: "Guida",
+    chartLinkTitle: "Apri grafico TradingView",
+    cookieTitle: "Preferenze cookie",
+    cookieBody: "Usiamo cookie tecnici solo per salvare colonne visibili e ordinamento. Questo avviso viene mostrato solo la prima volta.",
+    cookieAccept: "Accetta cookie tecnici",
+    cookieReject: "Continua senza cookie",
+    selectColumnsButton: "Seleziona colonne",
+    columnsTitle: "Colonne visibili",
+    columnsHint: "Seleziona le colonne da mostrare in tabella. Le preferenze vengono salvate automaticamente.",
+    presetEssential: "Preset essenziale",
+    presetAll: "Mostra tutte",
+    closeColumns: "Chiudi selettore",
+    showFilters: "Mostra filtri",
+    hideFilters: "Nascondi filtri",
     githubTitle: "Apri repository GitHub",
     searchLabel: "Cerca",
     searchPlaceholder: "Ticker, nome o categoria...",
@@ -104,27 +195,31 @@ const I18N = {
         {
           title: "Metriche principali: spiegazione pratica dettagliata",
           items: [
-            "Ticker: identificativo breve del fondo. Esempio: tra VOO, IVV e SPY (stesso benchmark S&P 500), il ticker aiuta a distinguere il veicolo specifico che vuoi comprare o monitorare.",
-            "Nome ETF: descrive provider e strategia. Esempio: 'Nasdaq 100' puo apparire in piu ETF, ma nome completo chiarisce replica, paese e politica del fondo.",
-            "Categoria: cluster tematico o asset class (bonds, commodities, growth, ecc.). Esempio: se vuoi ridurre volatilita, puoi escludere leveragedInverse e concentrare la ricerca su broadMarketUS o bonds.",
-            "Trend: struttura tecnica del prezzo rispetto alle medie. Esempio: trend Forte significa prezzo e medie allineate positivamente; utile per evitare ingressi contro-tendenza.",
-            "RSI 14: misura la forza del movimento recente su scala 0-100. Esempio: RSI 72 con trend forte indica spinta elevata ma anche rischio di pausa; RSI 38 puo suggerire fase debole o ricostruzione.",
-            "Positivi 10G: numero di sedute positive su 10. Esempio: 8/10 segnala continuita nel breve, mentre 3/10 mostra pressione ribassista recente.",
-            "Positivi 20G: versione estesa su 20 sedute. Esempio: 14/20 e piu affidabile di 7/10 isolato, perche copre un orizzonte piu ampio.",
-            "Streak 20G: striscia consecutiva di sedute positive. Esempio: streak 5/20 indica accelerazione progressiva, mentre 0/20 segnala assenza di persistenza.",
-            "Dist SMA20: distanza percentuale dalla media mobile breve. Esempio: +2% spesso indica trend ordinato; +15% puo indicare prezzo esteso e maggiore rischio di pullback.",
-            "RVOL: volume relativo contro media recente. Esempio: RVOL 2.8x su giornata positiva suggerisce partecipazione istituzionale; RVOL 0.6x indica movimento poco convinto.",
-            "Vol 20D: volatilita annualizzata stimata sulle ultime sedute. Esempio: vol 12 e tipica di ETF difensivi; vol 45 e piu comune su temi aggressivi o leva.",
-            "52W High: distanza dal massimo annuale. Esempio: -1.5% significa vicino ai massimi (forza relativa alta), -28% indica ampia distanza e possibile fase di recupero o debolezza persistente.",
-            "Max DD 52W: peggior drawdown dell'anno. Esempio: -8% e drawdown contenuto, -35% evidenzia storia di forte stress e rischio maggiore per il profilo conservativo.",
-            "AUM: masse gestite. Esempio: 20B tende a offrire migliore profondita e spread piu stretti rispetto a 80M, utile soprattutto su ordini ricorrenti o importi elevati.",
-            "Score: punteggio composito 0-100. Esempio: score 88 indica combinazione robusta di trend/momentum/qualita; score 54 suggerisce setup da monitorare con prudenza.",
-            "1D: ritorno giornaliero. Esempio: +1.8% in una seduta puo essere breakout se confermato da RVOL alto e trend forte.",
-            "3D: ritorno su 3 sedute. Esempio: +3.2% su 3D riduce il rumore rispetto a 1D e segnala dinamica piu consistente.",
-            "1W: ritorno settimanale. Esempio: +4.5% in settimana con vol moderata suggerisce momentum sano; stessa performance con vol molto alta implica rischio piu elevato.",
-            "1M: ritorno mensile. Esempio: +9% a 1M puo indicare leadership di breve/medio periodo e aiuta anche nella lettura del pannello Flussi di capitale.",
-            "Seasonality: verifica se la data corrente ricade in finestre storicamente favorevoli. Esempio: ETF allineato con success rate alto e trend forte offre un contesto statistico migliore di un segnale tecnico isolato.",
-            "Borsa (Exchange): mercato di quotazione. Esempio: conoscere l'exchange aiuta a gestire orari, valuta e liquidita durante l'operativita intraday o in apertura USA/Europa.",
+            "Ticker: identificativo breve del fondo. Esempio pratico: VOO, IVV e SPY replicano S&P 500 ma hanno emittenti, liquidita e TER diversi; il ticker evita errori di esecuzione quando imposti ordini rapidi.",
+            "Nome ETF: descrive provider, indice e struttura. Esempio pratico: due prodotti con 'Nasdaq 100' nel nome possono differire per domicilio, replica fisica/sintetica e valuta di quotazione; il nome completo chiarisce cosa stai realmente comprando.",
+            "Categoria: cluster per strategia/asset class. Esempio pratico: se vuoi ridurre rischio, escludi leveragedInverse e concentri la scansione su broadMarketUS e bonds, abbassando la varianza media del paniere.",
+            "Trend: regola reale basata su 3 medie mobili. Forte se Prezzo > SMA20 > SMA50 > SMA200; Debole se il prezzo e sotto sia SMA20 sia SMA50 e SMA20 e sotto SMA50; altrimenti Neutro. Esempio: Prezzo 104, SMA20 100, SMA50 98, SMA200 90 => Forte. Con SMA200 a 105 la stessa situazione diventerebbe Neutro: per questo ETF volatili o in recupero (es. materie prime/minerari) restano spesso 'Neutro' anche con momentum recente positivo.",
+            "RSI 14: formula RSI = 100 - (100 / (1 + RS)), con RS = media guadagni 14g / media perdite 14g. Esempio numerico: gain medio 1.4, loss medio 0.7 => RS=2 => RSI=66.67; valore alto segnala spinta, ma anche probabilita di consolidamento.",
+            "Positivi 10G: formula Pos10 = somma indicatori [Close_t > Close_{t-1}] su 10 giorni. Esempio: 8/10 significa che l'80% delle ultime sedute e stato positivo, quindi il movimento ha continuita nel brevissimo.",
+            "Positivi 20G: stessa formula su 20 giorni. Esempio: 14/20 (70%) conferma un bias rialzista piu robusto rispetto a un picco isolato su 10 giorni.",
+            "Streak 20G: consecutivita delle chiusure positive recenti. Esempio: sequenza + + + - + + produce streak corrente 2 e massimo recente 3; una streak in espansione puo indicare accelerazione in corso.",
+            "Dist SMA20: formula Dist% = ((Prezzo / SMA20) - 1) * 100. Esempio: Prezzo 105 e SMA20 100 => +5%; a +12/+15% il prezzo puo essere esteso e statisticamente piu esposto a pullback verso media.",
+            "RVOL: formula RVOL = Volume oggi / media Volume 20g. Esempio: 3.0M contro media 1.5M => 2.0x; un breakout con RVOL > 1.8x e in genere piu credibile di uno con RVOL 0.7x.",
+            "Vol 20D: formula Vol ann. = stdev(rendimenti giornalieri 20g) * sqrt(252) * 100. Esempio: stdev 0.9% => vol ~14.3%; stdev 2.2% => vol ~34.9%. Serve per confrontare rendimento atteso e rischio.",
+            "52W High: formula Dist52W% = ((Prezzo / Max_52w) - 1) * 100. Esempio: da massimo 100 a prezzo 97 => -3%; da 100 a 72 => -28%. Distanze piccole spesso indicano leadership relativa.",
+            "Max DD 52W: formula DD_t = ((Prezzo_t / picco_precedente_t) - 1) * 100, Max DD = minimo DD_t a 52 settimane. Esempio: picco 120, minimo successivo 90 => -25%. Misura la severita storica delle fasi di stress.",
+            "AUM: capitale complessivo gestito (quote * NAV). Esempio: ETF da 20B tende ad avere book piu profondo e spread piu stretti rispetto a ETF da 70M, con impatto pratico su slippage e costi impliciti.",
+            "Score: punteggio additivo 0-100 (poi troncato a 100): +12 Prezzo>SMA20, +10 SMA20>SMA50, +10 SMA50>SMA200, fino a +20 da RSI14, fino a +18 da Positivi20, fino a +10 da RVOL, fino a +10 da Volatilita20D (piu bassa e meglio), fino a +10 da Distanza SMA20 (penalizzata sia sopra sia sotto), fino a +5 di qualita (AUM/TER/eta). La stagionalita NON e inclusa nello Score. Esempio: SMA allineate (+32), RSI 55 (+15.4), Positivi20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Qualita 3 => totale ~76.",
+            "1D: formula R_1D% = ((Close_t / Close_{t-1}) - 1) * 100. Esempio: 102 vs 100 => +2.00%. Utile per catturare shock giornalieri, ma da leggere con RVOL per evitare falsi segnali.",
+            "3D: formula R_3D% = ((Close_t / Close_{t-3}) - 1) * 100. Esempio: 103.5 vs 100 => +3.50%. Riduce il rumore di una singola candela.",
+            "1W: formula R_1W% = ((Close_t / Close_{t-5}) - 1) * 100. Esempio: 106 vs 100 => +6.00%. Se accompagnato da vol stabile, il segnale e generalmente piu sano.",
+            "1M: formula R_1M% = ((Close_t / Close_{t-21}) - 1) * 100 circa. Esempio: 109 vs 100 => +9.00%. Questa metrica alimenta direttamente la classifica Flussi di capitale.",
+            "1Y: formula R_1Y% = ((Close_t / Close_{t-252}) - 1) * 100 circa. Esempio: 128 vs 100 => +28%. Mostra la qualita del trend annuale oltre il rumore tattico.",
+            "3Y: formula R_3Y% = ((Close_t / Close_{t-756}) - 1) * 100 circa. Esempio: 160 vs 100 => +60% cumulato. Aiuta a distinguere forza strutturale da fasi brevi favorevoli.",
+            "5Y: formula R_5Y% = ((Close_t / Close_{t-1260}) - 1) * 100 circa. Esempio: 210 vs 100 => +110% cumulato. Utile per confrontare resilienza in cicli di mercato completi.",
+            "10Y: formula R_10Y% = ((Close_t / Close_{t-2520}) - 1) * 100 circa. Esempio: 330 vs 100 => +230% cumulato. Misura la capacita del tema/indice di creare valore nel lungo periodo.",
+            "Seasonality: criterio di allineamento = data corrente dentro finestra con media > 0 e success rate >= soglia (es. 60%) su 10/15/20 anni. Esempio: 11 anni positivi su 15 => 73.3%; se anche trend e score sono forti, il contesto operativo migliora.",
+            "Borsa (Exchange): sede di quotazione. Esempio pratico: conoscere NYSE, NASDAQ o Borsa Italiana aiuta a gestire orari di apertura, spread in pre-market e conversione valutaria.",
           ],
         },
         {
@@ -154,6 +249,13 @@ const I18N = {
           ],
         },
       ],
+      metricsButton: "Dettaglio metriche",
+      metricsIntro: "Seleziona una metrica per vedere formula, perche si usa ed un esempio pratico dettagliato.",
+      backToGuide: "Torna alla guida",
+      backToMetrics: "Torna all'elenco metriche",
+      metricFormulaLabel: "Formula:",
+      metricPurposeLabel: "Perche si usa:",
+      metricExampleLabel: "Esempio pratico:",
       close: "Chiudi",
     },
     trendStrong: "Forte",
@@ -179,6 +281,10 @@ const I18N = {
       threeDayReturn: "3D",
       weekReturn: "1W",
       monthReturn: "1M",
+      year1Return: "1Y",
+      year3Return: "3Y",
+      year5Return: "5Y",
+      year10Return: "10Y",
       seasonality: "Seasonality",
       borsa: "Borsa",
     },
@@ -202,6 +308,10 @@ const I18N = {
       threeDayReturn: "Performance ultime 3 sedute.",
       weekReturn: "Performance ultima settimana.",
       monthReturn: "Performance ultimo mese.",
+      year1Return: "Rendimento negli ultimi 12 mesi.",
+      year3Return: "Rendimento cumulato sugli ultimi 3 anni.",
+      year5Return: "Rendimento cumulato sugli ultimi 5 anni.",
+      year10Return: "Rendimento cumulato sugli ultimi 10 anni.",
       seasonality: "Allineamento con stagionalita favorevole.",
       borsa: "Mercato di quotazione del fondo.",
     },
@@ -224,22 +334,161 @@ const I18N = {
       seasonality: "Allineamento stagionale",
     },
     tooltipBody: {
-      trend: "Confronta prezzo e medie mobili per misurare la struttura del movimento.",
-      rsi14: "Valuta la forza del momentum recente.",
-      positive: "Misura la persistenza del movimento positivo.",
-      streak: "Conta le sedute positive consecutive piu recenti.",
-      distSma20: "Mostra quanto il prezzo e distante dalla media breve.",
-      rvol: "Confronta volume odierno con la media storica recente.",
-      vol20d: "Stima il livello di rischio annualizzato nel breve periodo.",
-      high52: "Indica vicinanza o distanza dal massimo annuale.",
-      maxDd: "Mostra la peggiore discesa percentuale nell'ultimo anno.",
-      aum: "Dimensione del fondo e liquidita potenziale.",
-      score: "Sintesi combinata di momentum, trend, rischio e stagionalita.",
-      d1: "Rendimento dell'ultima seduta.",
-      d3: "Rendimento cumulato sulle ultime 3 sedute.",
-      w1: "Rendimento cumulato sulle ultime 5 sedute.",
-      m1: "Rendimento cumulato degli ultimi 30 giorni.",
-      seasonality: "Verifica se oggi rientra in una finestra storicamente favorevole.",
+      trend:
+        "Regola reale: Forte se Prezzo > SMA20 > SMA50 > SMA200 (allineamento rialzista su 3 medie); Debole se Prezzo <= SMA20 e Prezzo <= SMA50 e SMA20 <= SMA50; in tutti gli altri casi Neutro. Esempio: Prezzo 104, SMA20 100, SMA50 98, SMA200 90 => Forte. Se SMA200 fosse 105 la classificazione scenderebbe a Neutro anche con prezzo forte.",
+      rsi14:
+        "Formula: RSI = 100 - (100 / (1 + RS)), con RS = media guadagni 14g / media perdite 14g. Esempio: media gain 1.2, media loss 0.6 => RS=2 => RSI=66.67.",
+      positive:
+        "Formula: Positivi N = conteggio[(Close_t - Close_{t-1}) > 0] su N sedute. Esempio: 8 giorni positivi su 10 e 14 su 20 indicano persistenza del rialzo.",
+      streak:
+        "Formula: streak = massimo k consecutivo recente con (Close_i - Close_{i-1}) > 0. Esempio: ultimi segni + + + - + => streak corrente 1, massimo recente 3.",
+      distSma20:
+        "Formula: Dist SMA20 % = ((Prezzo / SMA20) - 1) * 100. Esempio: Prezzo 105, SMA20 100 => +5%; Prezzo 94 => -6%.",
+      rvol:
+        "Formula: RVOL = Volume oggi / media Volume 20g. Esempio: 2.4M / 1.2M = 2.0x (partecipazione elevata); 0.7x indica volume sotto media.",
+      vol20d:
+        "Formula: Vol 20D ann. = stdev(rendimenti giornalieri 20g) * sqrt(252) * 100. Esempio: stdev 1.1% => 0.011*sqrt(252)=17.46% ann.",
+      high52:
+        "Formula: Dist 52W High % = ((Prezzo / Max_52w) - 1) * 100. Esempio: Prezzo 98, Max 100 => -2%; Prezzo 75 => -25%.",
+      maxDd:
+        "Formula: DD_t = ((Prezzo_t / picco_precedente_t) - 1) * 100; Max DD = minimo DD_t su 52 settimane. Esempio: da 120 a 90 => -25%.",
+      aum:
+        "AUM e il capitale totale gestito dal fondo (somma quote * NAV). Esempio: 25B tende ad avere spread piu stretti rispetto a 80M.",
+      score:
+        "Formula reale (somma di punteggi parziali, poi troncata a 100): +12 se Prezzo>SMA20; +10 se SMA20>SMA50; +10 se SMA50>SMA200; fino a +20 da RSI14; fino a +18 da Positivi20; fino a +10 da RVOL; fino a +10 da Volatilita20D (piu bassa e meglio); fino a +10 da Distanza SMA20 (penalizzata sia sopra sia sotto la media); fino a +5 di qualita (AUM/TER/eta fondo). La stagionalita NON e inclusa nello Score. Esempio: componenti SMA allineate (+32), RSI 55 (+15.4), Positivi20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Qualita 3 => totale ~76.",
+      d1: "Formula: 1D % = ((Close_t / Close_{t-1}) - 1) * 100. Esempio: 102 vs 100 => +2.00%.",
+      d3: "Formula: 3D % = ((Close_t / Close_{t-3}) - 1) * 100. Esempio: 103.5 vs 100 => +3.50%.",
+      w1: "Formula: 1W % = ((Close_t / Close_{t-5}) - 1) * 100. Esempio: 106 vs 100 => +6.00%.",
+      m1: "Formula: 1M % = ((Close_t / Close_{t-21}) - 1) * 100 circa. Esempio: 109 vs 100 => +9.00%.",
+      seasonality:
+        "Criterio: allineata se la data attuale cade in una finestra con media > 0 e success rate >= soglia (es. 60%) su 10/15/20 anni. Esempio: 11/15 anni positivi => 73.3%.",
+    },
+    metricDetails: {
+      ticker: {
+        formula: "Nessuna formula: e il simbolo identificativo assegnato dal mercato di quotazione.",
+        purpose: "Serve per identificare senza ambiguita lo strumento da comprare o monitorare, evitando di confondere ETF con nomi o strategie simili.",
+        example: "VOO, IVV e SPY replicano tutti l'S&P 500 ma sono emessi da societa diverse (Vanguard, iShares, State Street): il ticker e l'unico modo sicuro per sapere quale stai selezionando.",
+      },
+      name: {
+        formula: "Nessuna formula: e il nome completo del fondo restituito dal provider dati.",
+        purpose: "Aiuta a capire provider, indice replicato e struttura del fondo senza dover cercare altrove.",
+        example: "'iShares Core S&P 500 UCITS ETF' indica chiaramente indice (S&P 500), emittente (iShares) e wrapper UCITS (Europa).",
+      },
+      category: {
+        formula: "Nessuna formula: categoria assegnata da un catalogo interno che raggruppa i ticker per tema o asset class.",
+        purpose: "Permette di filtrare o escludere rapidamente famiglie di ETF con profilo di rischio simile.",
+        example: "Escludendo la categoria leveragedInverse rimuovi in un colpo solo tutti gli ETF a leva/inversi, spesso poco adatti a strategie di lungo periodo.",
+      },
+      trend: {
+        formula: "Forte se Prezzo > SMA20 > SMA50 > SMA200 (allineamento rialzista completo su 3 medie). Debole se Prezzo <= SMA20 e Prezzo <= SMA50 e SMA20 <= SMA50. In tutti gli altri casi: Neutro.",
+        purpose: "Sintetizza in un'unica etichetta la struttura del trend su tre orizzonti (breve/medio/lungo) invece di dover confrontare a mente tre medie mobili.",
+        example: "Prezzo 104, SMA20 100, SMA50 98, SMA200 90: tutte le condizioni sono soddisfatte (104>100>98>90) => Forte. Se SMA200 fosse 105 l'allineamento pieno non c'e piu e l'etichetta scende a Neutro anche con prezzo sopra SMA20: per questo un ETF volatile o in recupero (es. materie prime/minerari) resta spesso 'Neutro' pur avendo momentum recente positivo.",
+      },
+      rsi14: {
+        formula: "RSI = 100 - (100 / (1 + RS)), con RS = media guadagni giornalieri 14g / media perdite giornaliere 14g (media semplice, non esponenziale).",
+        purpose: "Misura se il movimento recente e trainato piu da rialzi o ribassi, individuando ipercomprato (oltre 70) o ipervenduto (sotto 35 in questo screener).",
+        example: "Media guadagni 1.4, media perdite 0.7 => RS=2 => RSI=66.67: momentum positivo ma non ancora a livelli estremi (100).",
+      },
+      positive10: {
+        formula: "Conteggio dei giorni in cui Close_t > Close_(t-1), su una finestra di 10 sedute.",
+        purpose: "Misura la persistenza (non l'intensita) del movimento nel brevissimo periodo.",
+        example: "8/10 significa che l'80% delle ultime 10 sedute ha chiuso in rialzo.",
+      },
+      positive20: {
+        formula: "Conteggio dei giorni in cui Close_t > Close_(t-1), su una finestra di 20 sedute.",
+        purpose: "Versione estesa di Positivi10, meno sensibile a un singolo picco isolato.",
+        example: "14/20 (70%) conferma un bias rialzista piu robusto rispetto a un 8/10 isolato.",
+      },
+      streak: {
+        formula: "Numero di chiusure consecutive positive piu recenti (si ferma al primo giorno negativo o piatto).",
+        purpose: "Evidenzia se il movimento e in fase di accelerazione ininterrotta oppure alterna su e giu.",
+        example: "Sequenza + + + - + + => streak attuale 2 (le ultime due sedute), anche se nella finestra piu ampia ci sono stati 5 giorni positivi su 6.",
+      },
+      distanceSma20: {
+        formula: "((Prezzo / SMA20) - 1) * 100.",
+        purpose: "Misura quanto il prezzo si e allontanato dalla sua media mobile breve: valori molto alti, in positivo o negativo, segnalano un possibile eccesso statistico.",
+        example: "Prezzo 105, SMA20 100 => +5% (trend ordinato). Prezzo 130, SMA20 100 => +30% (forte estensione: nello Score questo viene trattato come rischio, non come premio).",
+      },
+      rvol: {
+        formula: "Volume di oggi / media del volume delle ultime 20 sedute.",
+        purpose: "Verifica se un movimento di prezzo e supportato da un aumento reale della partecipazione degli scambi, o avviene con volumi scarsi (meno affidabile).",
+        example: "Volume oggi 3.0M contro media 1.5M => RVOL 2.0x: la mossa ha piu peso rispetto a una giornata normale.",
+      },
+      volatility20d: {
+        formula: "Deviazione standard dei rendimenti giornalieri delle ultime 20 sedute, annualizzata moltiplicando per la radice di 252 (giorni di borsa in un anno).",
+        purpose: "Quantifica il rischio a breve termine, utile per confrontare ETF con oscillazioni molto diverse (es. bond fund vs ETF su materie prime).",
+        example: "Deviazione standard giornaliera 0.9% => volatilita annualizzata ~14.3%. Con deviazione 2.2% (tipica di settori/minerari/leva) sale a ~34.9%: nello Score la volatilita elevata viene penalizzata, anche con rendimento positivo.",
+      },
+      distance52wHigh: {
+        formula: "((Prezzo / Massimo delle ultime 252 sedute) - 1) * 100.",
+        purpose: "Mostra quanto l'ETF e vicino o lontano dal proprio massimo annuale: la vicinanza ai massimi e spesso associata a forza relativa.",
+        example: "Massimo 100, prezzo 97 => -3% (vicino ai massimi). Massimo 100, prezzo 72 => -28% (ancora lontano, magari in fase di recupero).",
+      },
+      maxDrawdown52w: {
+        formula: "Per ogni giorno si calcola (Prezzo / massimo osservato fino a quel giorno - 1) * 100; il Max Drawdown e il valore piu negativo trovato negli ultimi 252 giorni.",
+        purpose: "Misura la peggiore perdita che un investitore avrebbe subito nell'ultimo anno partendo dal punto peggiore, utile per valutare la tenuta richiesta per detenere l'ETF.",
+        example: "Da un picco di 120 a un minimo successivo di 90 => drawdown -25%.",
+      },
+      netAssets: {
+        formula: "Nessuna formula: dato fornito dal provider (patrimonio gestito = quote in circolazione * NAV).",
+        purpose: "Fondi piu grandi tendono ad avere maggiore liquidita e spread piu stretti, riducendo i costi impliciti di negoziazione.",
+        example: "Un ETF da 20B $ generalmente ha uno spread bid/ask piu contenuto rispetto a uno da 70M $.",
+      },
+      score: {
+        formula: "Punteggio additivo 0-100 (poi troncato a 100): +12 se Prezzo>SMA20; +10 se SMA20>SMA50; +10 se SMA50>SMA200; fino a +20 da RSI14 (RSI 35 => 0 punti, RSI>=61 satura a 20); fino a +18 da Positivi20 (20/20 giorni positivi => 18 punti); fino a +10 da RVOL (RVOL>=1.63 satura a 10); fino a +10 da Volatilita20D, in modo inverso (piu bassa e meglio: da 35% in su, 0 punti); fino a +10 da Distanza SMA20, in modo simmetrico (il massimo si ha quando il prezzo e vicino alla SMA20, e cala sia se il prezzo e molto sopra sia se e molto sotto); infine fino a +5 punti di qualita in base a masse gestite, costo (TER) ed eta del fondo.",
+        purpose: "Riassume in un unico numero trend tecnico, momentum, rischio e qualita del fondo, per confrontare rapidamente molti ETF senza dover leggere ogni singola colonna.",
+        example: "Prezzo>SMA20 (+12), SMA20>SMA50 (+10), SMA50>SMA200 (+10), RSI 55 => +15.4, Positivi20=14/20 => +12.6, RVOL 1.2 => +4.8, Vol20D 22% => +2.1, Dist.SMA20 6% => +6, Qualita 3 => totale ~76. Nota importante: lo Score NON include la stagionalita (mostrata a parte nella colonna Seasonality) e penalizza sia l'eccesso di volatilita sia le forti estensioni dal prezzo medio: per questo ETF a leva o su materie prime/minerari (es. URA) restano spesso su punteggi contenuti anche con un trend di fondo forte.",
+      },
+      dailyReturn: {
+        formula: "((Close_oggi / Close_ieri) - 1) * 100.",
+        purpose: "Cattura variazioni improvvise (notizie, dati macro, movimenti dell'indice sottostante) nella singola seduta.",
+        example: "102 vs 100 => +2.00%: da leggere insieme a RVOL per capire se e un movimento genuino o rumore di poco volume.",
+      },
+      threeDayReturn: {
+        formula: "((Close_oggi / Close_3 sedute fa) - 1) * 100.",
+        purpose: "Riduce il rumore di un singolo giorno e mostra se il movimento ha continuita nel brevissimo periodo.",
+        example: "103.5 vs 100 => +3.50% su 3 sedute.",
+      },
+      weekReturn: {
+        formula: "((Close_oggi / Close_5 sedute fa) - 1) * 100 (5 sedute = una settimana di borsa).",
+        purpose: "Offre una vista settimanale piu stabile del solo rendimento giornaliero.",
+        example: "106 vs 100 => +6.00% in una settimana.",
+      },
+      monthReturn: {
+        formula: "((Close_oggi / Close_di circa 21 sedute fa) - 1) * 100.",
+        purpose: "Alimenta anche la classifica dei Flussi di capitale: un rendimento mensile alto o basso e usato come proxy di forza o debolezza relativa.",
+        example: "109 vs 100 => +9.00% nell'ultimo mese.",
+      },
+      year1Return: {
+        formula: "((Close_oggi / Close_di circa 252 sedute fa) - 1) * 100.",
+        purpose: "Misura il rendimento sull'ultimo anno, utile per valutare la qualita del trend oltre il rumore tattico di breve periodo.",
+        example: "128 vs 100 => +28% nell'ultimo anno.",
+      },
+      year3Return: {
+        formula: "((Close_oggi / Close_di circa 3 anni fa) - 1) * 100.",
+        purpose: "Aiuta a distinguere forza strutturale da fasi brevi favorevoli, su un orizzonte di medio periodo.",
+        example: "160 vs 100 => +60% cumulato in 3 anni.",
+      },
+      year5Return: {
+        formula: "((Close_oggi / Close_di circa 5 anni fa) - 1) * 100.",
+        purpose: "Utile per confrontare la resilienza di un ETF attraverso un ciclo di mercato piu completo.",
+        example: "210 vs 100 => +110% cumulato in 5 anni.",
+      },
+      year10Return: {
+        formula: "((Close_oggi / Close_di circa 10 anni fa) - 1) * 100.",
+        purpose: "Misura la capacita del tema o dell'indice di creare valore nel lungo periodo.",
+        example: "330 vs 100 => +230% cumulato in 10 anni.",
+      },
+      seasonality: {
+        formula: "Per ogni possibile finestra dell'anno che comprende la data odierna si calcola il rendimento medio e la percentuale di anni positivi (success rate) su 10/15/20 anni di storico; la finestra e 'allineata' se rendimento medio > 0 e success rate >= soglia impostata (default 60%) in tutte le profondita.",
+        purpose: "Aggiunge un contesto storico/statistico indipendente dai segnali tecnici: un ETF puo avere trend o score modesti ma trovarsi comunque in un periodo dell'anno storicamente favorevole (o viceversa).",
+        example: "11 anni positivi su 15 => success rate 73.3%: se e sopra la soglia impostata, il pallino diventa verde (allineata); altrimenti giallo (attenzione) o grigio (nessuna finestra valida).",
+      },
+      borsa: {
+        formula: "Nessuna formula: campo anagrafico (exchange) fornito dal provider dati.",
+        purpose: "Aiuta a conoscere orari di negoziazione, valuta di scambio e liquidita attesa, importante per ordini intraday o in apertura/chiusura mercato.",
+        example: "Un ETF quotato su NASDAQ segue orari e festivita USA; uno su Borsa Italiana segue orari e festivita italiane/europee.",
+      },
     },
     season: {
       loading: "Caricamento fino a 20 anni di storico giornaliero...",
@@ -285,6 +534,19 @@ const I18N = {
     langItalian: "Italian",
     langEnglish: "English",
     guideButton: "Guide",
+    chartLinkTitle: "Open TradingView chart",
+    cookieTitle: "Cookie preferences",
+    cookieBody: "We use technical cookies only to save visible columns and sorting. This prompt is shown only the first time.",
+    cookieAccept: "Accept technical cookies",
+    cookieReject: "Continue without cookies",
+    selectColumnsButton: "Select columns",
+    columnsTitle: "Visible columns",
+    columnsHint: "Choose which columns are shown in the table. Preferences are automatically saved.",
+    presetEssential: "Essential preset",
+    presetAll: "Show all",
+    closeColumns: "Close selector",
+    showFilters: "Show filters",
+    hideFilters: "Hide filters",
     githubTitle: "Open GitHub repository",
     searchLabel: "Search",
     searchPlaceholder: "Ticker, name, or category...",
@@ -376,27 +638,31 @@ const I18N = {
         {
           title: "Core metrics: detailed practical guide",
           items: [
-            "Ticker: short fund identifier. Example: VOO, IVV, and SPY track similar benchmarks, and ticker helps you target the exact instrument you want.",
-            "ETF name: full provider + strategy context. Example: multiple funds may mention Nasdaq 100, but full name clarifies structure and listing details.",
-            "Category: strategy or asset-class bucket (bonds, commodities, growth, etc.). Example: excluding leveragedInverse quickly de-risks the universe for conservative scans.",
-            "Trend: directional structure versus moving averages. Example: Strong trend means price/averages are aligned upward, often reducing counter-trend entries.",
-            "RSI 14: recent momentum strength on a 0-100 scale. Example: RSI 72 can indicate strong upside thrust but also higher pullback risk; RSI 38 may signal weakness or rebuilding.",
-            "Positive 10D: number of positive sessions out of 10. Example: 8/10 suggests short-term persistence, while 3/10 reflects recent selling pressure.",
-            "Positive 20D: same concept over 20 sessions. Example: 14/20 is often more robust than a standalone 7/10 burst.",
-            "Streak 20D: consecutive positive session count. Example: streak 5/20 shows ongoing acceleration, while 0/20 shows no recent continuity.",
-            "Dist SMA20: percent distance from short moving average. Example: +2% usually means orderly trend; +15% can imply overextension and mean-reversion risk.",
-            "RVOL: relative volume versus recent baseline. Example: RVOL 2.8x on a green day suggests broad participation; RVOL 0.6x implies weaker conviction.",
-            "Vol 20D: annualized volatility estimate from recent sessions. Example: vol 12 is typical for defensive ETFs; vol 45 is common in aggressive themes or leveraged products.",
-            "52W High: distance from yearly high. Example: -1.5% means near highs (strong relative behavior), while -28% suggests deeper recovery or structural weakness.",
-            "Max DD 52W: worst one-year drawdown. Example: -8% indicates contained downside history; -35% reveals much larger stress episodes.",
-            "AUM: assets under management. Example: 20B funds usually provide deeper liquidity and tighter spreads than very small funds.",
-            "Score: composite 0-100 quality/momentum ranking. Example: 88 points to broad signal alignment; 54 is often a watchlist candidate rather than immediate priority.",
-            "1D return: last-session performance. Example: +1.8% can be meaningful if confirmed by high RVOL and strong trend context.",
-            "3D return: three-session performance. Example: +3.2% over 3D reduces single-day noise and confirms follow-through.",
-            "1W return: weekly performance view. Example: +4.5% with moderate volatility is often healthier than the same return achieved with extreme volatility.",
-            "1M return: monthly performance. Example: +9% may identify short/medium-term leadership and directly impacts the Capital Flows ranking.",
-            "Seasonality: checks whether current dates fall in historically favorable windows. Example: high-success seasonality aligned with strong trend can improve timing context.",
-            "Exchange: listing market. Example: exchange awareness helps with trading hours, currency handling, and expected liquidity conditions.",
+            "Ticker: short fund identifier. Practical example: VOO, IVV, and SPY all target S&P 500, but each has different issuer, liquidity profile, and cost structure; ticker precision prevents order-entry mistakes.",
+            "ETF name: full provider/index/structure context. Practical example: two products mentioning Nasdaq 100 may differ by domicile, replication method, and trading currency; full name prevents strategy mismatch.",
+            "Category: strategy or asset-class bucket. Practical example: excluding leveragedInverse and focusing on broadMarketUS plus bonds can materially reduce average portfolio variance in the scan.",
+            "Trend: actual rule based on 3 moving averages. Strong if Price > SMA20 > SMA50 > SMA200; Weak if price is below both SMA20 and SMA50 and SMA20 is below SMA50; otherwise Neutral. Example: Price 104, SMA20 100, SMA50 98, SMA200 90 => Strong. With SMA200 at 105 the same setup would become Neutral: this is why volatile or recovering ETFs (e.g. commodities/mining) often stay 'Neutral' even with positive recent momentum.",
+            "RSI 14: formula RSI = 100 - (100 / (1 + RS)), RS = avg gains 14d / avg losses 14d. Numeric example: avg gain 1.4, avg loss 0.7 => RS=2 => RSI=66.67. Higher values show thrust but may also imply pullback risk.",
+            "Positive 10D: formula Pos10 = sum of indicators [Close_t > Close_{t-1}] across 10 sessions. Example: 8/10 means 80% of recent days closed up, a strong very-short-term persistence signal.",
+            "Positive 20D: same computation on 20 sessions. Example: 14/20 (70%) is usually more robust than an isolated short burst.",
+            "Streak 20D: consecutive up-close count in the recent window. Example sequence + + + - + + gives current streak 2 and recent max 3; expanding streaks can signal acceleration.",
+            "Dist SMA20: formula Dist% = ((Price / SMA20) - 1) * 100. Example: Price 105 and SMA20 100 => +5%; readings near +12/+15% may indicate overextension and mean-reversion vulnerability.",
+            "RVOL: formula RVOL = today volume / average 20d volume. Example: 3.0M vs 1.5M => 2.0x; breakouts with RVOL > 1.8x are typically more credible than moves at 0.7x.",
+            "Vol 20D: formula annualized vol = stdev(20 daily returns) * sqrt(252) * 100. Example: stdev 0.9% => vol ~14.3%; stdev 2.2% => vol ~34.9%. Use it to compare return opportunity versus risk budget.",
+            "52W High: formula Dist52W% = ((Price / High_52w) - 1) * 100. Example: High 100 to Price 97 => -3%; to 72 => -28%. Smaller gaps often indicate stronger relative leadership.",
+            "Max DD 52W: formula DD_t = ((Price_t / running_peak_t) - 1) * 100, Max DD = minimum DD_t over 52 weeks. Example: peak 120, trough 90 => -25%. This quantifies downside severity under stress.",
+            "AUM: total managed capital (shares outstanding * NAV). Example: a 20B ETF usually offers deeper books and tighter spreads than a 70M ETF, with direct slippage implications.",
+            "Score: additive 0-100 ranking (capped at 100): +12 Price>SMA20, +10 SMA20>SMA50, +10 SMA50>SMA200, up to +20 from RSI14, up to +18 from Positive20, up to +10 from RVOL, up to +10 from Volatility20D (lower is better), up to +10 from Distance from SMA20 (penalized both above and below), up to +5 quality points (AUM/TER/age). Seasonality is NOT included in Score. Example: aligned SMAs (+32), RSI 55 (+15.4), Positive20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Quality 3 => total ~76.",
+            "1D return: formula R_1D% = ((Close_t / Close_{t-1}) - 1) * 100. Example: 102 vs 100 => +2.00%. Best interpreted with RVOL to avoid overreacting to thin-volume moves.",
+            "3D return: formula R_3D% = ((Close_t / Close_{t-3}) - 1) * 100. Example: 103.5 vs 100 => +3.50%. It reduces one-day noise and validates follow-through.",
+            "1W return: formula R_1W% = ((Close_t / Close_{t-5}) - 1) * 100. Example: 106 vs 100 => +6.00%. The same gain with lower volatility is usually higher quality.",
+            "1M return: formula R_1M% = ((Close_t / Close_{t-21}) - 1) * 100 approx. Example: 109 vs 100 => +9.00%. This metric directly feeds the Capital Flows ranking.",
+            "1Y return: formula R_1Y% = ((Close_t / Close_{t-252}) - 1) * 100 approx. Example: 128 vs 100 => +28%. Useful to assess annual trend quality beyond tactical noise.",
+            "3Y return: formula R_3Y% = ((Close_t / Close_{t-756}) - 1) * 100 approx. Example: 160 vs 100 => +60% cumulative. Helps separate structural winners from short-lived moves.",
+            "5Y return: formula R_5Y% = ((Close_t / Close_{t-1260}) - 1) * 100 approx. Example: 210 vs 100 => +110% cumulative. Good for comparing resilience across full cycles.",
+            "10Y return: formula R_10Y% = ((Close_t / Close_{t-2520}) - 1) * 100 approx. Example: 330 vs 100 => +230% cumulative. Captures long-run compounding power of the theme/index.",
+            "Seasonality: alignment criterion = current date inside a window with average return > 0 and success rate >= threshold (for example 60%) across 10/15/20-year depths. Example: 11 positive years out of 15 => 73.3%; if trend and score are also strong, timing context improves.",
+            "Exchange: listing venue. Practical example: NYSE, NASDAQ, and Borsa Italiana differ in opening windows, spread behavior, and intraday liquidity patterns.",
           ],
         },
         {
@@ -426,6 +692,13 @@ const I18N = {
           ],
         },
       ],
+      metricsButton: "Metric details",
+      metricsIntro: "Select a metric to see its formula, why it is used, and a detailed practical example.",
+      backToGuide: "Back to guide",
+      backToMetrics: "Back to metric list",
+      metricFormulaLabel: "Formula:",
+      metricPurposeLabel: "Why it is used:",
+      metricExampleLabel: "Practical example:",
       close: "Close",
     },
     trendStrong: "Strong",
@@ -451,6 +724,10 @@ const I18N = {
       threeDayReturn: "3D",
       weekReturn: "1W",
       monthReturn: "1M",
+      year1Return: "1Y",
+      year3Return: "3Y",
+      year5Return: "5Y",
+      year10Return: "10Y",
       seasonality: "Seasonality",
       borsa: "Exchange",
     },
@@ -474,6 +751,10 @@ const I18N = {
       threeDayReturn: "Last 3 sessions performance.",
       weekReturn: "Last week performance.",
       monthReturn: "Last month performance.",
+      year1Return: "Performance over the last 12 months.",
+      year3Return: "Cumulative return over the last 3 years.",
+      year5Return: "Cumulative return over the last 5 years.",
+      year10Return: "Cumulative return over the last 10 years.",
       seasonality: "Alignment with favorable seasonal windows.",
       borsa: "Listing exchange.",
     },
@@ -496,22 +777,160 @@ const I18N = {
       seasonality: "Seasonality alignment",
     },
     tooltipBody: {
-      trend: "Compares price and moving averages to describe structure.",
-      rsi14: "Measures recent momentum strength.",
-      positive: "Captures persistence of positive moves.",
-      streak: "Counts consecutive positive sessions.",
-      distSma20: "Shows how far price is from short average.",
-      rvol: "Compares current volume to recent average volume.",
-      vol20d: "Estimates short-term annualized risk.",
-      high52: "Shows proximity to yearly highs.",
-      maxDd: "Displays worst percentage drop over one year.",
-      aum: "Fund size and potential liquidity depth.",
-      score: "Combined view of momentum, trend, risk, and seasonality.",
-      d1: "Return of the latest session.",
-      d3: "Cumulative return over the last 3 sessions.",
-      w1: "Cumulative return over the last 5 sessions.",
-      m1: "Cumulative return over the last 30 days.",
-      seasonality: "Checks whether today falls in favorable windows.",
+      trend:
+        "Actual rule: Strong if Price > SMA20 > SMA50 > SMA200 (full bullish alignment across 3 averages); Weak if Price <= SMA20 and Price <= SMA50 and SMA20 <= SMA50; otherwise Neutral. Example: Price 104, SMA20 100, SMA50 98, SMA200 90 => Strong. If SMA200 were 105 the label would drop to Neutral even with a strong price.",
+      rsi14:
+        "Formula: RSI = 100 - (100 / (1 + RS)), with RS = avg gains 14d / avg losses 14d. Example: avg gain 1.2, avg loss 0.6 => RS=2 => RSI=66.67.",
+      positive:
+        "Formula: Positive N = count[(Close_t - Close_{t-1}) > 0] over N sessions. Example: 8 positive days out of 10 and 14 out of 20 indicates persistent upside pressure.",
+      streak:
+        "Formula: streak = most recent consecutive run k where (Close_i - Close_{i-1}) > 0. Example signs + + + - + => current streak 1, recent max 3.",
+      distSma20:
+        "Formula: Dist SMA20 % = ((Price / SMA20) - 1) * 100. Example: Price 105, SMA20 100 => +5%; Price 94 => -6%.",
+      rvol:
+        "Formula: RVOL = today volume / average 20d volume. Example: 2.4M / 1.2M = 2.0x (high participation); 0.7x means below-average participation.",
+      vol20d:
+        "Formula: annualized 20D vol = stdev(20 daily returns) * sqrt(252) * 100. Example: stdev 1.1% => 0.011*sqrt(252)=17.46% annualized.",
+      high52:
+        "Formula: Dist 52W High % = ((Price / High_52w) - 1) * 100. Example: Price 98, High 100 => -2%; Price 75 => -25%.",
+      maxDd:
+        "Formula: DD_t = ((Price_t / running_peak_t) - 1) * 100; Max DD = minimum DD_t over 52 weeks. Example: drop from 120 to 90 => -25%.",
+      aum: "AUM is total capital managed by the fund (shares outstanding * NAV). Example: 25B funds often trade with tighter spreads than 80M funds.",
+      score:
+        "Actual formula (sum of partial scores, capped at 100): +12 if Price>SMA20; +10 if SMA20>SMA50; +10 if SMA50>SMA200; up to +20 from RSI14; up to +18 from Positive20; up to +10 from RVOL; up to +10 from Volatility20D (lower is better); up to +10 from Distance from SMA20 (penalized both above and below); up to +5 quality points (AUM/TER/fund age). Seasonality is NOT included in Score. Example: aligned SMAs (+32), RSI 55 (+15.4), Positive20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Quality 3 => total ~76.",
+      d1: "Formula: 1D % = ((Close_t / Close_{t-1}) - 1) * 100. Example: 102 vs 100 => +2.00%.",
+      d3: "Formula: 3D % = ((Close_t / Close_{t-3}) - 1) * 100. Example: 103.5 vs 100 => +3.50%.",
+      w1: "Formula: 1W % = ((Close_t / Close_{t-5}) - 1) * 100. Example: 106 vs 100 => +6.00%.",
+      m1: "Formula: 1M % = ((Close_t / Close_{t-21}) - 1) * 100 approx. Example: 109 vs 100 => +9.00%.",
+      seasonality:
+        "Aligned when current date is inside a window with average return > 0 and success rate >= threshold (for example 60%) across 10/15/20-year depths. Example: 11 positive years out of 15 => 73.3%.",
+    },
+    metricDetails: {
+      ticker: {
+        formula: "No formula: it is the identifier symbol assigned by the listing venue.",
+        purpose: "Uniquely identifies the instrument to buy or monitor, avoiding confusion between ETFs with similar names or strategies.",
+        example: "VOO, IVV, and SPY all track the S&P 500 but are issued by different companies (Vanguard, iShares, State Street): the ticker is the only safe way to know exactly which one you are selecting.",
+      },
+      name: {
+        formula: "No formula: full fund name returned by the data provider.",
+        purpose: "Helps understand provider, tracked index, and fund structure without searching elsewhere.",
+        example: "'iShares Core S&P 500 UCITS ETF' clearly states the index (S&P 500), issuer (iShares), and UCITS wrapper (Europe).",
+      },
+      category: {
+        formula: "No formula: category assigned by an internal catalog grouping tickers by theme or asset class.",
+        purpose: "Lets you quickly filter or exclude ETF families with a similar risk profile.",
+        example: "Excluding the leveragedInverse category instantly removes every leveraged/inverse ETF, often unsuitable for long-term strategies.",
+      },
+      trend: {
+        formula: "Strong if Price > SMA20 > SMA50 > SMA200 (full bullish alignment across 3 averages). Weak if Price <= SMA20 and Price <= SMA50 and SMA20 <= SMA50. Otherwise: Neutral.",
+        purpose: "Summarizes trend structure across three horizons (short/medium/long) into a single label instead of comparing three moving averages manually.",
+        example: "Price 104, SMA20 100, SMA50 98, SMA200 90: all conditions hold (104>100>98>90) => Strong. If SMA200 were 105, full alignment is lost and the label drops to Neutral even with price above SMA20: this is why a volatile or recovering ETF (e.g. commodities/mining) often stays 'Neutral' despite positive recent momentum.",
+      },
+      rsi14: {
+        formula: "RSI = 100 - (100 / (1 + RS)), with RS = average daily gains over 14d / average daily losses over 14d (simple average, not exponential).",
+        purpose: "Measures whether recent movement is driven more by gains or losses, flagging overbought (above 70) or oversold (below 35 in this screener) conditions.",
+        example: "Average gain 1.4, average loss 0.7 => RS=2 => RSI=66.67: positive momentum but not yet at extreme levels (100).",
+      },
+      positive10: {
+        formula: "Count of days where Close_t > Close_(t-1), over a 10-session window.",
+        purpose: "Measures persistence (not intensity) of the move over the very short term.",
+        example: "8/10 means 80% of the last 10 sessions closed up.",
+      },
+      positive20: {
+        formula: "Count of days where Close_t > Close_(t-1), over a 20-session window.",
+        purpose: "Extended version of Positive10, less sensitive to a single isolated spike.",
+        example: "14/20 (70%) confirms a more robust bullish bias than an isolated 8/10.",
+      },
+      streak: {
+        formula: "Number of most recent consecutive positive closes (stops at the first negative or flat day).",
+        purpose: "Highlights whether the move is accelerating without interruption or alternating up and down.",
+        example: "Sequence + + + - + + => current streak 2 (the last two sessions), even though the wider window had 5 positive days out of 6.",
+      },
+      distanceSma20: {
+        formula: "((Price / SMA20) - 1) * 100.",
+        purpose: "Measures how far price has drifted from its short moving average: very high values, positive or negative, signal a possible statistical excess.",
+        example: "Price 105, SMA20 100 => +5% (orderly trend). Price 130, SMA20 100 => +30% (strong overextension: the Score treats this as risk, not reward).",
+      },
+      rvol: {
+        formula: "Today's volume / average volume of the last 20 sessions.",
+        purpose: "Checks whether a price move is backed by real participation growth, or happens on thin volume (less reliable).",
+        example: "Today's volume 3.0M vs average 1.5M => RVOL 2.0x: the move carries more weight than a normal session.",
+      },
+      volatility20d: {
+        formula: "Standard deviation of the last 20 daily returns, annualized by multiplying by the square root of 252 (trading days in a year).",
+        purpose: "Quantifies short-term risk, useful to compare ETFs with very different swings (e.g. a bond fund vs a commodity ETF).",
+        example: "Daily stdev 0.9% => annualized volatility ~14.3%. With stdev 2.2% (typical for sector/mining/leveraged ETFs) it rises to ~34.9%: the Score penalizes high volatility even with a positive return.",
+      },
+      distance52wHigh: {
+        formula: "((Price / 252-session high) - 1) * 100.",
+        purpose: "Shows how close or far the ETF is from its yearly high: proximity to highs is often associated with relative strength.",
+        example: "High 100, price 97 => -3% (near highs). High 100, price 72 => -28% (still far, possibly recovering).",
+      },
+      maxDrawdown52w: {
+        formula: "For each day, DD_t = (Price_t / running peak so far - 1) * 100; Max Drawdown is the most negative value found over the last 252 days.",
+        purpose: "Measures the worst loss an investor would have experienced over the last year starting from the worst point, useful to gauge the resilience required to hold the ETF.",
+        example: "From a peak of 120 to a subsequent low of 90 => drawdown -25%.",
+      },
+      netAssets: {
+        formula: "No formula: figure supplied by the data provider (assets under management = shares outstanding * NAV).",
+        purpose: "Larger funds tend to have deeper liquidity and tighter spreads, reducing implicit trading costs.",
+        example: "A 20B$ ETF usually has a tighter bid/ask spread than a 70M$ ETF.",
+      },
+      score: {
+        formula: "Additive 0-100 score (capped at 100): +12 if Price>SMA20; +10 if SMA20>SMA50; +10 if SMA50>SMA200; up to +20 from RSI14 (RSI 35 => 0 points, RSI>=61 saturates at 20); up to +18 from Positive20 (20/20 positive days => 18 points); up to +10 from RVOL (RVOL>=1.63 saturates at 10); up to +10 from Volatility20D, inversely (lower is better: from 35% up, 0 points); up to +10 from Distance from SMA20, symmetrically (max when price is close to SMA20, drops both when far above and far below); finally up to +5 quality points based on AUM, cost (TER), and fund age.",
+        purpose: "Summarizes technical trend, momentum, risk, and fund quality into a single number to quickly compare many ETFs without reading every column.",
+        example: "Price>SMA20 (+12), SMA20>SMA50 (+10), SMA50>SMA200 (+10), RSI 55 => +15.4, Positive20=14/20 => +12.6, RVOL 1.2 => +4.8, Vol20D 22% => +2.1, Dist.SMA20 6% => +6, Quality 3 => total ~76. Important note: Score does NOT include seasonality (shown separately in the Seasonality column) and penalizes both excess volatility and strong extensions from the average price: this is why leveraged or commodity/mining ETFs (e.g. URA) often keep contained scores even with a strong underlying trend.",
+      },
+      dailyReturn: {
+        formula: "((Today's Close / Yesterday's Close) - 1) * 100.",
+        purpose: "Captures sudden changes (news, macro data, moves in the underlying index) within a single session.",
+        example: "102 vs 100 => +2.00%: best read together with RVOL to see if it is a genuine move or thin-volume noise.",
+      },
+      threeDayReturn: {
+        formula: "((Today's Close / Close 3 sessions ago) - 1) * 100.",
+        purpose: "Reduces single-day noise and shows whether the move has short-term continuity.",
+        example: "103.5 vs 100 => +3.50% over 3 sessions.",
+      },
+      weekReturn: {
+        formula: "((Today's Close / Close 5 sessions ago) - 1) * 100 (5 sessions = one trading week).",
+        purpose: "Provides a more stable weekly view than the single daily return.",
+        example: "106 vs 100 => +6.00% over one week.",
+      },
+      monthReturn: {
+        formula: "((Today's Close / Close about 21 sessions ago) - 1) * 100.",
+        purpose: "Also feeds the Capital Flows ranking: a high or low monthly return is used as a proxy for relative strength or weakness.",
+        example: "109 vs 100 => +9.00% over the last month.",
+      },
+      year1Return: {
+        formula: "((Today's Close / Close about 252 sessions ago) - 1) * 100.",
+        purpose: "Measures the return over the last year, useful to assess trend quality beyond short-term tactical noise.",
+        example: "128 vs 100 => +28% over the last year.",
+      },
+      year3Return: {
+        formula: "((Today's Close / Close about 3 years ago) - 1) * 100.",
+        purpose: "Helps separate structural strength from short-lived favorable phases, over a medium-term horizon.",
+        example: "160 vs 100 => +60% cumulative over 3 years.",
+      },
+      year5Return: {
+        formula: "((Today's Close / Close about 5 years ago) - 1) * 100.",
+        purpose: "Useful to compare resilience across a more complete market cycle.",
+        example: "210 vs 100 => +110% cumulative over 5 years.",
+      },
+      year10Return: {
+        formula: "((Today's Close / Close about 10 years ago) - 1) * 100.",
+        purpose: "Measures the theme's or index's ability to create value over the long term.",
+        example: "330 vs 100 => +230% cumulative over 10 years.",
+      },
+      seasonality: {
+        formula: "For every possible window of the year containing today's date, the average return and the percentage of positive years (success rate) are computed over 10/15/20 years of history; a window is 'aligned' if average return > 0 and success rate >= the configured threshold (default 60%) across all depths.",
+        purpose: "Adds a historical/statistical context independent from technical signals: an ETF can have a modest trend or score but still sit in a historically favorable period of the year (or vice versa).",
+        example: "11 positive years out of 15 => 73.3% success rate: if above the configured threshold, the dot turns green (aligned); otherwise yellow (watch) or gray (no valid window).",
+      },
+      borsa: {
+        formula: "No formula: listing venue field supplied by the data provider.",
+        purpose: "Helps understand trading hours, settlement currency, and expected liquidity, important for intraday orders or market open/close.",
+        example: "An ETF listed on NASDAQ follows US trading hours and holidays; one listed on Borsa Italiana follows Italian/European hours and holidays.",
+      },
     },
     season: {
       loading: "Loading up to 20 years of daily history...",
@@ -604,6 +1023,37 @@ function tooltip(title, body) {
   return `${title}: ${body}`;
 }
 
+function tradingViewSymbol(ticker) {
+  return String(ticker || "").split(".")[0].trim().toUpperCase();
+}
+
+function tradingViewUrl(ticker) {
+  return `https://www.tradingview.com/symbols/${encodeURIComponent(tradingViewSymbol(ticker))}/`;
+}
+
+function readCookieJson(name) {
+  if (typeof document === "undefined") return null;
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = document.cookie.match(new RegExp(`(?:^|; )${escaped}=([^;]*)`));
+  if (!match) return null;
+  try {
+    return JSON.parse(decodeURIComponent(match[1]));
+  } catch {
+    return null;
+  }
+}
+
+function writeCookieJson(name, value) {
+  if (typeof document === "undefined") return;
+  const encoded = encodeURIComponent(JSON.stringify(value));
+  document.cookie = `${name}=${encoded}; path=/; max-age=31536000; samesite=lax`;
+}
+
+function deleteCookie(name) {
+  if (typeof document === "undefined") return;
+  document.cookie = `${name}=; path=/; max-age=0; samesite=lax`;
+}
+
 export default function Home() {
   const [lang, setLang] = useState("it");
   const [rows, setRows] = useState([]);
@@ -612,6 +1062,9 @@ export default function Home() {
   const [loaded, setLoaded] = useState(0);
   const [error, setError] = useState("");
   const [sort, setSort] = useState({ key: "score", dir: -1 });
+  const [visibleColumns, setVisibleColumns] = useState(DEFAULT_VISIBLE_COLUMNS);
+  const [columnPickerOpen, setColumnPickerOpen] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(true);
   const [search, setSearch] = useState("");
   const [only, setOnly] = useState("");
   const [excluded, setExcluded] = useState([]);
@@ -626,6 +1079,7 @@ export default function Home() {
   const [flowOpen, setFlowOpen] = useState(false);
   const [openHeaderKey, setOpenHeaderKey] = useState(null);
   const [guideOpen, setGuideOpen] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState(null);
   const abortRef = useRef(null);
 
   const t = I18N[lang];
@@ -633,12 +1087,45 @@ export default function Home() {
   useEffect(() => {
     const saved = typeof window !== "undefined" ? localStorage.getItem("ui-lang") : null;
     if (saved === "it" || saved === "en") setLang(saved);
+
+    const savedConsent = typeof window !== "undefined" ? localStorage.getItem(COOKIE_CONSENT_KEY) : null;
+    if (savedConsent === "accepted" || savedConsent === "rejected") {
+      setCookieConsent(savedConsent);
+    }
+
+    if (savedConsent === "accepted") {
+      const savedColumns = readCookieJson(COOKIE_VISIBLE_COLUMNS);
+      if (Array.isArray(savedColumns)) {
+        const sanitized = ALL_COLUMN_KEYS.filter((key) => savedColumns.includes(key));
+        if (sanitized.length) setVisibleColumns(sanitized);
+      }
+
+      const savedSort = readCookieJson(COOKIE_SORT);
+      if (
+        savedSort &&
+        typeof savedSort === "object" &&
+        ALL_COLUMN_KEYS.includes(savedSort.key) &&
+        (savedSort.dir === 1 || savedSort.dir === -1)
+      ) {
+        setSort({ key: savedSort.key, dir: savedSort.dir });
+      }
+    }
   }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") localStorage.setItem("ui-lang", lang);
     if (typeof document !== "undefined") document.documentElement.lang = lang;
   }, [lang]);
+
+  useEffect(() => {
+    if (cookieConsent !== "accepted") return;
+    writeCookieJson(COOKIE_VISIBLE_COLUMNS, visibleColumns);
+  }, [visibleColumns, cookieConsent]);
+
+  useEffect(() => {
+    if (cookieConsent !== "accepted") return;
+    writeCookieJson(COOKIE_SORT, sort);
+  }, [sort, cookieConsent]);
 
   useEffect(() => {
     function closeTooltipOnOutsideClick(event) {
@@ -716,8 +1203,14 @@ export default function Home() {
 
     data.sort((a, b) => {
       const { key, dir } = sort;
-      if (["ticker", "name"].includes(key)) {
-        return String(a[key] || "").localeCompare(String(b[key] || "")) * dir;
+      const stringValue = (row) => {
+        if (key === "category") return (row.categories || []).join(", ");
+        if (key === "borsa") return String(row.exchange || "");
+        if (key === "seasonality") return String(row.score ?? "");
+        return String(row[key] || "");
+      };
+      if (["ticker", "name", "category", "trend", "borsa", "seasonality"].includes(key)) {
+        return stringValue(a).localeCompare(stringValue(b)) * dir;
       }
       return ((a[key] ?? -Infinity) - (b[key] ?? -Infinity)) * dir;
     });
@@ -744,8 +1237,46 @@ export default function Home() {
     };
   }, [rows]);
 
+  const visibleSet = useMemo(() => new Set(visibleColumns), [visibleColumns]);
+  const orderedVisibleColumns = useMemo(
+    () => ALL_COLUMN_KEYS.filter((key) => visibleSet.has(key)),
+    [visibleSet]
+  );
+
   function doSort(key) {
-    setSort((s) => (s.key === key ? { key, dir: -s.dir } : { key, dir: ["ticker", "name"].includes(key) ? 1 : -1 }));
+    setSort((s) => (
+      s.key === key
+        ? { key, dir: -s.dir }
+        : { key, dir: ["ticker", "name", "category", "trend", "borsa", "seasonality"].includes(key) ? 1 : -1 }
+    ));
+  }
+
+  function toggleColumn(key) {
+    setVisibleColumns((prev) => {
+      if (prev.includes(key)) {
+        const next = prev.filter((item) => item !== key);
+        return next.length ? next : prev;
+      }
+      return [...prev, key];
+    });
+  }
+
+  function applyEssentialColumns() {
+    setVisibleColumns(DEFAULT_VISIBLE_COLUMNS);
+  }
+
+  function applyAllColumns() {
+    setVisibleColumns(ALL_COLUMN_KEYS);
+  }
+
+  function onCookieConsent(choice) {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(COOKIE_CONSENT_KEY, choice);
+    }
+    setCookieConsent(choice);
+    if (choice === "accepted") return;
+    deleteCookie(COOKIE_VISIBLE_COLUMNS);
+    deleteCookie(COOKIE_SORT);
   }
 
   function clearFilters() {
@@ -796,6 +1327,81 @@ export default function Home() {
     await Promise.all(workers);
   }
 
+  function renderCell(key, row, rowState) {
+    const { trendLabel, rsi, score, seasonLabel, seasonTone } = rowState;
+
+    if (key === "ticker") {
+      return (
+        <td className="tickerCell">
+          <div className="tickerCellInner">
+            <button className="tickerButton" onClick={() => { void getSeasonality(row.ticker, true); }}>{row.ticker}</button>
+            <a
+              className="chartLink"
+              href={tradingViewUrl(row.ticker)}
+              target="_blank"
+              rel="noreferrer"
+              title={t.chartLinkTitle}
+              aria-label={t.chartLinkTitle}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <svg className="chartIcon" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M1.5 14.5h13M3 12.5V8m3.2 4.5V5m3.2 7.5V3m3.1 9.5V6.5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </td>
+      );
+    }
+    if (key === "name") return <td className="name">{row.name || "-"}</td>;
+    if (key === "category") return <td className="categoryCell" title={(row.categories || []).join(", ")}>{(row.categories || []).join(", ") || "-"}</td>;
+    if (key === "trend") {
+      return (
+        <td className="col-trend" title={tooltip(t.tooltip.trend, t.tooltipBody.trend)}>
+          <span className={`trendBadge ${trendTone(trendLabel)}`}>{trendLabel}</span>
+        </td>
+      );
+    }
+    if (key === "rsi14") return <td className={rsi === "-" ? "muted" : row.rsi14 > 70 ? "positive" : row.rsi14 < 35 ? "negative" : "muted"} title={tooltip(t.tooltip.rsi14, t.tooltipBody.rsi14)}>{rsi}</td>;
+    if (key === "positive10") return <td title={tooltip(t.tooltip.positive, t.tooltipBody.positive)}>{row.positive10 != null ? `${row.positive10}/10` : "-"}</td>;
+    if (key === "positive20") return <td title={tooltip(t.tooltip.positive, t.tooltipBody.positive)}>{row.positive20 != null ? `${row.positive20}/20` : "-"}</td>;
+    if (key === "streak") return <td title={tooltip(t.tooltip.streak, t.tooltipBody.streak)}>{row.streak != null ? `${row.streak}/20` : "-"}</td>;
+    if (key === "distanceSma20") return <td className={cls(row.distanceSma20)} title={tooltip(t.tooltip.distSma20, t.tooltipBody.distSma20)}>{row.distanceSma20 == null ? "-" : `${fmt(row.distanceSma20, 1)}%`}</td>;
+    if (key === "rvol") return <td title={tooltip(t.tooltip.rvol, t.tooltipBody.rvol)}>{row.relativeVolume == null ? "-" : `${fmt(row.relativeVolume, 1)}x`}</td>;
+    if (key === "volatility20d") return <td title={tooltip(t.tooltip.vol20d, t.tooltipBody.vol20d)}>{row.volatility20d == null ? "-" : fmt(row.volatility20d, 1)}</td>;
+    if (key === "distance52wHigh") return <td className={cls(row.distance52wHigh)} title={tooltip(t.tooltip.high52, t.tooltipBody.high52)}>{row.distance52wHigh == null ? "-" : `${fmt(row.distance52wHigh, 1)}%`}</td>;
+    if (key === "maxDrawdown52w") return <td className={cls(row.maxDrawdown52w)} title={tooltip(t.tooltip.maxDd, t.tooltipBody.maxDd)}>{row.maxDrawdown52w == null ? "-" : `${fmt(row.maxDrawdown52w, 1)}%`}</td>;
+    if (key === "netAssets") return <td className="mutedCell" title={tooltip(t.tooltip.aum, t.tooltipBody.aum)}>{row.netAssets == null ? "-" : formatAum(row.netAssets)}</td>;
+    if (key === "score") {
+      return (
+        <td className="col-score" title={tooltip(t.tooltip.score, t.tooltipBody.score)}>
+          <span className={`scoreBadge ${scoreTone(score)}`}>{score}</span>
+        </td>
+      );
+    }
+    if (key === "dailyReturn") return <td className={cls(row.dailyReturn)} title={tooltip(t.tooltip.d1, t.tooltipBody.d1)}>{pct(row.dailyReturn)}</td>;
+    if (key === "threeDayReturn") return <td className={cls(row.threeDayReturn)} title={tooltip(t.tooltip.d3, t.tooltipBody.d3)}>{pct(row.threeDayReturn)}</td>;
+    if (key === "weekReturn") return <td className={cls(row.weekReturn)} title={tooltip(t.tooltip.w1, t.tooltipBody.w1)}>{pct(row.weekReturn)}</td>;
+    if (key === "monthReturn") return <td className={cls(row.monthReturn)} title={tooltip(t.tooltip.m1, t.tooltipBody.m1)}>{pct(row.monthReturn)}</td>;
+    if (key === "year1Return") return <td className={cls(row.year1Return)}>{pct(row.year1Return)}</td>;
+    if (key === "year3Return") return <td className={cls(row.year3Return)}>{pct(row.year3Return)}</td>;
+    if (key === "year5Return") return <td className={cls(row.year5Return)}>{pct(row.year5Return)}</td>;
+    if (key === "year10Return") return <td className={cls(row.year10Return)}>{pct(row.year10Return)}</td>;
+    if (key === "seasonality") {
+      return (
+        <td title={tooltip(t.tooltip.seasonality, t.tooltipBody.seasonality)}>
+          <div className="seasonalityCell">
+            <span className={`seasonDot ${seasonTone}`} aria-label={seasonLabel} title={seasonLabel} />
+            <button type="button" className="button small detailButton" onClick={() => { void getSeasonality(row.ticker, true); }}>
+              {t.detail}
+            </button>
+          </div>
+        </td>
+      );
+    }
+    if (key === "borsa") return <td>{row.exchange || "-"}</td>;
+    return <td>-</td>;
+  }
+
   const statusText = `${t.statusLoaded(loaded, total, filtered.length)}${loading ? ` · ${t.statusLoading}` : ""}${
     scanProgress ? ` · ${t.statusSeasonality(scanProgress.done, scanProgress.total)}` : ""
   }`;
@@ -826,6 +1432,14 @@ export default function Home() {
               🇬🇧 EN
             </button>
           </div>
+          <button
+            type="button"
+            className="button primary topAction"
+            onClick={() => setColumnPickerOpen(true)}
+            title={t.selectColumnsButton}
+          >
+            {t.selectColumnsButton}
+          </button>
           <button type="button" className="button topAction" onClick={() => setGuideOpen(true)}>{t.guideButton}</button>
           <a
             className="iconButton"
@@ -842,7 +1456,7 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="filters">
+      {filtersOpen && <div className="filters">
         <Field label={t.searchLabel}>
           <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t.searchPlaceholder} />
         </Field>
@@ -885,9 +1499,11 @@ export default function Home() {
         <Field label={t.minSuccessLabel}>
           <input type="number" min="0" max="100" value={minSuccess} onChange={(e) => setMinSuccess(Number(e.target.value || 0))} />
         </Field>
-      </div>
+      </div>}
 
       <div className="actions">
+        <button className="button primary" onClick={() => setColumnPickerOpen(true)}>{t.selectColumnsButton}</button>
+        <button className="button" onClick={() => setFiltersOpen((v) => !v)}>{filtersOpen ? t.hideFilters : t.showFilters}</button>
         <button className="button" onClick={clearFilters}>{t.resetFilters}</button>
         <button className="button" onClick={() => loadAll(true)}>{t.refreshQuotes}</button>
         <button className="button primary" onClick={() => setFlowOpen(true)}>{t.capitalFlows}</button>
@@ -912,18 +1528,24 @@ export default function Home() {
       <div className="tableHint">{t.scrollHint}</div>
       <div className="tableWrap">
         <table className="table">
+          <colgroup>
+            {orderedVisibleColumns.map((key) => (
+              <col key={`col-${key}`} style={COLUMN_WIDTHS[key] ? { width: COLUMN_WIDTHS[key] } : undefined} />
+            ))}
+          </colgroup>
           <thead>
             <tr>
-              {Object.entries(t.columns).map(([key, label]) => (
-                <Th key={key} onClick={() => doSort(key)}>
+              {orderedVisibleColumns.map((key) => (
+                <Th key={key} className={`col-${key}`}>
                   <ColumnHeader
-                    label={label}
+                    label={t.columns[key] || key}
                     keyName={key}
                     activeKey={sort.key}
                     dir={sort.dir}
                     helpText={t.columnHelp[key]}
                     isOpen={openHeaderKey === key}
                     onToggle={() => setOpenHeaderKey((prev) => (prev === key ? null : key))}
+                    onSort={() => doSort(key)}
                   />
                 </Th>
               ))}
@@ -936,49 +1558,20 @@ export default function Home() {
               const trendLabel = localizedTrendLabel(x.trend || "-", t);
               const rsi = x.rsi14 == null ? "-" : fmt(x.rsi14, 0);
               const score = x.score ?? 0;
-              const seasonLabel = activeWindow ? (score >= 80 ? `🟢 ${t.aligned}` : `🟡 ${t.watch}`) : "-";
+              const seasonLabel = activeWindow ? (score >= 80 ? t.aligned : t.watch) : "-";
+              const seasonTone = !activeWindow ? "off" : score >= 80 ? "aligned" : "watch";
+              const rowState = { trendLabel, rsi, score, seasonLabel, seasonTone };
 
               return (
                 <tr key={x.ticker}>
-                  <td className="tickerCell">
-                    <button className="tickerButton" onClick={() => { void getSeasonality(x.ticker, true); }}>
-                      {x.ticker}
-                    </button>
-                  </td>
-                  <td className="name">{x.name || "-"}</td>
-                  <td className="category">{(x.categories || []).join(", ")}</td>
-                  <td className={`trendBadge ${trendTone(trendLabel)}`} title={tooltip(t.tooltip.trend, t.tooltipBody.trend)}>{trendLabel}</td>
-                  <td className={rsi === "-" ? "muted" : x.rsi14 > 70 ? "positive" : x.rsi14 < 35 ? "negative" : "muted"} title={tooltip(t.tooltip.rsi14, t.tooltipBody.rsi14)}>{rsi}</td>
-                  <td title={tooltip(t.tooltip.positive, t.tooltipBody.positive)}>{x.positive10 != null ? `${x.positive10}/10` : "-"}</td>
-                  <td title={tooltip(t.tooltip.positive, t.tooltipBody.positive)}>{x.positive20 != null ? `${x.positive20}/20` : "-"}</td>
-                  <td title={tooltip(t.tooltip.streak, t.tooltipBody.streak)}>{x.streak != null ? `${x.streak}/20` : "-"}</td>
-                  <td className={cls(x.distanceSma20)} title={tooltip(t.tooltip.distSma20, t.tooltipBody.distSma20)}>{x.distanceSma20 == null ? "-" : `${fmt(x.distanceSma20, 1)}%`}</td>
-                  <td title={tooltip(t.tooltip.rvol, t.tooltipBody.rvol)}>{x.relativeVolume == null ? "-" : `${fmt(x.relativeVolume, 1)}x`}</td>
-                  <td title={tooltip(t.tooltip.vol20d, t.tooltipBody.vol20d)}>{x.volatility20d == null ? "-" : fmt(x.volatility20d, 1)}</td>
-                  <td className={cls(x.distance52wHigh)} title={tooltip(t.tooltip.high52, t.tooltipBody.high52)}>{x.distance52wHigh == null ? "-" : `${fmt(x.distance52wHigh, 1)}%`}</td>
-                  <td className={cls(x.maxDrawdown52w)} title={tooltip(t.tooltip.maxDd, t.tooltipBody.maxDd)}>{x.maxDrawdown52w == null ? "-" : `${fmt(x.maxDrawdown52w, 1)}%`}</td>
-                  <td className="mutedCell" title={tooltip(t.tooltip.aum, t.tooltipBody.aum)}>{x.netAssets == null ? "-" : formatAum(x.netAssets)}</td>
-                  <td className={`scoreBadge ${scoreTone(score)}`} title={tooltip(t.tooltip.score, t.tooltipBody.score)}>{score}</td>
-                  <td className={cls(x.dailyReturn)} title={tooltip(t.tooltip.d1, t.tooltipBody.d1)}>{pct(x.dailyReturn)}</td>
-                  <td className={cls(x.threeDayReturn)} title={tooltip(t.tooltip.d3, t.tooltipBody.d3)}>{pct(x.threeDayReturn)}</td>
-                  <td className={cls(x.weekReturn)} title={tooltip(t.tooltip.w1, t.tooltipBody.w1)}>{pct(x.weekReturn)}</td>
-                  <td className={cls(x.monthReturn)} title={tooltip(t.tooltip.m1, t.tooltipBody.m1)}>{pct(x.monthReturn)}</td>
-                  <td title={tooltip(t.tooltip.seasonality, t.tooltipBody.seasonality)}>
-                    <div className="seasonalityCell">
-                      <span className="seasonMarker">{seasonLabel}</span>
-                      <button type="button" className="button small detailButton" onClick={() => { void getSeasonality(x.ticker, true); }}>
-                        {t.detail}
-                      </button>
-                    </div>
-                  </td>
-                  <td>{x.exchange || "-"}</td>
+                  {orderedVisibleColumns.map((key) => <Fragment key={`${x.ticker}-${key}`}>{renderCell(key, x, rowState)}</Fragment>)}
                 </tr>
               );
             })}
 
             {!filtered.length && !loading && (
               <tr>
-                <td colSpan="20" className="loadingBox">{t.noResults}</td>
+                <td colSpan={Math.max(orderedVisibleColumns.length, 1)} className="loadingBox">{t.noResults}</td>
               </tr>
             )}
           </tbody>
@@ -1040,7 +1633,26 @@ export default function Home() {
         />
       )}
 
-      {guideOpen && <GuideModal guide={t.guide} onClose={() => setGuideOpen(false)} />}
+      {columnPickerOpen && (
+        <ColumnSelectorModal
+          t={t}
+          visibleColumns={visibleColumns}
+          onToggleColumn={toggleColumn}
+          onPresetEssential={applyEssentialColumns}
+          onPresetAll={applyAllColumns}
+          onClose={() => setColumnPickerOpen(false)}
+        />
+      )}
+
+      {guideOpen && <GuideModal t={t} onClose={() => setGuideOpen(false)} />}
+
+      {cookieConsent == null && (
+        <CookieConsentModal
+          t={t}
+          onAccept={() => onCookieConsent("accepted")}
+          onReject={() => onCookieConsent("rejected")}
+        />
+      )}
 
       <footer className="legalFooter">
         <h3>{t.legalTitle}</h3>
@@ -1112,7 +1724,7 @@ function CategoryMultiSelect({ options, selected, onChange, placeholder, clearLa
   );
 }
 
-function ColumnHeader({ label, keyName, activeKey, dir, helpText, isOpen, onToggle }) {
+function ColumnHeader({ label, keyName, activeKey, dir, helpText, isOpen, onToggle, onSort }) {
   const isActive = activeKey === keyName;
   const sortChar = isActive ? (dir > 0 ? "▲" : "▼") : "↕";
 
@@ -1126,7 +1738,18 @@ function ColumnHeader({ label, keyName, activeKey, dir, helpText, isOpen, onTogg
           onToggle();
         }}
       >
-        {label}
+        <span>{label}</span>
+      </button>
+      <button
+        type="button"
+        className={`sortArrowButton ${isActive ? "active" : ""}`}
+        onClick={(event) => {
+          event.stopPropagation();
+          onSort();
+        }}
+        aria-label={`Sort by ${label}`}
+        title={`Sort by ${label}`}
+      >
         <span className={`sortArrow ${isActive ? "active" : ""}`}>{sortChar}</span>
       </button>
       {isOpen && <span className="headerTooltip" role="tooltip">{helpText || label}</span>}
@@ -1134,11 +1757,47 @@ function ColumnHeader({ label, keyName, activeKey, dir, helpText, isOpen, onTogg
   );
 }
 
-function Th({ children, onClick }) {
-  return <th onClick={onClick}>{children}</th>;
+function Th({ children, className }) {
+  return <th className={className}>{children}</th>;
 }
 
-function GuideModal({ guide, onClose }) {
+function ColumnSelectorModal({ t, visibleColumns, onToggleColumn, onPresetEssential, onPresetAll, onClose }) {
+  return (
+    <div className="modalBackdrop" onMouseDown={onClose}>
+      <div className="modal columnModal" onMouseDown={(e) => e.stopPropagation()}>
+        <div className="modalHead">
+          <div>
+            <h2>{t.columnsTitle}</h2>
+            <div className="hint">{t.columnsHint}</div>
+          </div>
+          <button className="button" onClick={onClose}>{t.closeColumns}</button>
+        </div>
+        <div className="columnActions">
+          <button className="button small" onClick={onPresetEssential}>{t.presetEssential}</button>
+          <button className="button small" onClick={onPresetAll}>{t.presetAll}</button>
+        </div>
+        <div className="columnGrid">
+          {ALL_COLUMN_KEYS.map((key) => (
+            <label key={key} className="columnOption">
+              <input
+                type="checkbox"
+                checked={visibleColumns.includes(key)}
+                onChange={() => onToggleColumn(key)}
+              />
+              <span>{t.columns[key] || key}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function GuideModal({ t, onClose }) {
+  const guide = t.guide;
+  const [view, setView] = useState("guide");
+  const isMetricDetail = view !== "guide" && view !== "metrics" && !!t.metricDetails[view];
+
   return (
     <div className="modalBackdrop" onMouseDown={onClose}>
       <div className="modal guideModal" onMouseDown={(e) => e.stopPropagation()}>
@@ -1147,19 +1806,75 @@ function GuideModal({ guide, onClose }) {
             <h2>{guide.title}</h2>
             <div className="hint">{guide.intro}</div>
           </div>
-          <button className="button" onClick={onClose}>{guide.close}</button>
+          <div className="guideHeadActions">
+            {view !== "guide" && (
+              <button className="button small" onClick={() => setView(isMetricDetail ? "metrics" : "guide")}>
+                {isMetricDetail ? guide.backToMetrics : guide.backToGuide}
+              </button>
+            )}
+            <button className="button" onClick={onClose}>{guide.close}</button>
+          </div>
         </div>
-        <div className="guideBody">
-          {guide.sections.map((section, i) => (
-            <section key={`${section.title}-${i}`} className="guideSection">
-              <h3>{section.title}</h3>
-              <ul>
-                {section.items.map((item, idx) => (
-                  <li key={`${section.title}-${idx}`}>{item}</li>
-                ))}
-              </ul>
-            </section>
-          ))}
+
+        {view === "guide" && (
+          <>
+            <div className="guideBody">
+              {guide.sections.map((section, i) => (
+                <section key={`${section.title}-${i}`} className="guideSection">
+                  <h3>{section.title}</h3>
+                  <ul>
+                    {section.items.map((item, idx) => (
+                      <li key={`${section.title}-${idx}`}>{item}</li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+            <button type="button" className="button primary" style={{ marginTop: 12 }} onClick={() => setView("metrics")}>
+              {guide.metricsButton}
+            </button>
+          </>
+        )}
+
+        {view === "metrics" && (
+          <>
+            <div className="hint">{guide.metricsIntro}</div>
+            <div className="metricGrid">
+              {ALL_COLUMN_KEYS.map((key) => (
+                <button key={key} type="button" className="metricChip" onClick={() => setView(key)}>
+                  {t.columns[key] || key}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {isMetricDetail && (
+          <div className="metricDetailCard">
+            <h3>{t.columns[view] || view}</h3>
+            <p><strong>{guide.metricFormulaLabel}</strong> {t.metricDetails[view].formula}</p>
+            <p><strong>{guide.metricPurposeLabel}</strong> {t.metricDetails[view].purpose}</p>
+            <p><strong>{guide.metricExampleLabel}</strong> {t.metricDetails[view].example}</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function CookieConsentModal({ t, onAccept, onReject }) {
+  return (
+    <div className="modalBackdrop" onMouseDown={onReject}>
+      <div className="modal cookieModal" onMouseDown={(e) => e.stopPropagation()}>
+        <div className="modalHead">
+          <div>
+            <h2>{t.cookieTitle}</h2>
+            <div className="hint">{t.cookieBody}</div>
+          </div>
+        </div>
+        <div className="cookieActions">
+          <button className="button small primary" onClick={onAccept}>{t.cookieAccept}</button>
+          <button className="button small" onClick={onReject}>{t.cookieReject}</button>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const CACHE_MS = 10 * 60 * 1000;
+const HISTORY_DAYS = 3800;
 
 function average(values) {
   if (!values || values.length === 0) return null;
@@ -132,7 +133,7 @@ async function getOne(ticker, forceRefresh = false) {
 
   try {
     const period1 = new Date();
-    period1.setUTCDate(period1.getUTCDate() - 400);
+    period1.setUTCDate(period1.getUTCDate() - HISTORY_DAYS);
 
     const [quote, chart] = await Promise.all([
       withTimeout(yahooFinance.quote(ticker), 12000, "quote " + ticker),
@@ -154,6 +155,22 @@ async function getOne(ticker, forceRefresh = false) {
     const monthTarget = new Date(lastDate);
     monthTarget.setUTCMonth(monthTarget.getUTCMonth() - 1);
     const monthAgoPrice = priceOnOrBefore(quotes, monthTarget);
+
+    const oneYearTarget = new Date(lastDate);
+    oneYearTarget.setUTCFullYear(oneYearTarget.getUTCFullYear() - 1);
+    const oneYearAgoPrice = priceOnOrBefore(quotes, oneYearTarget);
+
+    const threeYearTarget = new Date(lastDate);
+    threeYearTarget.setUTCFullYear(threeYearTarget.getUTCFullYear() - 3);
+    const threeYearAgoPrice = priceOnOrBefore(quotes, threeYearTarget);
+
+    const fiveYearTarget = new Date(lastDate);
+    fiveYearTarget.setUTCFullYear(fiveYearTarget.getUTCFullYear() - 5);
+    const fiveYearAgoPrice = priceOnOrBefore(quotes, fiveYearTarget);
+
+    const tenYearTarget = new Date(lastDate);
+    tenYearTarget.setUTCFullYear(tenYearTarget.getUTCFullYear() - 10);
+    const tenYearAgoPrice = priceOnOrBefore(quotes, tenYearTarget);
 
     const sma20 = computeSma(closes, 20);
     const sma50 = computeSma(closes, 50);
@@ -233,6 +250,10 @@ async function getOne(ticker, forceRefresh = false) {
       weekReturn: pctReturn(current, at(5)),
       monthReturn: pctReturn(current, monthAgoPrice),
       quarterReturn: pctReturn(current, at(60)),
+      year1Return: pctReturn(current, oneYearAgoPrice),
+      year3Return: pctReturn(current, threeYearAgoPrice),
+      year5Return: pctReturn(current, fiveYearAgoPrice),
+      year10Return: pctReturn(current, tenYearAgoPrice),
       rsi14,
       sma20,
       sma50,
