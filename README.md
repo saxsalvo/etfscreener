@@ -19,7 +19,7 @@ The application combines:
 
 - ETF screening across a broad set of famous tickers
 - category-based filtering and multi-category exclusion
-- search by ticker, ETF name, ISIN, or category
+- search by ticker, ETF name, or category
 - AUM and TER filtering
 - ranking by score and custom sort order
 - key metrics including:
@@ -120,7 +120,7 @@ This score is a decision support metric, not a guarantee of future performance.
 ## Filtering behavior
 
 The main screen supports:
-- search by ticker, ETF name, category, or ISIN
+- search by ticker, ETF name, or category
 - category-only filtering
 - exclusion of categories
 - minimum AUM threshold

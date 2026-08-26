@@ -234,6 +234,16 @@
     ]
   },
   {
+    "ticker": "BAL",
+    "ok": true,
+    "name": "iPath Series B Bloomberg Cotton Subindex Total Return ETN",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities",
+      "agriculture"
+    ]
+  },
+  {
     "ticker": "BAR",
     "ok": true,
     "name": "GraniteShares Gold Trust",
@@ -344,6 +354,15 @@
     ]
   },
   {
+    "ticker": "BKF",
+    "ok": true,
+    "name": "iShares MSCI BIC ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
     "ticker": "BLOK",
     "ok": true,
     "name": "Amplify Blockchain Technology ETF",
@@ -375,6 +394,24 @@
     "ticker": "BNDX",
     "ok": true,
     "name": "Vanguard Total International Bond Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
+    "ticker": "BNO",
+    "ok": true,
+    "name": "United States Brent Oil Fund, LP",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
+    "ticker": "BOND",
+    "ok": true,
+    "name": "PIMCO Active Bond Exchange-Traded Fund",
     "quoteType": "ETF",
     "categories": [
       "bonds"
@@ -442,6 +479,16 @@
     "quoteType": "ETF",
     "categories": [
       "factor"
+    ]
+  },
+  {
+    "ticker": "CANE",
+    "ok": true,
+    "name": "Teucrium Sugar Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities",
+      "agriculture"
     ]
   },
   {
@@ -515,7 +562,8 @@
     "name": "Teucrium Corn Fund",
     "quoteType": "ETF",
     "categories": [
-      "commodities"
+      "commodities",
+      "agriculture"
     ]
   },
   {
@@ -587,7 +635,8 @@
     "name": "Invesco DB Agriculture Fund",
     "quoteType": "ETF",
     "categories": [
-      "commodities"
+      "commodities",
+      "agriculture"
     ]
   },
   {
@@ -624,6 +673,15 @@
     "quoteType": "ETF",
     "categories": [
       "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "DEM",
+    "ok": true,
+    "name": "WisdomTree Emerging Markets High Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
     ]
   },
   {
@@ -687,6 +745,15 @@
     "quoteType": "ETF",
     "categories": [
       "dividendValue"
+    ]
+  },
+  {
+    "ticker": "DGS",
+    "ok": true,
+    "name": "WisdomTree Emerging Markets SmallCap Dividend Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
     ]
   },
   {
@@ -807,6 +874,15 @@
     ]
   },
   {
+    "ticker": "ECH",
+    "ok": true,
+    "name": "iShares MSCI Chile ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
     "ticker": "EDV",
     "ok": true,
     "name": "Vanguard Extended Duration Treasury Index Fund ETF Shares",
@@ -879,6 +955,15 @@
     ]
   },
   {
+    "ticker": "EIRL",
+    "ok": true,
+    "name": "iShares MSCI Ireland ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
     "ticker": "EMB",
     "ok": true,
     "name": "iShares J.P. Morgan USD Emerging Markets Bond ETF",
@@ -888,9 +973,36 @@
     ]
   },
   {
+    "ticker": "ENZL",
+    "ok": true,
+    "name": "iShares MSCI New Zealand ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EPHE",
+    "ok": true,
+    "name": "iShares MSCI Philippines ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
     "ticker": "EPI",
     "ok": true,
     "name": "WisdomTree India Earnings Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
+    ]
+  },
+  {
+    "ticker": "EPU",
+    "ok": true,
+    "name": "iShares MSCI Peru ETF",
     "quoteType": "ETF",
     "categories": [
       "international"
@@ -1330,6 +1442,15 @@
     ]
   },
   {
+    "ticker": "FLOT",
+    "ok": true,
+    "name": "iShares Floating Rate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
     "ticker": "FNDE",
     "ok": true,
     "name": "Schwab Fundamental Emerging Markets Equity ETF",
@@ -1354,6 +1475,15 @@
     "quoteType": "ETF",
     "categories": [
       "factor"
+    ]
+  },
+  {
+    "ticker": "FRDM",
+    "ok": true,
+    "name": "Freedom 100 Emerging Markets ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "international"
     ]
   },
   {
@@ -1598,6 +1728,15 @@
     "categories": [
       "bonds",
       "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "HYLB",
+    "ok": true,
+    "name": "Xtrackers USD High Yield Corporate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
     ]
   },
   {
@@ -2078,6 +2217,15 @@
     ]
   },
   {
+    "ticker": "IWY",
+    "ok": true,
+    "name": "iShares Russell Top 200 Growth ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
     "ticker": "IXUS",
     "ok": true,
     "name": "iShares Core MSCI Total International Stock ETF",
@@ -2114,6 +2262,33 @@
     ]
   },
   {
+    "ticker": "IYY",
+    "ok": true,
+    "name": "iShares Dow Jones U.S. ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "JAAA",
+    "ok": true,
+    "name": "Janus Henderson AAA CLO ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
+    "ticker": "JBBB",
+    "ok": true,
+    "name": "Janus Henderson B-BBB CLO ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "income"
+    ]
+  },
+  {
     "ticker": "JDST",
     "ok": true,
     "name": "Direxion Daily Junior Gold Miners Index Bear 2X Shares",
@@ -2146,7 +2321,8 @@
     "name": "iPath Series B Bloomberg Grains Subindex Total Return ETN",
     "quoteType": "ETF",
     "categories": [
-      "commodities"
+      "commodities",
+      "agriculture"
     ]
   },
   {
@@ -2166,6 +2342,25 @@
     "quoteType": "ETF",
     "categories": [
       "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "JO",
+    "ok": true,
+    "name": "iPath Series B Bloomberg Coffee Subindex Total Return ETN",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities",
+      "agriculture"
+    ]
+  },
+  {
+    "ticker": "JPST",
+    "ok": true,
+    "name": "JPMorgan Ultra-Short Income ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
     ]
   },
   {
@@ -2333,6 +2528,15 @@
     ]
   },
   {
+    "ticker": "MINT",
+    "ok": true,
+    "name": "PIMCO Enhanced Short Maturity Active Exchange-Traded Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
     "ticker": "MJ",
     "ok": true,
     "name": "Amplify Alternative Harvest ETF",
@@ -2409,6 +2613,16 @@
     ]
   },
   {
+    "ticker": "NIB",
+    "ok": true,
+    "name": "iPath Bloomberg Cocoa Subindex Total Return(SM) ETN",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities",
+      "agriculture"
+    ]
+  },
+  {
     "ticker": "NLR",
     "ok": true,
     "name": "VanEck Uranium and Nuclear ETF",
@@ -2427,12 +2641,39 @@
     ]
   },
   {
+    "ticker": "NUDM",
+    "ok": true,
+    "name": "Nuveen ESG International Developed Markets Equity ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
+    ]
+  },
+  {
     "ticker": "NUGT",
     "ok": true,
     "name": "Direxion Daily Gold Miners Index Bull 2X Shares",
     "quoteType": "ETF",
     "categories": [
       "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "NULV",
+    "ok": true,
+    "name": "Nuveen ESG Large-Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
+    ]
+  },
+  {
+    "ticker": "NUSC",
+    "ok": true,
+    "name": "Nuveen ESG Small-Cap ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "esg"
     ]
   },
   {
@@ -2762,7 +3003,8 @@
     "name": "ELEMENTS Linked to the Rogers International Commodity Index - Agriculture Total Return",
     "quoteType": "ETF",
     "categories": [
-      "commodities"
+      "commodities",
+      "agriculture"
     ]
   },
   {
@@ -2909,6 +3151,15 @@
     ]
   },
   {
+    "ticker": "SCHK",
+    "ok": true,
+    "name": "Schwab 1000 ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
     "ticker": "SCHO",
     "ok": true,
     "name": "Schwab Short-Term U.S. Treasury ETF",
@@ -2939,6 +3190,15 @@
     "ticker": "SCHV",
     "ok": true,
     "name": "Schwab U.S. Large-Cap Value ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "SCHX",
+    "ok": true,
+    "name": "Schwab U.S. Large-Cap ETF",
     "quoteType": "ETF",
     "categories": [
       "broadMarketUS"
@@ -3175,7 +3435,8 @@
     "name": "Teucrium Soybean Fund",
     "quoteType": "ETF",
     "categories": [
-      "commodities"
+      "commodities",
+      "agriculture"
     ]
   },
   {
@@ -3433,6 +3694,15 @@
     ]
   },
   {
+    "ticker": "TAGS",
+    "ok": true,
+    "name": "Teucrium Agricultural Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "agriculture"
+    ]
+  },
+  {
     "ticker": "TAN",
     "ok": true,
     "name": "Invesco Solar ETF",
@@ -3466,6 +3736,15 @@
     "quoteType": "ETF",
     "categories": [
       "municipalBonds"
+    ]
+  },
+  {
+    "ticker": "TFLO",
+    "ok": true,
+    "name": "iShares Treasury Floating Rate Bond ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
     ]
   },
   {
@@ -3615,6 +3894,15 @@
     ]
   },
   {
+    "ticker": "UNL",
+    "ok": true,
+    "name": "United States 12 Month Natural Gas Fund, LP",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
+    ]
+  },
+  {
     "ticker": "UPRO",
     "ok": true,
     "name": "ProShares UltraPro S&P500",
@@ -3660,12 +3948,30 @@
     ]
   },
   {
+    "ticker": "USFR",
+    "ok": true,
+    "name": "WisdomTree Floating Rate Treasury Fund",
+    "quoteType": "ETF",
+    "categories": [
+      "bonds"
+    ]
+  },
+  {
     "ticker": "USHY",
     "ok": true,
     "name": "iShares Broad USD High Yield Corporate Bond ETF",
     "quoteType": "ETF",
     "categories": [
       "corporateBonds"
+    ]
+  },
+  {
+    "ticker": "USL",
+    "ok": true,
+    "name": "United States 12 Month Oil Fund, LP",
+    "quoteType": "ETF",
+    "categories": [
+      "commodities"
     ]
   },
   {
@@ -3949,6 +4255,15 @@
     ]
   },
   {
+    "ticker": "VONE",
+    "ok": true,
+    "name": "Vanguard Russell 1000 Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
+    ]
+  },
+  {
     "ticker": "VOO",
     "ok": true,
     "name": "Vanguard S&P 500 ETF",
@@ -4009,6 +4324,15 @@
     "quoteType": "ETF",
     "categories": [
       "municipalBonds"
+    ]
+  },
+  {
+    "ticker": "VTHR",
+    "ok": true,
+    "name": "Vanguard Russell 3000 Index Fund ETF Shares",
+    "quoteType": "ETF",
+    "categories": [
+      "broadMarketUS"
     ]
   },
   {
@@ -4171,7 +4495,8 @@
     "name": "Teucrium Wheat Fund",
     "quoteType": "ETF",
     "categories": [
-      "commodities"
+      "commodities",
+      "agriculture"
     ]
   },
   {
