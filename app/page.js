@@ -13,6 +13,7 @@ const ALL_COLUMN_KEYS = [
   "ticker",
   "name",
   "category",
+  "status",
   "score",
   "dailyReturn",
   "threeDayReturn",
@@ -42,6 +43,7 @@ const DEFAULT_VISIBLE_COLUMNS = [
   "name",
   "category",
   "trend",
+  "status",
   "score",
   "dailyReturn",
   "threeDayReturn",
@@ -61,6 +63,7 @@ const COLUMN_WIDTHS = {
   name: "250px",
   category: "160px",
   trend: "82px",
+  status: "128px",
   score: "66px",
   dailyReturn: "88px",
   threeDayReturn: "88px",
@@ -153,6 +156,7 @@ const I18N = {
       "Il sottoscritto non potra essere ritenuto responsabile di alcun danno indiretto, consequenziale o incidentale, inclusi, a titolo meramente esemplificativo, perdite di profitto o guadagno, interruzioni di attivita commerciale, perdita di dati o qualunque pregiudizio derivante dall'utilizzo, dall'impossibilita di utilizzare o dall'aver ritenuto attendibili i materiali contenuti in questo sito.",
     legalBody2:
       "I contenuti hanno finalita esclusivamente informative e didattiche e non costituiscono consulenza finanziaria o sollecitazione all'investimento.",
+    dataSourceNote: "Dati di mercato forniti da Yahoo Finance.",
     guide: {
       title: "Guida applicazione",
       intro:
@@ -195,6 +199,7 @@ const I18N = {
             "Trend, RSI, Positivi, Streak, RVOL e Volatilita aiutano a capire momentum e rischio nel breve.",
             "52W High e Max DD 52W misurano distanza dai massimi e severita delle fasi di ribasso.",
             "Score sintetizza piu segnali in un unico valore 0-100.",
+            "Status traduce trend, RSI, volumi, rischio e momentum in un giudizio Strong Buy/Buy/Hold/Sell; clicca il badge per aprire il dialog con l'analisi completa.",
             "Seasonality segnala allineamento tra fase tecnica attuale e finestre storicamente favorevoli.",
           ],
         },
@@ -216,6 +221,7 @@ const I18N = {
             "Max DD 52W: formula DD_t = ((Prezzo_t / picco_precedente_t) - 1) * 100, Max DD = minimo DD_t a 52 settimane. Esempio: picco 120, minimo successivo 90 => -25%. Misura la severita storica delle fasi di stress.",
             "AUM: capitale complessivo gestito (quote * NAV). Esempio: ETF da 20B tende ad avere book piu profondo e spread piu stretti rispetto a ETF da 70M, con impatto pratico su slippage e costi impliciti.",
             "Score: punteggio additivo 0-100 (poi troncato a 100): +12 Prezzo>SMA20, +10 SMA20>SMA50, +10 SMA50>SMA200, fino a +20 da RSI14, fino a +18 da Positivi20, fino a +10 da RVOL, fino a +10 da Volatilita20D (piu bassa e meglio), fino a +10 da Distanza SMA20 (penalizzata sia sopra sia sotto), fino a +5 di qualita (AUM/TER/eta). La stagionalita NON e inclusa nello Score. Esempio: SMA allineate (+32), RSI 55 (+15.4), Positivi20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Qualita 3 => totale ~76.",
+            "Status: giudizio Strong Buy/Buy/Hold/Sell calcolato sommando un voto pesato per ciascuna metrica (trend, RSI14, Positivi20, Dist SMA20, RVOL, Vol20D, 52W High, Max DD 52W, rendimento 1M, qualita del fondo); il totale determina l'etichetta e ogni voto diventa una motivazione leggibile nel dialog di dettaglio.",
             "1D: formula R_1D% = ((Close_t / Close_{t-1}) - 1) * 100. Esempio: 102 vs 100 => +2.00%. Utile per catturare shock giornalieri, ma da leggere con RVOL per evitare falsi segnali.",
             "3D: formula R_3D% = ((Close_t / Close_{t-3}) - 1) * 100. Esempio: 103.5 vs 100 => +3.50%. Riduce il rumore di una singola candela.",
             "1W: formula R_1W% = ((Close_t / Close_{t-5}) - 1) * 100. Esempio: 106 vs 100 => +6.00%. Se accompagnato da vol stabile, il segnale e generalmente piu sano.",
@@ -267,11 +273,20 @@ const I18N = {
     trendStrong: "Forte",
     trendNeutral: "Neutro",
     trendWeak: "Debole",
+    statusLabels: {
+      strong_buy: "Strong Buy",
+      buy: "Buy",
+      hold: "Hold",
+      sell: "Sell",
+    },
+    statusModalHint: "Analisi metrica per metrica alla base del giudizio.",
+    statusPointsLabel: "Punteggio segnali",
     columns: {
       ticker: "Ticker",
       name: "Nome ETF",
       category: "Categoria",
       trend: "Trend",
+      status: "Status",
       rsi14: "RSI 14",
       positive10: "Positivi 10G",
       positive20: "Positivi 20G",
@@ -299,6 +314,7 @@ const I18N = {
       name: "Nome completo del fondo quotato.",
       category: "Categoria del fondo per area o strategia.",
       trend: "Stato del trend rispetto alle medie mobili.",
+      status: "Giudizio Strong Buy/Buy/Hold/Sell basato su tutte le metriche; clicca per il dettaglio.",
       rsi14: "Forza relativa su 14 periodi.",
       positive10: "Giorni positivi nelle ultime 10 sedute.",
       positive20: "Giorni positivi nelle ultime 20 sedute.",
@@ -314,10 +330,10 @@ const I18N = {
       threeDayReturn: "Performance ultime 3 sedute.",
       weekReturn: "Performance ultima settimana.",
       monthReturn: "Performance ultimo mese.",
-      year1Return: "Rendimento negli ultimi 12 mesi.",
-      year3Return: "Rendimento cumulato sugli ultimi 3 anni.",
-      year5Return: "Rendimento cumulato sugli ultimi 5 anni.",
-      year10Return: "Rendimento cumulato sugli ultimi 10 anni.",
+      year1Return: "Rendimento totale negli ultimi 12 mesi (dividendi reinvestiti).",
+      year3Return: "Rendimento totale cumulato sugli ultimi 3 anni (dividendi reinvestiti).",
+      year5Return: "Rendimento totale cumulato sugli ultimi 5 anni (dividendi reinvestiti).",
+      year10Return: "Rendimento totale cumulato sugli ultimi 10 anni (dividendi reinvestiti).",
       seasonality: "Allineamento con stagionalita favorevole.",
       borsa: "Mercato di quotazione del fondo.",
     },
@@ -445,6 +461,11 @@ const I18N = {
         purpose: "Riassume in un unico numero trend tecnico, momentum, rischio e qualita del fondo, per confrontare rapidamente molti ETF senza dover leggere ogni singola colonna.",
         example: "Prezzo>SMA20 (+12), SMA20>SMA50 (+10), SMA50>SMA200 (+10), RSI 55 => +15.4, Positivi20=14/20 => +12.6, RVOL 1.2 => +4.8, Vol20D 22% => +2.1, Dist.SMA20 6% => +6, Qualita 3 => totale ~76. Nota importante: lo Score NON include la stagionalita (mostrata a parte nella colonna Seasonality) e penalizza sia l'eccesso di volatilita sia le forti estensioni dal prezzo medio: per questo ETF a leva o su materie prime/minerari (es. URA) restano spesso su punteggi contenuti anche con un trend di fondo forte.",
       },
+      status: {
+        formula: "Ogni metrica (trend, RSI14, Positivi20, Dist SMA20, RVOL, Vol20D, 52W High, Max DD 52W, rendimento 1M, qualita del fondo) assegna un voto da -3 a +3 con una motivazione testuale. La somma dei voti decide l'etichetta: >=9 Strong Buy, >=3 Buy, >=-3 Hold, altrimenti Sell. Strong Buy richiede inoltre un Trend Forte confermato; un Trend Forte non puo mai risultare Sell.",
+        purpose: "Trasforma tutte le metriche dello screener in un giudizio operativo immediato (Strong Buy/Buy/Hold/Sell), mostrando comunque il ragionamento completo dietro l'etichetta.",
+        example: "Trend Forte (+3), RSI14 62 (+2), Positivi20 15/20 (+2), Dist SMA20 +4% (+1), RVOL 1.4x (+1), Vol20D 16% (+1), 52W High -3% (+2), Max DD 52W -9% (+1) => totale 13 => Strong Buy; ogni voto compare come motivazione nel dialog di dettaglio.",
+      },
       dailyReturn: {
         formula: "((Close_oggi / Close_ieri) - 1) * 100.",
         purpose: "Cattura variazioni improvvise (notizie, dati macro, movimenti dell'indice sottostante) nella singola seduta.",
@@ -466,24 +487,24 @@ const I18N = {
         example: "109 vs 100 => +9.00% nell'ultimo mese.",
       },
       year1Return: {
-        formula: "((Close_oggi / Close_di circa 252 sedute fa) - 1) * 100.",
-        purpose: "Misura il rendimento sull'ultimo anno, utile per valutare la qualita del trend oltre il rumore tattico di breve periodo.",
-        example: "128 vs 100 => +28% nell'ultimo anno.",
+        formula: "((Close_oggi / Close_di circa 252 sedute fa) - 1) * 100, dove Close e il prezzo rettificato per i dividendi (adjusted close di Yahoo Finance).",
+        purpose: "Misura il rendimento totale sull'ultimo anno (dividendi reinvestiti), utile per valutare la qualita del trend oltre il rumore tattico di breve periodo.",
+        example: "128 vs 100 => +28% nell'ultimo anno. Nota: usando l'adjusted close, il valore e piu alto del rendimento di solo prezzo mostrato da grafici come TradingView (che di norma non reinvestono i dividendi); il divario cresce con dividendi piu alti e orizzonti piu lunghi.",
       },
       year3Return: {
-        formula: "((Close_oggi / Close_di circa 3 anni fa) - 1) * 100.",
+        formula: "((Close_oggi / Close_di circa 3 anni fa) - 1) * 100, su prezzi rettificati per i dividendi (adjusted close).",
         purpose: "Aiuta a distinguere forza strutturale da fasi brevi favorevoli, su un orizzonte di medio periodo.",
-        example: "160 vs 100 => +60% cumulato in 3 anni.",
+        example: "160 vs 100 => +60% cumulato in 3 anni. Trattandosi di rendimento totale (dividendi reinvestiti), puo risultare piu alto del rendimento di solo prezzo riportato da TradingView.",
       },
       year5Return: {
-        formula: "((Close_oggi / Close_di circa 5 anni fa) - 1) * 100.",
+        formula: "((Close_oggi / Close_di circa 5 anni fa) - 1) * 100, su prezzi rettificati per i dividendi (adjusted close).",
         purpose: "Utile per confrontare la resilienza di un ETF attraverso un ciclo di mercato piu completo.",
-        example: "210 vs 100 => +110% cumulato in 5 anni.",
+        example: "210 vs 100 => +110% cumulato in 5 anni. Su orizzonti lunghi lo scarto rispetto al rendimento di solo prezzo (es. TradingView) diventa piu marcato per effetto della capitalizzazione dei dividendi.",
       },
       year10Return: {
-        formula: "((Close_oggi / Close_di circa 10 anni fa) - 1) * 100.",
-        purpose: "Misura la capacita del tema o dell'indice di creare valore nel lungo periodo.",
-        example: "330 vs 100 => +230% cumulato in 10 anni.",
+        formula: "((Close_oggi / Close_di circa 10 anni fa) - 1) * 100, su prezzi rettificati per i dividendi (adjusted close).",
+        purpose: "Misura la capacita del tema o dell'indice di creare valore nel lungo periodo, dividendi inclusi.",
+        example: "330 vs 100 => +230% cumulato in 10 anni. Esempio reale: GREK mostra un 10Y molto piu alto in questa app che su TradingView perche qui i dividendi sono reinvestiti nel calcolo, mentre il grafico prezzi di TradingView di default non li include.",
       },
       seasonality: {
         formula: "Per ogni possibile finestra dell'anno che comprende la data odierna si calcola il rendimento medio e la percentuale di anni positivi (success rate) su 10/15/20 anni di storico; la finestra e 'allineata' se rendimento medio > 0 e success rate >= soglia impostata (default 60%) in tutte le profondita.",
@@ -602,6 +623,7 @@ const I18N = {
       "The undersigned shall not be held liable for any indirect, consequential, or incidental damages, including, by way of example only, loss of profits or earnings, business interruption, or loss of data arising from the use of, inability to use, or reliance on the materials contained on this site.",
     legalBody2:
       "All content is provided for informational and educational purposes only and does not constitute financial advice or investment solicitation.",
+    dataSourceNote: "Market data provided by Yahoo Finance.",
     guide: {
       title: "Application guide",
       intro:
@@ -644,6 +666,7 @@ const I18N = {
             "Trend, RSI, Positive days, Streak, RVOL, and Volatility describe short-term momentum and risk.",
             "52W High and Max DD 52W describe distance from highs and downside severity.",
             "Score combines multiple signals into a single 0-100 ranking value.",
+            "Status turns trend, RSI, volume, risk, and momentum into a Strong Buy/Buy/Hold/Sell call; click the badge to open the dialog with the full analysis.",
             "Seasonality indicates alignment between current setup and historically favorable windows.",
           ],
         },
@@ -665,6 +688,7 @@ const I18N = {
             "Max DD 52W: formula DD_t = ((Price_t / running_peak_t) - 1) * 100, Max DD = minimum DD_t over 52 weeks. Example: peak 120, trough 90 => -25%. This quantifies downside severity under stress.",
             "AUM: total managed capital (shares outstanding * NAV). Example: a 20B ETF usually offers deeper books and tighter spreads than a 70M ETF, with direct slippage implications.",
             "Score: additive 0-100 ranking (capped at 100): +12 Price>SMA20, +10 SMA20>SMA50, +10 SMA50>SMA200, up to +20 from RSI14, up to +18 from Positive20, up to +10 from RVOL, up to +10 from Volatility20D (lower is better), up to +10 from Distance from SMA20 (penalized both above and below), up to +5 quality points (AUM/TER/age). Seasonality is NOT included in Score. Example: aligned SMAs (+32), RSI 55 (+15.4), Positive20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Quality 3 => total ~76.",
+            "Status: Strong Buy/Buy/Hold/Sell call computed by summing a weighted vote per metric (trend, RSI14, Positive20, Dist SMA20, RVOL, Vol20D, 52W High, Max DD 52W, 1M return, fund quality); the total maps to the label and every vote becomes a readable reason in the detail dialog.",
             "1D return: formula R_1D% = ((Close_t / Close_{t-1}) - 1) * 100. Example: 102 vs 100 => +2.00%. Best interpreted with RVOL to avoid overreacting to thin-volume moves.",
             "3D return: formula R_3D% = ((Close_t / Close_{t-3}) - 1) * 100. Example: 103.5 vs 100 => +3.50%. It reduces one-day noise and validates follow-through.",
             "1W return: formula R_1W% = ((Close_t / Close_{t-5}) - 1) * 100. Example: 106 vs 100 => +6.00%. The same gain with lower volatility is usually higher quality.",
@@ -716,11 +740,20 @@ const I18N = {
     trendStrong: "Strong",
     trendNeutral: "Neutral",
     trendWeak: "Weak",
+    statusLabels: {
+      strong_buy: "Strong Buy",
+      buy: "Buy",
+      hold: "Hold",
+      sell: "Sell",
+    },
+    statusModalHint: "Metric-by-metric analysis behind this rating.",
+    statusPointsLabel: "Signal score",
     columns: {
       ticker: "Ticker",
       name: "ETF name",
       category: "Category",
       trend: "Trend",
+      status: "Status",
       rsi14: "RSI 14",
       positive10: "Positive 10D",
       positive20: "Positive 20D",
@@ -748,6 +781,7 @@ const I18N = {
       name: "Full listed fund name.",
       category: "Fund category by area or strategy.",
       trend: "Trend status based on moving averages.",
+      status: "Strong Buy/Buy/Hold/Sell call based on all metrics; click for the full breakdown.",
       rsi14: "Relative strength over 14 periods.",
       positive10: "Positive days over last 10 sessions.",
       positive20: "Positive days over last 20 sessions.",
@@ -763,10 +797,10 @@ const I18N = {
       threeDayReturn: "Last 3 sessions performance.",
       weekReturn: "Last week performance.",
       monthReturn: "Last month performance.",
-      year1Return: "Performance over the last 12 months.",
-      year3Return: "Cumulative return over the last 3 years.",
-      year5Return: "Cumulative return over the last 5 years.",
-      year10Return: "Cumulative return over the last 10 years.",
+      year1Return: "Performance over the last 12 months (total return, dividends reinvested).",
+      year3Return: "Cumulative return over the last 3 years (total return, dividends reinvested).",
+      year5Return: "Cumulative return over the last 5 years (total return, dividends reinvested).",
+      year10Return: "Cumulative return over the last 10 years (total return, dividends reinvested).",
       seasonality: "Alignment with favorable seasonal windows.",
       borsa: "Listing exchange.",
     },
@@ -893,6 +927,11 @@ const I18N = {
         purpose: "Summarizes technical trend, momentum, risk, and fund quality into a single number to quickly compare many ETFs without reading every column.",
         example: "Price>SMA20 (+12), SMA20>SMA50 (+10), SMA50>SMA200 (+10), RSI 55 => +15.4, Positive20=14/20 => +12.6, RVOL 1.2 => +4.8, Vol20D 22% => +2.1, Dist.SMA20 6% => +6, Quality 3 => total ~76. Important note: Score does NOT include seasonality (shown separately in the Seasonality column) and penalizes both excess volatility and strong extensions from the average price: this is why leveraged or commodity/mining ETFs (e.g. URA) often keep contained scores even with a strong underlying trend.",
       },
+      status: {
+        formula: "Each metric (trend, RSI14, Positive20, Dist SMA20, RVOL, Vol20D, 52W High, Max DD 52W, 1M return, fund quality) casts a -3 to +3 vote with a text reason. The sum of votes decides the label: >=9 Strong Buy, >=3 Buy, >=-3 Hold, otherwise Sell. Strong Buy additionally requires a confirmed Strong trend; a Strong trend can never be rated Sell.",
+        purpose: "Turns every screener metric into an immediate actionable call (Strong Buy/Buy/Hold/Sell) while still exposing the full reasoning behind the label.",
+        example: "Strong trend (+3), RSI14 62 (+2), Positive20 15/20 (+2), Dist SMA20 +4% (+1), RVOL 1.4x (+1), Vol20D 16% (+1), 52W High -3% (+2), Max DD 52W -9% (+1) => total 13 => Strong Buy; every vote appears as a reason in the detail dialog.",
+      },
       dailyReturn: {
         formula: "((Today's Close / Yesterday's Close) - 1) * 100.",
         purpose: "Captures sudden changes (news, macro data, moves in the underlying index) within a single session.",
@@ -914,24 +953,24 @@ const I18N = {
         example: "109 vs 100 => +9.00% over the last month.",
       },
       year1Return: {
-        formula: "((Today's Close / Close about 252 sessions ago) - 1) * 100.",
-        purpose: "Measures the return over the last year, useful to assess trend quality beyond short-term tactical noise.",
-        example: "128 vs 100 => +28% over the last year.",
+        formula: "((Today's Close / Close about 252 sessions ago) - 1) * 100, where Close is the dividend-adjusted price (Yahoo Finance's adjusted close).",
+        purpose: "Measures the total return over the last year (dividends reinvested), useful to assess trend quality beyond short-term tactical noise.",
+        example: "128 vs 100 => +28% over the last year. Note: since it uses adjusted close, this is higher than the price-only return shown by charts like TradingView (which by default do not reinvest dividends); the gap widens with higher yields and longer horizons.",
       },
       year3Return: {
-        formula: "((Today's Close / Close about 3 years ago) - 1) * 100.",
+        formula: "((Today's Close / Close about 3 years ago) - 1) * 100, on dividend-adjusted prices (adjusted close).",
         purpose: "Helps separate structural strength from short-lived favorable phases, over a medium-term horizon.",
-        example: "160 vs 100 => +60% cumulative over 3 years.",
+        example: "160 vs 100 => +60% cumulative over 3 years. Being a total return (dividends reinvested), it can be higher than the price-only return reported by TradingView.",
       },
       year5Return: {
-        formula: "((Today's Close / Close about 5 years ago) - 1) * 100.",
+        formula: "((Today's Close / Close about 5 years ago) - 1) * 100, on dividend-adjusted prices (adjusted close).",
         purpose: "Useful to compare resilience across a more complete market cycle.",
-        example: "210 vs 100 => +110% cumulative over 5 years.",
+        example: "210 vs 100 => +110% cumulative over 5 years. Over longer horizons the gap versus price-only returns (e.g. TradingView) becomes more pronounced due to dividend compounding.",
       },
       year10Return: {
-        formula: "((Today's Close / Close about 10 years ago) - 1) * 100.",
-        purpose: "Measures the theme's or index's ability to create value over the long term.",
-        example: "330 vs 100 => +230% cumulative over 10 years.",
+        formula: "((Today's Close / Close about 10 years ago) - 1) * 100, on dividend-adjusted prices (adjusted close).",
+        purpose: "Measures the theme's or index's ability to create value over the long term, dividends included.",
+        example: "330 vs 100 => +230% cumulative over 10 years. Real example: GREK shows a much higher 10Y figure here than on TradingView because dividends are reinvested in this calculation, while TradingView's default price chart does not include them.",
       },
       seasonality: {
         formula: "For every possible window of the year containing today's date, the average return and the percentage of positive years (success rate) are computed over 10/15/20 years of history; a window is 'aligned' if average return > 0 and success rate >= the configured threshold (default 60%) across all depths.",
@@ -1063,6 +1102,7 @@ function getColumnFilterValues(key, row, t, seasonCache, minSuccess) {
   if (key === "name") return [row.name || row.ticker];
   if (key === "category") return row.categories && row.categories.length ? row.categories : ["-"];
   if (key === "trend") return [localizedTrendLabel(row.trend, t)];
+  if (key === "status") return [t.statusLabels[row.status] || row.status || "-"];
   if (key === "borsa") return [row.exchange || "-"];
   if (key === "seasonality") {
     const season = seasonCache[row.ticker];
@@ -1091,8 +1131,21 @@ function tooltip(title, body) {
   return `${title}: ${body}`;
 }
 
+// Yahoo's exchange suffix must map to TradingView's own exchange prefix, otherwise the
+// bare ticker (e.g. "CSSPX") can collide with an unrelated US-listed symbol on TradingView.
+const TRADINGVIEW_EXCHANGE_BY_SUFFIX = {
+  DE: "XETR",
+  L: "LSE",
+  MI: "MIL",
+  PA: "EURONEXT",
+  AS: "EURONEXT",
+};
+
 function tradingViewSymbol(ticker) {
-  return String(ticker || "").split(".")[0].trim().toUpperCase();
+  const raw = String(ticker || "").trim().toUpperCase();
+  const [base, suffix] = raw.split(".");
+  const exchange = suffix ? TRADINGVIEW_EXCHANGE_BY_SUFFIX[suffix] : null;
+  return exchange ? `${exchange}-${base}` : base;
 }
 
 function tradingViewUrl(ticker) {
@@ -1150,6 +1203,7 @@ export default function Home() {
   const [openFilterKey, setOpenFilterKey] = useState(null);
   const [guideOpen, setGuideOpen] = useState(false);
   const [cookieConsent, setCookieConsent] = useState(null);
+  const [statusModal, setStatusModal] = useState(null);
   const abortRef = useRef(null);
 
   const t = I18N[lang];
@@ -1253,7 +1307,7 @@ export default function Home() {
   const columnOptionsMap = useMemo(() => {
     const ok = rows.filter((r) => r.ok);
     const map = {};
-    for (const key of ["ticker", "name", "category", "trend", "borsa", "seasonality"]) {
+    for (const key of ["ticker", "name", "category", "trend", "status", "borsa", "seasonality"]) {
       const values = ok.flatMap((r) => getColumnFilterValues(key, r, t, seasonCache, minSuccess));
       map[key] = [...new Set(values)].sort((a, b) => String(a).localeCompare(String(b)));
     }
@@ -1298,7 +1352,8 @@ export default function Home() {
       if (["ticker", "name", "category", "trend", "borsa", "seasonality"].includes(key)) {
         return stringValue(a).localeCompare(stringValue(b)) * dir;
       }
-      return ((a[key] ?? -Infinity) - (b[key] ?? -Infinity)) * dir;
+      const numericValue = (row) => (key === "status" ? row.statusPoints : row[key]);
+      return ((numericValue(a) ?? -Infinity) - (numericValue(b) ?? -Infinity)) * dir;
     });
 
     return data;
@@ -1445,6 +1500,20 @@ export default function Home() {
       return (
         <td className="col-trend" title={tooltip(t.tooltip.trend, t.tooltipBody.trend)}>
           <span className={`trendBadge ${trendTone(trendLabel)}`}>{trendLabel}</span>
+        </td>
+      );
+    }
+    if (key === "status") {
+      const statusKey = row.status || "hold";
+      return (
+        <td className="col-status">
+          <button
+            type="button"
+            className={`statusBadge ${statusTone(statusKey)}`}
+            onClick={() => setStatusModal({ ticker: row.ticker, name: row.name, statusKey, points: row.statusPoints, reasons: row.statusReasons })}
+          >
+            {t.statusLabels[statusKey] || statusKey}
+          </button>
         </td>
       );
     }
@@ -1747,6 +1816,15 @@ export default function Home() {
 
       {guideOpen && <GuideModal t={t} onClose={() => setGuideOpen(false)} />}
 
+      {statusModal && (
+        <StatusModal
+          t={t}
+          lang={lang}
+          data={statusModal}
+          onClose={() => setStatusModal(null)}
+        />
+      )}
+
       {cookieConsent == null && (
         <CookieConsentModal
           t={t}
@@ -1759,6 +1837,7 @@ export default function Home() {
         <h3>{t.legalTitle}</h3>
         <p>{t.legalBody}</p>
         <p>{t.legalBody2}</p>
+        <p className="dataSourceNote">{t.dataSourceNote}</p>
       </footer>
     </main>
   );
@@ -1967,6 +2046,33 @@ function ColumnFilterPanel({ type, options, value, onChange, onClear, t }) {
 
 function Th({ children, className }) {
   return <th className={className}>{children}</th>;
+}
+
+function StatusModal({ t, lang, data, onClose }) {
+  const reasons = data.reasons?.[lang] || data.reasons?.it || [];
+  return (
+    <div className="modalBackdrop" onMouseDown={onClose}>
+      <div className="modal statusModal" onMouseDown={(e) => e.stopPropagation()}>
+        <div className="modalHead">
+          <div>
+            <h2>
+              {data.ticker} · <span className={`statusBadge ${statusTone(data.statusKey)}`}>{t.statusLabels[data.statusKey] || data.statusKey}</span>
+            </h2>
+            <div className="hint">{data.name} — {t.statusModalHint}</div>
+          </div>
+          <button className="button" onClick={onClose}>{t.modalClose}</button>
+        </div>
+        {data.points != null && (
+          <div className="hint">{t.statusPointsLabel}: <strong>{data.points}</strong></div>
+        )}
+        <ul className="statusReasonList">
+          {reasons.map((reason, idx) => (
+            <li key={idx}>{reason}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
 }
 
 function ColumnSelectorModal({ t, visibleColumns, onToggleColumn, onPresetEssential, onPresetAll, onClose }) {
@@ -2333,4 +2439,11 @@ function scoreTone(value) {
   if (value >= 70) return "good";
   if (value >= 55) return "watch";
   return "weak";
+}
+
+function statusTone(statusKey) {
+  if (statusKey === "strong_buy") return "strongBuy";
+  if (statusKey === "buy") return "buy";
+  if (statusKey === "sell") return "sell";
+  return "hold";
 }

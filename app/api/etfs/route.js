@@ -124,6 +124,92 @@ function computeScore({ current, sma20, sma50, sma200, rsi14, positive20, rvol, 
   return clamp(Math.round(total), 0, 100);
 }
 
+// Rule-based buy/hold/sell rating: each metric contributes a weighted vote plus a
+// human-readable (it/en) reason, then the point total is mapped to a status label.
+function computeStatus({ trend, rsi14, positive20, distanceSma20, rvol, volatility20d, distance52wHigh, maxDrawdown52w, monthReturn, quality }) {
+  let points = 0;
+  const reasons = { it: [], en: [] };
+  const add = (weight, it, en) => {
+    points += weight;
+    reasons.it.push(it);
+    reasons.en.push(en);
+  };
+
+  if (trend === "Forte") {
+    add(3, "Trend Forte: prezzo sopra SMA20, SMA20 sopra SMA50 e SMA50 sopra SMA200: struttura rialzista completa su tre orizzonti.", "Strong trend: price above SMA20, SMA20 above SMA50, and SMA50 above SMA200: fully bullish structure across three horizons.");
+  } else if (trend === "Debole") {
+    add(-3, "Trend Debole: prezzo sotto le medie mobili principali: struttura ribassista dominante.", "Weak trend: price below the main moving averages: bearish structure dominates.");
+  } else {
+    add(0, "Trend Neutro: le medie mobili non sono allineate in un'unica direzione.", "Neutral trend: moving averages are not aligned in a single direction.");
+  }
+
+  if (rsi14 != null) {
+    if (rsi14 >= 70) add(-2, `RSI14 ${rsi14.toFixed(1)}: ipercomprato (>=70), rischio di ritracciamento nel brevissimo periodo.`, `RSI14 ${rsi14.toFixed(1)}: overbought (>=70), short-term pullback risk.`);
+    else if (rsi14 >= 55) add(2, `RSI14 ${rsi14.toFixed(1)}: momentum rialzista sano, non ancora in area di ipercomprato.`, `RSI14 ${rsi14.toFixed(1)}: healthy bullish momentum, not yet overbought.`);
+    else if (rsi14 >= 45) add(0, `RSI14 ${rsi14.toFixed(1)}: momentum neutro.`, `RSI14 ${rsi14.toFixed(1)}: neutral momentum.`);
+    else if (rsi14 >= 30) add(-1, `RSI14 ${rsi14.toFixed(1)}: momentum debole, il prezzo fatica a salire.`, `RSI14 ${rsi14.toFixed(1)}: weak momentum, price struggling to advance.`);
+    else add(-2, `RSI14 ${rsi14.toFixed(1)}: ipervenduto (<30), pressione ribassista dominante.`, `RSI14 ${rsi14.toFixed(1)}: oversold (<30), bearish pressure dominates.`);
+  }
+
+  if (positive20 != null) {
+    if (positive20 >= 14) add(2, `Positivi 20G ${positive20}/20: alta persistenza rialzista nell'ultimo mese di sedute.`, `Positive 20D ${positive20}/20: strong bullish persistence over the last month of sessions.`);
+    else if (positive20 >= 10) add(1, `Positivi 20G ${positive20}/20: persistenza rialzista moderata.`, `Positive 20D ${positive20}/20: moderate bullish persistence.`);
+    else if (positive20 >= 7) add(0, `Positivi 20G ${positive20}/20: alternanza equilibrata tra sedute positive e negative.`, `Positive 20D ${positive20}/20: balanced mix of positive and negative sessions.`);
+    else add(-2, `Positivi 20G ${positive20}/20: poche sedute positive, momentum discontinuo.`, `Positive 20D ${positive20}/20: few positive sessions, choppy momentum.`);
+  }
+
+  if (distanceSma20 != null) {
+    if (distanceSma20 > 20) add(-2, `Dist SMA20 +${distanceSma20.toFixed(1)}%: estensione eccessiva sopra la media, rischio di ritracciamento elevato.`, `Dist SMA20 +${distanceSma20.toFixed(1)}%: excessive extension above the average, high pullback risk.`);
+    else if (distanceSma20 >= -3) add(1, `Dist SMA20 ${distanceSma20.toFixed(1)}%: prezzo vicino alla media mobile, trend ordinato senza eccessi.`, `Dist SMA20 ${distanceSma20.toFixed(1)}%: price close to the moving average, orderly trend without excess.`);
+    else if (distanceSma20 >= -15) add(-1, `Dist SMA20 ${distanceSma20.toFixed(1)}%: prezzo sotto la media, pressione ribassista di breve periodo.`, `Dist SMA20 ${distanceSma20.toFixed(1)}%: price below the average, short-term bearish pressure.`);
+    else add(-2, `Dist SMA20 ${distanceSma20.toFixed(1)}%: forte estensione ribassista sotto la media.`, `Dist SMA20 ${distanceSma20.toFixed(1)}%: strong bearish extension below the average.`);
+  }
+
+  if (rvol != null) {
+    if (rvol >= 1.3) add(1, `RVOL ${rvol.toFixed(1)}x: partecipazione sopra la media, movimento supportato dai volumi.`, `RVOL ${rvol.toFixed(1)}x: above-average participation, the move is supported by volume.`);
+    else if (rvol < 0.7) add(-1, `RVOL ${rvol.toFixed(1)}x: volumi sotto la media, movimento poco confermato.`, `RVOL ${rvol.toFixed(1)}x: below-average volume, the move lacks confirmation.`);
+    else add(0, `RVOL ${rvol.toFixed(1)}x: volumi in linea con la media recente.`, `RVOL ${rvol.toFixed(1)}x: volume in line with the recent average.`);
+  }
+
+  if (volatility20d != null) {
+    if (volatility20d <= 18) add(1, `Volatilita 20D ${volatility20d.toFixed(1)}%: rischio contenuto nel breve periodo.`, `Volatility 20D ${volatility20d.toFixed(1)}%: contained short-term risk.`);
+    else if (volatility20d > 32) add(-1, `Volatilita 20D ${volatility20d.toFixed(1)}%: rischio elevato, oscillazioni ampie nel breve periodo.`, `Volatility 20D ${volatility20d.toFixed(1)}%: elevated risk, wide short-term swings.`);
+    else add(0, `Volatilita 20D ${volatility20d.toFixed(1)}%: rischio nella media.`, `Volatility 20D ${volatility20d.toFixed(1)}%: average risk level.`);
+  }
+
+  if (distance52wHigh != null) {
+    if (distance52wHigh >= -5) add(2, `52W High ${distance52wHigh.toFixed(1)}%: molto vicino ai massimi annuali, leadership relativa forte.`, `52W High ${distance52wHigh.toFixed(1)}%: very close to the 52-week high, strong relative leadership.`);
+    else if (distance52wHigh >= -15) add(1, `52W High ${distance52wHigh.toFixed(1)}%: moderatamente vicino ai massimi annuali.`, `52W High ${distance52wHigh.toFixed(1)}%: moderately close to the 52-week high.`);
+    else if (distance52wHigh >= -30) add(0, `52W High ${distance52wHigh.toFixed(1)}%: a media distanza dai massimi annuali.`, `52W High ${distance52wHigh.toFixed(1)}%: a moderate distance from the 52-week high.`);
+    else add(-2, `52W High ${distance52wHigh.toFixed(1)}%: ben lontano dai massimi annuali, fase di debolezza relativa.`, `52W High ${distance52wHigh.toFixed(1)}%: far from the 52-week high, relative weakness phase.`);
+  }
+
+  if (maxDrawdown52w != null) {
+    if (maxDrawdown52w >= -12) add(1, `Max DD 52W ${maxDrawdown52w.toFixed(1)}%: drawdown storico contenuto nell'ultimo anno.`, `Max DD 52W ${maxDrawdown52w.toFixed(1)}%: contained historical drawdown over the last year.`);
+    else if (maxDrawdown52w < -30) add(-2, `Max DD 52W ${maxDrawdown52w.toFixed(1)}%: drawdown severo nell'ultimo anno, rischio elevato nelle fasi di stress.`, `Max DD 52W ${maxDrawdown52w.toFixed(1)}%: severe drawdown over the last year, high risk during stress phases.`);
+    else add(0, `Max DD 52W ${maxDrawdown52w.toFixed(1)}%: drawdown nella media.`, `Max DD 52W ${maxDrawdown52w.toFixed(1)}%: average drawdown.`);
+  }
+
+  if (monthReturn != null) {
+    if (monthReturn > 3) add(1, `Rendimento 1M +${monthReturn.toFixed(1)}%: momentum di medio periodo positivo.`, `1M return +${monthReturn.toFixed(1)}%: positive medium-term momentum.`);
+    else if (monthReturn < -3) add(-1, `Rendimento 1M ${monthReturn.toFixed(1)}%: momentum di medio periodo negativo.`, `1M return ${monthReturn.toFixed(1)}%: negative medium-term momentum.`);
+    else add(0, `Rendimento 1M ${monthReturn.toFixed(1)}%: momentum di medio periodo stabile.`, `1M return ${monthReturn.toFixed(1)}%: stable medium-term momentum.`);
+  }
+
+  if (quality != null) {
+    if (quality >= 3) add(1, "Qualita fondo (AUM/TER/eta) elevata: solidita strutturale del prodotto.", "Fund quality (AUM/TER/age) high: strong structural soundness.");
+    else if (quality <= 1) add(-1, "Qualita fondo (AUM/TER/eta) bassa: fondo piccolo, costoso o giovane, rischio operativo maggiore.", "Fund quality (AUM/TER/age) low: small, costly, or young fund, higher operational risk.");
+    else add(0, "Qualita fondo (AUM/TER/eta) nella media.", "Fund quality (AUM/TER/age) average.");
+  }
+
+  let status = points >= 9 ? "strong_buy" : points >= 3 ? "buy" : points >= -3 ? "hold" : "sell";
+  // A "strong buy" requires a confirmed uptrend; a fully aligned uptrend should not be rated "sell".
+  if (trend !== "Forte" && status === "strong_buy") status = "buy";
+  if (trend === "Forte" && status === "sell") status = "hold";
+
+  return { status, points, reasons };
+}
+
 async function getOne(ticker, forceRefresh = false) {
   const cacheKey = `quote:${ticker}:v4`;
   if (!forceRefresh) {
@@ -233,6 +319,19 @@ async function getOne(ticker, forceRefresh = false) {
       qualityScore: quality,
     });
 
+    const statusResult = computeStatus({
+      trend,
+      rsi14,
+      positive20,
+      distanceSma20,
+      rvol,
+      volatility20d,
+      distance52wHigh,
+      maxDrawdown52w,
+      monthReturn: pctReturn(current, monthAgoPrice),
+      quality,
+    });
+
     const payload = {
       ticker,
       ok: true,
@@ -269,6 +368,9 @@ async function getOne(ticker, forceRefresh = false) {
       distance52wHigh,
       maxDrawdown52w: drawdown52w,
       score,
+      status: statusResult.status,
+      statusPoints: statusResult.points,
+      statusReasons: statusResult.reasons,
       lastDate: quotes[last]?.date || null,
       inceptionDate: inceptionDate ? inceptionDate.toISOString() : null,
       ageYears: age,

@@ -619,6 +619,56 @@ select {
   color: #ffadbf;
 }
 
+.statusBadge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.statusBadge.strongBuy {
+  background: rgba(57, 217, 138, 0.24);
+  color: #7cf7bb;
+}
+
+.statusBadge.buy {
+  background: rgba(88, 176, 255, 0.2);
+  color: #9ad1ff;
+}
+
+.statusBadge.hold {
+  background: rgba(255, 214, 108, 0.2);
+  color: #ffe59b;
+}
+
+.statusBadge.sell {
+  background: rgba(255, 116, 144, 0.2);
+  color: #ff9cb0;
+}
+
+.statusReasonList {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statusReasonList li {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #dbe8f6;
+}
+
+.statusModal {
+  width: min(640px, 92vw);
+}
+
 .seasonalityCell {
   display: flex;
   align-items: center;
@@ -659,6 +709,12 @@ select {
 .table td.col-score {
   min-width: 66px;
   width: 66px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table th.col-status,
+.table td.col-status {
   text-align: center;
   white-space: nowrap;
 }
@@ -928,6 +984,13 @@ select {
   color: #b9cde4;
   font-size: 12px;
   line-height: 1.45;
+}
+
+.dataSourceNote {
+  margin-top: 10px !important;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-style: italic;
 }
 
 @media (max-width: 1500px) {
