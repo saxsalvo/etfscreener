@@ -4,12 +4,15 @@ import Link from "next/link";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 
 import { mergeVisibleColumns } from "../lib/visible-columns.js";
+import { computeProfileStatus, CUSTOM_METRICS, normalizeProfile, PROFILE_METRICS } from "../lib/investment-status.js";
 
 const PAGE_SIZE = 25;
 const CAPITAL_FLOW_LIMIT = 10;
 const COOKIE_VISIBLE_COLUMNS = "visible_etf_columns";
 const COOKIE_SORT = "etf_sort";
 const COOKIE_CONSENT_KEY = "cookie_consent_choice";
+const COOKIE_WATCHLIST = "etf_watchlist";
+const COOKIE_INVESTMENT_PROFILE = "etf_investment_profile";
 
 const ALL_COLUMN_KEYS = [
   "ticker",
@@ -31,8 +34,12 @@ const ALL_COLUMN_KEYS = [
   "positive20",
   "streak",
   "distanceSma20",
+  "distanceSma200",
+  "smaCross",
   "rvol",
   "volatility20d",
+  "drawdownFromAth",
+  "range52wPosition",
   "distance52wHigh",
   "maxDrawdown52w",
   "netAssets",
@@ -80,8 +87,12 @@ const COLUMN_WIDTHS = {
   positive20: "96px",
   streak: "96px",
   distanceSma20: "102px",
+  distanceSma200: "108px",
+  smaCross: "128px",
   rvol: "86px",
   volatility20d: "90px",
+  drawdownFromAth: "112px",
+  range52wPosition: "118px",
   distance52wHigh: "96px",
   maxDrawdown52w: "112px",
   netAssets: "96px",
@@ -92,7 +103,7 @@ const COLUMN_WIDTHS = {
 const I18N = {
   it: {
     pageTitle: "ETF Performance Screener",
-    pageSubtitle: "Momentum, trend, volume, rischio e stagionalita in una sola vista",
+    pageSubtitle: "Momentum, trend, volume, rischio e stagionalità in una sola vista",
     langItalian: "Italiano",
     langEnglish: "Inglese",
     guideButton: "Guida",
@@ -135,12 +146,12 @@ const I18N = {
     filterNoOptions: "Nessun valore",
     refreshQuotes: "Aggiorna quotazioni",
     capitalFlows: "Flussi di capitale",
-    futureSeasonality: "Stagionalita future",
-    analyzeFiltered: "Analizza stagionalita ETF filtrati",
-    hint: "Questo screener combina momentum, trend, volume, rischio e stagionalita. I tooltip aiutano a interpretare velocemente la lettura.",
+    futureSeasonality: "Stagionalità future",
+    analyzeFiltered: "Analizza stagionalità ETF filtrati",
+    hint: "Questo screener combina momentum, trend, volume, rischio e stagionalità. I tooltip aiutano a interpretare velocemente la lettura.",
     scrollHint: "Suggerimento: scorri orizzontalmente per vedere tutte le colonne.",
     statusLoading: "caricamento in corso...",
-    statusSeasonality: (done, total) => `stagionalita ${done}/${total}`,
+    statusSeasonality: (done, total) => `stagionalità ${done}/${total}`,
     statusLoaded: (loaded, total, shown) => `Caricati ${loaded}/${total || "..."} ETF · mostrati ${shown}`,
     statusError: "Errore",
     noResults: "Nessun ETF con i filtri correnti.",
@@ -162,14 +173,14 @@ const I18N = {
     guide: {
       title: "Guida applicazione",
       intro:
-        "Questa applicazione e uno screener ETF dinamico: raccoglie dati di mercato, li normalizza e li trasforma in metriche utili per confrontare forza, rischio e stagionalita.",
+        "Questa applicazione e uno screener ETF dinamico: raccoglie dati di mercato, li normalizza e li trasforma in metriche utili per confrontare forza, rischio e stagionalità.",
       sections: [
         {
           title: "Come funziona in sintesi",
           items: [
             "Il backend scarica quotazioni e storico dai provider, poi calcola indicatori come RSI, trend, drawdown e rendimenti multi-orizzonte.",
             "La tabella principale mostra ogni ETF come una riga comparabile, ordinabile e filtrabile.",
-            "I pulsanti azione aprono modali di approfondimento (flussi e stagionalita) e la pagina dedicata alle stagionalita future.",
+            "I pulsanti azione aprono modali di approfondimento (flussi e stagionalità) e la pagina dedicata alle stagionalità future.",
           ],
         },
         {
@@ -190,8 +201,8 @@ const I18N = {
             "Azzera filtri: resetta tutti i criteri di ricerca.",
             "Aggiorna quotazioni: forza un refresh dati lato server.",
             "Flussi di capitale: mostra top ETF in entrata/uscita in base alla performance mensile.",
-            "Stagionalita future: apre la pagina secondaria con focus su finestre stagionali favorevoli future o attive.",
-            "Analizza stagionalita ETF filtrati: pre-carica in cache i dettagli stagionali degli ETF attualmente visibili.",
+            "stagionalità future: apre la pagina secondaria con focus su finestre stagionali favorevoli future o attive.",
+            "Analizza stagionalità ETF filtrati: pre-carica in cache i dettagli stagionali degli ETF attualmente visibili.",
           ],
         },
         {
@@ -199,9 +210,10 @@ const I18N = {
           items: [
             "Le intestazioni sono ordinabili; clicca il titolo colonna per invertire ascendente/discendente.",
             "Trend, RSI, Positivi, Streak, RVOL e Volatilita aiutano a capire momentum e rischio nel breve.",
-            "52W High e Max DD 52W misurano distanza dai massimi e severita delle fasi di ribasso.",
+            "52W High, Drawdown massimo 52W, Drawdown da ATH e Posizione 52W misurano distanza dai massimi, severita delle fasi di ribasso e posizione nel canale annuale.",
+            "Dist SMA200 e Cross SMA50/200 completano la lettura strutturale di lungo periodo; l'asterisco sul cross segnala un cambio nelle ultime 5 sedute.",
             "Score sintetizza piu segnali in un unico valore 0-100.",
-            "Status traduce trend, RSI, volumi, rischio e momentum in un giudizio Strong Buy/Buy/Hold/Sell; clicca il badge per aprire il dialog con l'analisi completa.",
+            "Status traduce le metriche del profilo Long term, Short term o Custom in Strong Buy/Buy/Hold/Sell; scegli il profilo da Impostazioni e clicca il badge per l'analisi completa.",
             "Seasonality segnala allineamento tra fase tecnica attuale e finestre storicamente favorevoli.",
           ],
         },
@@ -222,7 +234,7 @@ const I18N = {
             "52W High: formula Dist52W% = ((Prezzo / Max_52w) - 1) * 100. Esempio: da massimo 100 a prezzo 97 => -3%; da 100 a 72 => -28%. Distanze piccole spesso indicano leadership relativa.",
             "Max DD 52W: formula DD_t = ((Prezzo_t / picco_precedente_t) - 1) * 100, Max DD = minimo DD_t a 52 settimane. Esempio: picco 120, minimo successivo 90 => -25%. Misura la severita storica delle fasi di stress.",
             "AUM: capitale complessivo gestito (quote * NAV). Esempio: ETF da 20B tende ad avere book piu profondo e spread piu stretti rispetto a ETF da 70M, con impatto pratico su slippage e costi impliciti.",
-            "Score: punteggio additivo 0-100 (poi troncato a 100): +12 Prezzo>SMA20, +10 SMA20>SMA50, +10 SMA50>SMA200, fino a +20 da RSI14, fino a +18 da Positivi20, fino a +10 da RVOL, fino a +10 da Volatilita20D (piu bassa e meglio), fino a +10 da Distanza SMA20 (penalizzata sia sopra sia sotto), fino a +5 di qualita (AUM/TER/eta). La stagionalita NON e inclusa nello Score. Esempio: SMA allineate (+32), RSI 55 (+15.4), Positivi20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Qualita 3 => totale ~76.",
+            "Score: punteggio additivo 0-100 (poi troncato a 100): +12 Prezzo>SMA20, +10 SMA20>SMA50, +10 SMA50>SMA200, fino a +20 da RSI14, fino a +18 da Positivi20, fino a +10 da RVOL, fino a +10 da Volatilita20D (piu bassa e meglio), fino a +10 da Distanza SMA20 (penalizzata sia sopra sia sotto), fino a +5 di qualita (AUM/TER/eta). La stagionalità NON e inclusa nello Score. Esempio: SMA allineate (+32), RSI 55 (+15.4), Positivi20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Qualita 3 => totale ~76.",
             "Status: giudizio Strong Buy/Buy/Hold/Sell calcolato sommando un voto pesato per ciascuna metrica (trend, RSI14, Positivi20, Dist SMA20, RVOL, Vol20D, 52W High, Max DD 52W, rendimento 1M, qualita del fondo); il totale determina l'etichetta e ogni voto diventa una motivazione leggibile nel dialog di dettaglio.",
             "1D: formula R_1D% = ((Close_t / Close_{t-1}) - 1) * 100. Esempio: 102 vs 100 => +2.00%. Utile per catturare shock giornalieri, ma da leggere con RVOL per evitare falsi segnali.",
             "3D: formula R_3D% = ((Close_t / Close_{t-3}) - 1) * 100. Esempio: 103.5 vs 100 => +3.50%. Riduce il rumore di una singola candela.",
@@ -237,25 +249,25 @@ const I18N = {
           ],
         },
         {
-          title: "Dettaglio stagionalita (modal)",
+          title: "Dettaglio stagionalità (modal)",
           items: [
             "Si apre cliccando il ticker o il pulsante Dettaglio nella colonna Seasonality.",
             "Finestre stagionali: confronta rendimento medio e success rate su 10/15/20 anni.",
             "Giorni comuni 10/15/20: mostra solo date con comportamento positivo consistente nelle tre profondita storiche.",
-            "Tutti i giorni: tabella completa giornaliera con media, mediana, migliore/peggiore seduta e campioni.",
-            "Mesi: vista aggregata mensile per individuare stagioni storicamente forti o deboli.",
+            "Tutti i giorni: tabella completa giornaliera con media, mediana, migliore/peggiore seduta e campioni, separati anche in Bull/Bear.",
+            "Mesi: vista aggregata mensile con campioni Bull/Bear, basati su SPY sopra/sotto SMA200 alla data dell'osservazione.",
           ],
         },
         {
           title: "Flussi di capitale",
           items: [
-            "Il pannello Entrate/Forza mostra i migliori ETF per rendimento a 1 mese (proxy di inflow relativo).",
-            "Il pannello Uscite/Debolezza mostra i peggiori ETF a 1 mese (proxy di outflow o rotazione difensiva).",
-            "Usa questo blocco per capire rapidamente dove il mercato sta concentrando attenzione e liquidita.",
+            "Il pannello mostra una proxy di rotazione, non flussi netti certificati: Yahoo Finance non fornisce trasferimenti reali tra ETF.",
+            "Entrate/Forza e Uscite/Debolezza riportano rendimento, RVOL e date della finestra di circa un mese; le Rotazioni candidate sono confronti, non operazioni osservate.",
+            "Asset piu richiesti classifica le categorie per rendimento medio 1M, RVOL medio, score medio e numero di ETF, per stimare dove si concentra l'attenzione relativa.",
           ],
         },
         {
-          title: "Pagina secondaria: Stagionalita future",
+          title: "Pagina secondaria: stagionalità future",
           items: [
             "Classifica ETF con finestre stagionali promettenti e success rate elevato.",
             "Apri dettaglio per ogni ticker per rivedere le stesse analisi avanzate disponibili nella home.",
@@ -294,8 +306,12 @@ const I18N = {
       positive20: "Positivi 20G",
       streak: "Streak 20G",
       distanceSma20: "Dist SMA20",
+      distanceSma200: "Dist SMA200",
+      smaCross: "Cross SMA50/200",
       rvol: "RVOL",
       volatility20d: "Vol 20D",
+      drawdownFromAth: "DD da ATH",
+      range52wPosition: "Posizione 52W",
       distance52wHigh: "52W High",
       maxDrawdown52w: "Max DD 52W",
       netAssets: "AUM",
@@ -322,8 +338,12 @@ const I18N = {
       positive20: "Giorni positivi nelle ultime 20 sedute.",
       streak: "Consecutivita dei giorni positivi recenti.",
       distanceSma20: "Distanza percentuale dal prezzo medio a 20 giorni.",
+      distanceSma200: "Distanza percentuale del prezzo dalla SMA a 200 sedute.",
+      smaCross: "Regime e ultimo incrocio tra SMA50 e SMA200; * indica un segnale nelle ultime 5 sedute.",
       rvol: "Volume relativo contro media 20 giorni.",
       volatility20d: "Volatilita annualizzata su base 20 giorni.",
+      drawdownFromAth: "Drawdown corrente rispetto al massimo storico disponibile.",
+      range52wPosition: "Posizione del prezzo tra minimo e massimo delle ultime 52 settimane.",
       distance52wHigh: "Distanza dal massimo annuale.",
       maxDrawdown52w: "Massima discesa registrata nell'ultimo anno.",
       netAssets: "Asset under management del fondo.",
@@ -336,7 +356,7 @@ const I18N = {
       year3Return: "Rendimento totale cumulato sugli ultimi 3 anni (dividendi reinvestiti).",
       year5Return: "Rendimento totale cumulato sugli ultimi 5 anni (dividendi reinvestiti).",
       year10Return: "Rendimento totale cumulato sugli ultimi 10 anni (dividendi reinvestiti).",
-      seasonality: "Allineamento con stagionalita favorevole.",
+      seasonality: "Allineamento con stagionalità favorevole.",
       borsa: "Mercato di quotazione del fondo.",
     },
     tooltip: {
@@ -379,7 +399,7 @@ const I18N = {
       aum:
         "AUM e il capitale totale gestito dal fondo (somma quote * NAV). Esempio: 25B tende ad avere spread piu stretti rispetto a 80M.",
       score:
-        "Formula reale (somma di punteggi parziali, poi troncata a 100): +12 se Prezzo>SMA20; +10 se SMA20>SMA50; +10 se SMA50>SMA200; fino a +20 da RSI14; fino a +18 da Positivi20; fino a +10 da RVOL; fino a +10 da Volatilita20D (piu bassa e meglio); fino a +10 da Distanza SMA20 (penalizzata sia sopra sia sotto la media); fino a +5 di qualita (AUM/TER/eta fondo). La stagionalita NON e inclusa nello Score. Esempio: componenti SMA allineate (+32), RSI 55 (+15.4), Positivi20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Qualita 3 => totale ~76.",
+        "Formula reale (somma di punteggi parziali, poi troncata a 100): +12 se Prezzo>SMA20; +10 se SMA20>SMA50; +10 se SMA50>SMA200; fino a +20 da RSI14; fino a +18 da Positivi20; fino a +10 da RVOL; fino a +10 da Volatilita20D (piu bassa e meglio); fino a +10 da Distanza SMA20 (penalizzata sia sopra sia sotto la media); fino a +5 di qualita (AUM/TER/eta fondo). La stagionalità NON e inclusa nello Score. Esempio: componenti SMA allineate (+32), RSI 55 (+15.4), Positivi20 14/20 (+12.6), RVOL 1.2 (+4.8), Vol20D 22% (+2.1), Dist.SMA20 6% (+6), Qualita 3 => totale ~76.",
       d1: "Formula: 1D % = ((Close_t / Close_{t-1}) - 1) * 100. Esempio: 102 vs 100 => +2.00%.",
       d3: "Formula: 3D % = ((Close_t / Close_{t-3}) - 1) * 100. Esempio: 103.5 vs 100 => +3.50%.",
       w1: "Formula: 1W % = ((Close_t / Close_{t-5}) - 1) * 100. Esempio: 106 vs 100 => +6.00%.",
@@ -433,6 +453,16 @@ const I18N = {
         purpose: "Misura quanto il prezzo si e allontanato dalla sua media mobile breve: valori molto alti, in positivo o negativo, segnalano un possibile eccesso statistico.",
         example: "Prezzo 105, SMA20 100 => +5% (trend ordinato). Prezzo 130, SMA20 100 => +30% (forte estensione: nello Score questo viene trattato come rischio, non come premio).",
       },
+      distanceSma200: {
+        formula: "((Prezzo / SMA200) - 1) * 100.",
+        purpose: "Misura la distanza dalla tendenza strutturale di lungo periodo. Per ETF azionari globali, un ritracciamento moderato tra -3% e -8% sotto SMA200 puo indicare una finestra accumulativa, ma non e una garanzia.",
+        example: "Prezzo 96, SMA200 100 => -4%: prezzo leggermente sotto la media di lungo periodo, da valutare con drawdown, regime SMA50/200 e qualita del fondo.",
+      },
+      smaCross: {
+        formula: "Golden regime se SMA50 > SMA200; Death regime se SMA50 < SMA200. Il cross e il cambio di questa relazione; * indica un cross entro 5 sedute.",
+        purpose: "Conferma il regime di lungo periodo e rende visibile quando la relazione tra medie veloci e lente e cambiata di recente.",
+        example: "SMA50 102 e SMA200 100 => Golden regime. Se il passaggio e avvenuto tre sedute fa, la colonna mostra Golden * e il dialog Status riporta data e sedute trascorse.",
+      },
       rvol: {
         formula: "Volume di oggi / media del volume delle ultime 20 sedute.",
         purpose: "Verifica se un movimento di prezzo e supportato da un aumento reale della partecipazione degli scambi, o avviene con volumi scarsi (meno affidabile).",
@@ -442,6 +472,16 @@ const I18N = {
         formula: "Deviazione standard dei rendimenti giornalieri delle ultime 20 sedute, annualizzata moltiplicando per la radice di 252 (giorni di borsa in un anno).",
         purpose: "Quantifica il rischio a breve termine, utile per confrontare ETF con oscillazioni molto diverse (es. bond fund vs ETF su materie prime).",
         example: "Deviazione standard giornaliera 0.9% => volatilita annualizzata ~14.3%. Con deviazione 2.2% (tipica di settori/minerari/leva) sale a ~34.9%: nello Score la volatilita elevata viene penalizzata, anche con rendimento positivo.",
+      },
+      drawdownFromAth: {
+        formula: "((Prezzo corrente / massimo storico disponibile) - 1) * 100.",
+        purpose: "Misura la perdita corrente dai massimi storici, distinta dal Max DD 52W che rappresenta la peggior discesa interna all'ultimo anno. Aiuta a definire scaglioni di ingresso durante correzioni profonde.",
+        example: "ATH 120 e prezzo 90 => -25%: l'ETF quota il 25% sotto il massimo storico disponibile.",
+      },
+      range52wPosition: {
+        formula: "((Prezzo - minimo 52W) / (massimo 52W - minimo 52W)) * 100.",
+        purpose: "Colloca il prezzo nel canale annuale. Valori tra 20% e 40% indicano prossimita ai minimi annuali senza essere necessariamente su nuovi minimi.",
+        example: "Minimo 80, massimo 120, prezzo 92 => 30%: l'ETF e nel terzo basso del proprio range a 52 settimane.",
       },
       distance52wHigh: {
         formula: "((Prezzo / Massimo delle ultime 252 sedute) - 1) * 100.",
@@ -461,7 +501,7 @@ const I18N = {
       score: {
         formula: "Punteggio additivo 0-100 (poi troncato a 100): +12 se Prezzo>SMA20; +10 se SMA20>SMA50; +10 se SMA50>SMA200; fino a +20 da RSI14 (RSI 35 => 0 punti, RSI>=61 satura a 20); fino a +18 da Positivi20 (20/20 giorni positivi => 18 punti); fino a +10 da RVOL (RVOL>=1.63 satura a 10); fino a +10 da Volatilita20D, in modo inverso (piu bassa e meglio: da 35% in su, 0 punti); fino a +10 da Distanza SMA20, in modo simmetrico (il massimo si ha quando il prezzo e vicino alla SMA20, e cala sia se il prezzo e molto sopra sia se e molto sotto); infine fino a +5 punti di qualita in base a masse gestite, costo (TER) ed eta del fondo.",
         purpose: "Riassume in un unico numero trend tecnico, momentum, rischio e qualita del fondo, per confrontare rapidamente molti ETF senza dover leggere ogni singola colonna.",
-        example: "Prezzo>SMA20 (+12), SMA20>SMA50 (+10), SMA50>SMA200 (+10), RSI 55 => +15.4, Positivi20=14/20 => +12.6, RVOL 1.2 => +4.8, Vol20D 22% => +2.1, Dist.SMA20 6% => +6, Qualita 3 => totale ~76. Nota importante: lo Score NON include la stagionalita (mostrata a parte nella colonna Seasonality) e penalizza sia l'eccesso di volatilita sia le forti estensioni dal prezzo medio: per questo ETF a leva o su materie prime/minerari (es. URA) restano spesso su punteggi contenuti anche con un trend di fondo forte.",
+        example: "Prezzo>SMA20 (+12), SMA20>SMA50 (+10), SMA50>SMA200 (+10), RSI 55 => +15.4, Positivi20=14/20 => +12.6, RVOL 1.2 => +4.8, Vol20D 22% => +2.1, Dist.SMA20 6% => +6, Qualita 3 => totale ~76. Nota importante: lo Score NON include la stagionalità (mostrata a parte nella colonna Seasonality) e penalizza sia l'eccesso di volatilita sia le forti estensioni dal prezzo medio: per questo ETF a leva o su materie prime/minerari (es. URA) restano spesso su punteggi contenuti anche con un trend di fondo forte.",
       },
       status: {
         formula: "Ogni metrica (trend, RSI14, Positivi20, Dist SMA20, RVOL, Vol20D, 52W High, Max DD 52W, rendimento 1M, qualita del fondo) assegna un voto da -3 a +3 con una motivazione testuale. La somma dei voti decide l'etichetta: >=9 Strong Buy, >=3 Buy, >=-3 Hold, altrimenti Sell. Strong Buy richiede inoltre un Trend Forte confermato; un Trend Forte non puo mai risultare Sell.",
@@ -521,7 +561,7 @@ const I18N = {
     },
     season: {
       loading: "Caricamento fino a 20 anni di storico giornaliero...",
-      titleFallback: "Stagionalita",
+      titleFallback: "stagionalità",
       intro: "Storico disponibile circa",
       years: "anni",
       dateFormat: "Le date sono mostrate nel formato GG/MM.",
@@ -761,8 +801,12 @@ const I18N = {
       positive20: "Positive 20D",
       streak: "Streak 20D",
       distanceSma20: "Dist SMA20",
+      distanceSma200: "Dist SMA200",
+      smaCross: "SMA50/200 Cross",
       rvol: "RVOL",
       volatility20d: "Vol 20D",
+      drawdownFromAth: "Drawdown from ATH",
+      range52wPosition: "52W Range Position",
       distance52wHigh: "52W High",
       maxDrawdown52w: "Max DD 52W",
       netAssets: "AUM",
@@ -789,8 +833,12 @@ const I18N = {
       positive20: "Positive days over last 20 sessions.",
       streak: "Consecutive recent positive days.",
       distanceSma20: "Percent distance from 20-day average.",
+      distanceSma200: "Percent distance from the 200-day simple moving average.",
+      smaCross: "SMA50/SMA200 regime and latest cross; * marks a signal in the last 5 sessions.",
       rvol: "Relative volume vs 20-day average.",
       volatility20d: "20-day annualized volatility.",
+      drawdownFromAth: "Current drawdown from the available all-time high.",
+      range52wPosition: "Current price position between the 52-week low and high.",
       distance52wHigh: "Distance from yearly high.",
       maxDrawdown52w: "Worst drawdown over last year.",
       netAssets: "Assets under management.",
@@ -899,6 +947,16 @@ const I18N = {
         purpose: "Measures how far price has drifted from its short moving average: very high values, positive or negative, signal a possible statistical excess.",
         example: "Price 105, SMA20 100 => +5% (orderly trend). Price 130, SMA20 100 => +30% (strong overextension: the Score treats this as risk, not reward).",
       },
+      distanceSma200: {
+        formula: "((Price / SMA200) - 1) * 100.",
+        purpose: "Measures distance from the structural long-term trend. A moderate pullback below SMA200 can be evaluated as a long-term accumulation context alongside risk measures.",
+        example: "Price 96, SMA200 100 => -4%: slightly below the long-term average.",
+      },
+      smaCross: {
+        formula: "Golden regime when SMA50 > SMA200; Death regime when SMA50 < SMA200. A cross is the change in this relation; * marks a cross within 5 sessions.",
+        purpose: "Shows structural trend regime and highlights a recent transition between the two moving averages.",
+        example: "SMA50 102 and SMA200 100 => Golden regime. A cross three sessions ago displays Golden *.",
+      },
       rvol: {
         formula: "Today's volume / average volume of the last 20 sessions.",
         purpose: "Checks whether a price move is backed by real participation growth, or happens on thin volume (less reliable).",
@@ -908,6 +966,16 @@ const I18N = {
         formula: "Standard deviation of the last 20 daily returns, annualized by multiplying by the square root of 252 (trading days in a year).",
         purpose: "Quantifies short-term risk, useful to compare ETFs with very different swings (e.g. a bond fund vs a commodity ETF).",
         example: "Daily stdev 0.9% => annualized volatility ~14.3%. With stdev 2.2% (typical for sector/mining/leveraged ETFs) it rises to ~34.9%: the Score penalizes high volatility even with a positive return.",
+      },
+      drawdownFromAth: {
+        formula: "((Current price / available all-time high) - 1) * 100.",
+        purpose: "Measures the current decline from the all-time high, separate from 52W maximum drawdown which measures the worst internal decline in the last year.",
+        example: "ATH 120 and price 90 => -25%.",
+      },
+      range52wPosition: {
+        formula: "((Price - 52W low) / (52W high - 52W low)) * 100.",
+        purpose: "Places the price in its annual channel. Values between 20% and 40% are in the lower portion of the range.",
+        example: "Low 80, high 120, price 92 => 30%.",
       },
       distance52wHigh: {
         formula: "((Price / 252-session high) - 1) * 100.",
@@ -1087,8 +1155,11 @@ const NUMERIC_COLUMN_KEYS = new Set([
   "positive20",
   "streak",
   "distanceSma20",
+  "distanceSma200",
   "rvol",
   "volatility20d",
+  "drawdownFromAth",
+  "range52wPosition",
   "distance52wHigh",
   "maxDrawdown52w",
   "netAssets",
@@ -1096,6 +1167,7 @@ const NUMERIC_COLUMN_KEYS = new Set([
 
 function getColumnNumericValue(key, row) {
   if (key === "rvol") return row.relativeVolume;
+  if (key === "smaCross") return row.smaCross?.distancePercent;
   return row[key];
 }
 
@@ -1206,6 +1278,12 @@ export default function Home() {
   const [guideOpen, setGuideOpen] = useState(false);
   const [cookieConsent, setCookieConsent] = useState(null);
   const [statusModal, setStatusModal] = useState(null);
+  const [watchlist, setWatchlist] = useState([]);
+  const [watchlistOnly, setWatchlistOnly] = useState(false);
+  const [profile, setProfile] = useState({ mode: "long", selectedMetrics: PROFILE_METRICS.long });
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [guideView, setGuideView] = useState("guide");
+  const [preferencesHydrated, setPreferencesHydrated] = useState(false);
   const abortRef = useRef(null);
 
   const t = I18N[lang];
@@ -1234,6 +1312,11 @@ export default function Home() {
         setSort({ key: savedSort.key, dir: savedSort.dir });
       }
     }
+
+    const savedWatchlist = readCookieJson(COOKIE_WATCHLIST);
+    if (Array.isArray(savedWatchlist)) setWatchlist([...new Set(savedWatchlist.filter((ticker) => typeof ticker === "string"))]);
+    setProfile(normalizeProfile(readCookieJson(COOKIE_INVESTMENT_PROFILE)));
+    setPreferencesHydrated(true);
   }, []);
 
   useEffect(() => {
@@ -1250,6 +1333,16 @@ export default function Home() {
     if (cookieConsent !== "accepted") return;
     writeCookieJson(COOKIE_SORT, sort);
   }, [sort, cookieConsent]);
+
+  useEffect(() => {
+    if (!preferencesHydrated) return;
+    writeCookieJson(COOKIE_WATCHLIST, watchlist);
+  }, [watchlist, preferencesHydrated]);
+
+  useEffect(() => {
+    if (!preferencesHydrated) return;
+    writeCookieJson(COOKIE_INVESTMENT_PROFILE, profile);
+  }, [profile, preferencesHydrated]);
 
   useEffect(() => {
     function closeTooltipOnOutsideClick(event) {
@@ -1331,6 +1424,7 @@ export default function Home() {
         return false;
       }
       if (only && !(x.categories || []).includes(only)) return false;
+      if (watchlistOnly && !watchlist.includes(x.ticker)) return false;
       if ((x.categories || []).some((c) => ex.has(c))) return false;
       if (min != null && (x.netAssets == null ? missing !== "include" : x.netAssets < min)) return false;
       if (mt != null && (x.ter == null ? missing !== "include" : x.ter > mt)) return false;
@@ -1357,7 +1451,7 @@ export default function Home() {
     });
 
     return data;
-  }, [rows, search, only, excluded, minAum, maxTer, missing, sort, columnFilters, t, seasonCache, minSuccess]);
+  }, [rows, search, only, excluded, minAum, maxTer, missing, sort, columnFilters, t, seasonCache, minSuccess, watchlistOnly, watchlist]);
 
   const capitalFlow = useMemo(() => {
     const ranked = [...rows]
@@ -1368,13 +1462,33 @@ export default function Home() {
       .filter((x) => x.ok && Number.isFinite(Number(x.monthReturn)))
       .sort((a, b) => Number(a.monthReturn ?? 0) - Number(b.monthReturn ?? 0));
 
+    const categoryMap = new Map();
+    for (const row of ranked) {
+      for (const category of row.categories || ["Altri"]) {
+        const current = categoryMap.get(category) || [];
+        current.push(row);
+        categoryMap.set(category, current);
+      }
+    }
+    const categoryDemand = [...categoryMap.entries()]
+      .map(([category, items]) => ({
+        category,
+        count: items.length,
+        monthReturn: items.reduce((sum, item) => sum + Number(item.monthReturn || 0), 0) / items.length,
+        rvol: items.filter((item) => Number.isFinite(Number(item.relativeVolume))).reduce((sum, item, _, valid) => sum + Number(item.relativeVolume), 0) / items.filter((item) => Number.isFinite(Number(item.relativeVolume))).length || null,
+        score: items.reduce((sum, item) => sum + Number(item.score || 0), 0) / items.length,
+      }))
+      .sort((a, b) => b.monthReturn - a.monthReturn || b.score - a.score);
+
     return {
       inflow: ranked
         .slice(0, CAPITAL_FLOW_LIMIT)
-        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0) })),
+        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0), rvol: x.relativeVolume, start: x.monthStartDate, end: x.lastDate, category: x.categories?.[0] || "-" })),
       outflow: weak
         .slice(0, CAPITAL_FLOW_LIMIT)
-        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0) })),
+        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0), rvol: x.relativeVolume, start: x.monthStartDate, end: x.lastDate, category: x.categories?.[0] || "-" })),
+      categoryDemand: categoryDemand.slice(0, CAPITAL_FLOW_LIMIT),
+      rotationPairs: ranked.slice(0, 5).map((target, index) => ({ from: weak[index], to: target })),
     };
   }, [rows]);
 
@@ -1418,6 +1532,10 @@ export default function Home() {
     if (choice === "accepted") return;
     deleteCookie(COOKIE_VISIBLE_COLUMNS);
     deleteCookie(COOKIE_SORT);
+  }
+
+  function toggleWatchlist(ticker) {
+    setWatchlist((current) => current.includes(ticker) ? current.filter((item) => item !== ticker) : [...current, ticker]);
   }
 
   function clearFilters() {
@@ -1470,13 +1588,22 @@ export default function Home() {
   }
 
   function renderCell(key, row, rowState) {
-    const { trendLabel, rsi, score, seasonLabel, seasonTone } = rowState;
+    const { trendLabel, rsi, score, seasonLabel, seasonTone, profileStatus } = rowState;
 
     if (key === "ticker") {
       return (
         <td className="tickerCell">
           <div className="tickerCellInner">
             <button className="tickerButton" onClick={() => { void getSeasonality(row.ticker, true); }}>{row.ticker}</button>
+            <button
+              type="button"
+              className={`watchlistButton ${watchlist.includes(row.ticker) ? "active" : ""}`}
+              onClick={() => toggleWatchlist(row.ticker)}
+              title={watchlist.includes(row.ticker) ? "Rimuovi dalla watchlist" : "Aggiungi alla watchlist"}
+              aria-label={watchlist.includes(row.ticker) ? "Rimuovi dalla watchlist" : "Aggiungi alla watchlist"}
+            >
+              {watchlist.includes(row.ticker) ? "★" : "☆"}
+            </button>
             <a
               className="chartLink"
               href={tradingViewUrl(row.ticker)}
@@ -1504,13 +1631,13 @@ export default function Home() {
       );
     }
     if (key === "status") {
-      const statusKey = row.status || "hold";
+      const statusKey = profileStatus.status;
       return (
         <td className="col-status">
           <button
             type="button"
             className={`statusBadge ${statusTone(statusKey)}`}
-            onClick={() => setStatusModal({ ticker: row.ticker, name: row.name, statusKey, points: row.statusPoints, reasons: row.statusReasons })}
+            onClick={() => setStatusModal({ ticker: row.ticker, name: row.name, statusKey, points: profileStatus.score, reasons: profileStatus.reasons, profileMode: profileStatus.mode, smaCross: row.smaCross })}
           >
             {t.statusLabels[statusKey] || statusKey}
           </button>
@@ -1522,8 +1649,12 @@ export default function Home() {
     if (key === "positive20") return <td title={tooltip(t.tooltip.positive, t.tooltipBody.positive)}>{row.positive20 != null ? `${row.positive20}/20` : "-"}</td>;
     if (key === "streak") return <td title={tooltip(t.tooltip.streak, t.tooltipBody.streak)}>{row.streak != null ? `${row.streak}/20` : "-"}</td>;
     if (key === "distanceSma20") return <td className={cls(row.distanceSma20)} title={tooltip(t.tooltip.distSma20, t.tooltipBody.distSma20)}>{row.distanceSma20 == null ? "-" : `${fmt(row.distanceSma20, 1)}%`}</td>;
+    if (key === "distanceSma200") return <td className={cls(row.distanceSma200)} title="Distanza percentuale del prezzo dalla SMA a 200 sedute.">{row.distanceSma200 == null ? "-" : `${fmt(row.distanceSma200, 1)}%`}</td>;
+    if (key === "smaCross") return <td title="Regime SMA50/SMA200 e ultimo incrocio."><span className={`trendBadge ${row.smaCross?.regime === "golden" ? "strong" : "weak"}`}>{row.smaCross ? `${row.smaCross.regime === "golden" ? "Golden" : "Death"}${row.smaCross.isRecent ? " *" : ""}` : "-"}</span></td>;
     if (key === "rvol") return <td title={tooltip(t.tooltip.rvol, t.tooltipBody.rvol)}>{row.relativeVolume == null ? "-" : `${fmt(row.relativeVolume, 1)}x`}</td>;
     if (key === "volatility20d") return <td title={tooltip(t.tooltip.vol20d, t.tooltipBody.vol20d)}>{row.volatility20d == null ? "-" : fmt(row.volatility20d, 1)}</td>;
+    if (key === "drawdownFromAth") return <td className={cls(row.drawdownFromAth)} title="Distanza percentuale dal massimo storico disponibile.">{row.drawdownFromAth == null ? "-" : `${fmt(row.drawdownFromAth, 1)}%`}</td>;
+    if (key === "range52wPosition") return <td title="Posizione corrente tra minimo e massimo delle ultime 52 settimane.">{row.range52wPosition == null ? "-" : `${fmt(row.range52wPosition, 1)}%`}</td>;
     if (key === "distance52wHigh") return <td className={cls(row.distance52wHigh)} title={tooltip(t.tooltip.high52, t.tooltipBody.high52)}>{row.distance52wHigh == null ? "-" : `${fmt(row.distance52wHigh, 1)}%`}</td>;
     if (key === "maxDrawdown52w") return <td className={cls(row.maxDrawdown52w)} title={tooltip(t.tooltip.maxDd, t.tooltipBody.maxDd)}>{row.maxDrawdown52w == null ? "-" : `${fmt(row.maxDrawdown52w, 1)}%`}</td>;
     if (key === "netAssets") return <td className="mutedCell" title={tooltip(t.tooltip.aum, t.tooltipBody.aum)}>{row.netAssets == null ? "-" : formatAum(row.netAssets)}</td>;
@@ -1591,11 +1722,12 @@ export default function Home() {
           <button
             type="button"
             className="button primary topAction"
-            onClick={() => setColumnPickerOpen(true)}
-            title={t.selectColumnsButton}
+            onClick={() => { setGuideView("metrics"); setGuideOpen(true); }}
+            title="Visiona metriche"
           >
-            {t.selectColumnsButton}
+            Visiona metriche
           </button>
+          <button type="button" className="button topAction" onClick={() => setProfileOpen(true)}>Impostazioni</button>
           <button type="button" className="button topAction" onClick={() => setGuideOpen(true)}>{t.guideButton}</button>
           <a
             className="iconButton"
@@ -1654,6 +1786,10 @@ export default function Home() {
 
         <Field label={t.minSuccessLabel}>
           <input type="number" min="0" max="100" value={minSuccess} onChange={(e) => setMinSuccess(Number(e.target.value || 0))} />
+        </Field>
+
+        <Field label="Watchlist">
+          <button className={`button ${watchlistOnly ? "primary" : ""}`} onClick={() => setWatchlistOnly((value) => !value)}>Solo watchlist ({watchlist.length})</button>
         </Field>
       </div>}
 
@@ -1730,7 +1866,7 @@ export default function Home() {
               const score = x.score ?? 0;
               const seasonLabel = activeWindow ? (score >= 80 ? t.aligned : t.watch) : "-";
               const seasonTone = !activeWindow ? "off" : score >= 80 ? "aligned" : "watch";
-              const rowState = { trendLabel, rsi, score, seasonLabel, seasonTone };
+              const rowState = { trendLabel, rsi, score, seasonLabel, seasonTone, profileStatus: computeProfileStatus(x, profile) };
 
               return (
                 <tr key={x.ticker}>
@@ -1754,7 +1890,7 @@ export default function Home() {
             <div className="modalHead">
               <div>
                 <h2>{t.flowTitle}</h2>
-                <div className="hint">{t.flowHint}</div>
+                <div className="hint">Proxy di rotazione, non flussi netti certificati: Yahoo Finance non rileva trasferimenti reali tra ETF. La finestra usa il rendimento da circa un mese fino all'ultima quotazione disponibile.</div>
               </div>
               <button className="button" onClick={() => setFlowOpen(false)}>{t.modalClose}</button>
             </div>
@@ -1764,7 +1900,7 @@ export default function Home() {
                 {capitalFlow.inflow.length ? (
                   capitalFlow.inflow.map((item) => (
                     <div key={item.ticker} className="flowRow">
-                      <span><strong>{item.ticker}</strong> · {item.name}</span>
+                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · {item.start ? new Date(item.start).toLocaleDateString("it-IT") : "inizio n/d"} → {item.end ? new Date(item.end).toLocaleDateString("it-IT") : "fine n/d"} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small></span>
                       <strong className="positive">{pct(item.value)}</strong>
                     </div>
                   ))
@@ -1777,13 +1913,27 @@ export default function Home() {
                 {capitalFlow.outflow.length ? (
                   capitalFlow.outflow.map((item) => (
                     <div key={item.ticker} className="flowRow">
-                      <span><strong>{item.ticker}</strong> · {item.name}</span>
+                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · {item.start ? new Date(item.start).toLocaleDateString("it-IT") : "inizio n/d"} → {item.end ? new Date(item.end).toLocaleDateString("it-IT") : "fine n/d"} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small></span>
                       <strong className="negative">{pct(item.value)}</strong>
                     </div>
                   ))
                 ) : (
                   <div className="muted">{t.noData}</div>
                 )}
+              </div>
+            </div>
+            <div className="flowGrid">
+              <div className="flowPanel">
+                <h3>Asset piu richiesti</h3>
+                {capitalFlow.categoryDemand.map((item) => (
+                  <div key={item.category} className="flowRow"><span><strong>{item.category}</strong><small>{item.count} ETF · RVOL medio {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`} · score medio {fmt(item.score, 0)}</small></span><strong className={cls(item.monthReturn)}>{pct(item.monthReturn)}</strong></div>
+                ))}
+              </div>
+              <div className="flowPanel">
+                <h3>Rotazioni candidate</h3>
+                {capitalFlow.rotationPairs.map(({ from, to }) => (
+                  <div key={`${from.ticker}-${to.ticker}`} className="flowRow"><span><strong>Da {from.ticker}</strong> ({from.categories?.[0] || "-"})<small>A {to.ticker} ({to.categories?.[0] || "-"}) · confronto su 1 mese</small></span><strong className="positive">{pct(to.monthReturn)}</strong></div>
+                ))}
               </div>
             </div>
           </div>
@@ -1814,7 +1964,9 @@ export default function Home() {
         />
       )}
 
-      {guideOpen && <GuideModal t={t} onClose={() => setGuideOpen(false)} />}
+      {guideOpen && <GuideModal t={t} initialView={guideView} onClose={() => setGuideOpen(false)} />}
+
+      {profileOpen && <ProfileSettingsModal profile={profile} onChange={setProfile} onClose={() => setProfileOpen(false)} />}
 
       {statusModal && (
         <StatusModal
@@ -2059,11 +2211,17 @@ function StatusModal({ t, lang, data, onClose }) {
               {data.ticker} · <span className={`statusBadge ${statusTone(data.statusKey)}`}>{t.statusLabels[data.statusKey] || data.statusKey}</span>
             </h2>
             <div className="hint">{data.name} — {t.statusModalHint}</div>
+            <div className="hint">Profilo: {data.profileMode === "long" ? "Long term" : data.profileMode === "short" ? "Short term" : "Custom"}</div>
           </div>
           <button className="button" onClick={onClose}>{t.modalClose}</button>
         </div>
         {data.points != null && (
           <div className="hint">{t.statusPointsLabel}: <strong>{data.points}</strong></div>
+        )}
+        {data.smaCross && (
+          <div className="hint">
+            {data.smaCross.regime === "golden" ? "Golden Regime" : "Death Regime"} · ultimo cross: {data.smaCross.lastCrossDate ? new Date(data.smaCross.lastCrossDate).toLocaleDateString(lang === "it" ? "it-IT" : "en-US") : "storico non disponibile"} · {data.smaCross.sessionsSinceCross ?? "-"} sedute · SMA50/SMA200 {fmt(data.smaCross.distancePercent, 1)}%{data.smaCross.isRecent ? " · SEGNALE RECENTE" : ""}
+          </div>
         )}
         <ul className="statusReasonList">
           {reasons.map((reason, idx) => (
@@ -2107,9 +2265,9 @@ function ColumnSelectorModal({ t, visibleColumns, onToggleColumn, onPresetEssent
   );
 }
 
-function GuideModal({ t, onClose }) {
+function GuideModal({ t, initialView = "guide", onClose }) {
   const guide = t.guide;
-  const [view, setView] = useState("guide");
+  const [view, setView] = useState(initialView);
   const isMetricDetail = view !== "guide" && view !== "metrics" && !!t.metricDetails[view];
 
   return (
@@ -2176,6 +2334,35 @@ function GuideModal({ t, onClose }) {
   );
 }
 
+function ProfileSettingsModal({ profile, onChange, onClose }) {
+  const labels = {
+    trend: "Trend", rsi14: "RSI 14", positive10: "Positivi 10G", positive20: "Positivi 20G", streak: "Serie positiva 20G", distanceSma20: "Distanza SMA20", rvol: "RVOL", volatility20d: "Volatilita 20G", dailyReturn: "Rendimento 1G", threeDayReturn: "Rendimento 3G", weekReturn: "Rendimento 1S", monthReturn: "Rendimento 1M", distance52wHigh: "Distanza massimo 52S", maxDrawdown52w: "Drawdown massimo 52S",
+    distanceSma200: "Distanza SMA200", smaCross: "Cross SMA50/SMA200", drawdownFromAth: "Drawdown da ATH", range52wPosition: "Posizione range 52W", year1Return: "Rendimento 1Y", quality: "Qualita fondo",
+  };
+  const metrics = CUSTOM_METRICS;
+  function setMode(mode) {
+    onChange(normalizeProfile({ mode, selectedMetrics: mode === "custom" ? profile.selectedMetrics : undefined }));
+  }
+  function toggleMetric(metric) {
+    const current = profile.selectedMetrics || [];
+    const selectedMetrics = current.includes(metric) ? current.filter((item) => item !== metric) : [...current, metric];
+    onChange(normalizeProfile({ mode: "custom", selectedMetrics }));
+  }
+  return (
+    <div className="modalBackdrop" onMouseDown={onClose}>
+      <div className="modal columnModal" onMouseDown={(event) => event.stopPropagation()}>
+        <div className="modalHead"><div><h2>Impostazioni status</h2><div className="hint">Lo status usa solo le metriche del profilo selezionato.</div></div><button className="button" onClick={onClose}>Chiudi</button></div>
+        <div className="tabs">
+          <button className={`tab ${profile.mode === "long" ? "active" : ""}`} onClick={() => setMode("long")}>Long term</button>
+          <button className={`tab ${profile.mode === "short" ? "active" : ""}`} onClick={() => setMode("short")}>Short term</button>
+          <button className={`tab ${profile.mode === "custom" ? "active" : ""}`} onClick={() => setMode("custom")}>Custom</button>
+        </div>
+        {profile.mode === "custom" && <div className="columnGrid">{metrics.map((metric) => <label key={metric} className="columnOption"><input type="checkbox" checked={profile.selectedMetrics.includes(metric)} onChange={() => toggleMetric(metric)} /><span>{labels[metric]}</span></label>)}</div>}
+      </div>
+    </div>
+  );
+}
+
 function CookieConsentModal({ t, onAccept, onReject }) {
   return (
     <div className="modalBackdrop" onMouseDown={onReject}>
@@ -2224,6 +2411,7 @@ function SeasonModal({ data, loading, onClose, minSuccess, lang }) {
             <div className="hint">
               {t.intro} {data.availableYears || 0} {t.years}. {t.dateFormat}
             </div>
+            <div className="hint">Mercato di riferimento: SPY/SMA200 · regime attuale: <strong className={data.benchmark?.regime === "bull" ? "positive" : "negative"}>{data.benchmark?.regime === "bull" ? "Bull" : data.benchmark?.regime === "bear" ? "Bear" : "n/d"}</strong>. Le tabelle separano i campioni storici per regime.</div>
           </div>
           <button className="button" onClick={onClose}>{t.close}</button>
         </div>
@@ -2377,6 +2565,10 @@ function DailyTables({ data, windows, lang }) {
               <th>{t.samples}</th>
               <th>{t.best}</th>
               <th>{t.worst}</th>
+              <th>Bull {t.average}</th>
+              <th>Bull N</th>
+              <th>Bear {t.average}</th>
+              <th>Bear N</th>
             </tr>
           </thead>
           <tbody>
@@ -2389,6 +2581,10 @@ function DailyTables({ data, windows, lang }) {
                 <td>{s.samples}</td>
                 <td className={cls(s.best)}>{pct(s.best)}</td>
                 <td className={cls(s.worst)}>{pct(s.worst)}</td>
+                <td className={cls(s.bull?.avg)}>{pct(s.bull?.avg)}</td>
+                <td>{s.bull?.samples ?? 0}</td>
+                <td className={cls(s.bear?.avg)}>{pct(s.bear?.avg)}</td>
+                <td>{s.bear?.samples ?? 0}</td>
               </tr>
             ))}
           </tbody>
@@ -2413,6 +2609,10 @@ function MonthlyTables({ data, windows, lang }) {
                   <th>{t.average}</th>
                   <th>{t.successRate}</th>
                   <th>{t.count}</th>
+                  <th>Bull {t.average}</th>
+                  <th>Bull N</th>
+                  <th>Bear {t.average}</th>
+                  <th>Bear N</th>
                 </tr>
               </thead>
               <tbody>
@@ -2422,6 +2622,10 @@ function MonthlyTables({ data, windows, lang }) {
                     <td className={cls(m.avg)}>{pct(m.avg)}</td>
                     <td>{m.successRate?.toFixed(1) ?? "-"}%</td>
                     <td>{m.samples}</td>
+                    <td className={cls(m.bull?.avg)}>{pct(m.bull?.avg)}</td>
+                    <td>{m.bull?.samples ?? 0}</td>
+                    <td className={cls(m.bear?.avg)}>{pct(m.bear?.avg)}</td>
+                    <td>{m.bear?.samples ?? 0}</td>
                   </tr>
                 ))}
               </tbody>

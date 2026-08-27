@@ -127,6 +127,23 @@ select {
   height: 18px;
 }
 
+.watchlistButton {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #8da8c4;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.watchlistButton:hover,
+.watchlistButton.active {
+  color: var(--warning);
+}
+
 .filters {
   display: grid;
   grid-template-columns: repeat(7, minmax(170px, 1fr));
@@ -964,6 +981,18 @@ select {
 
 .flowRow:last-child {
   border-bottom: none;
+}
+
+.flowRow span {
+  min-width: 0;
+}
+
+.flowRow small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 .legalFooter {

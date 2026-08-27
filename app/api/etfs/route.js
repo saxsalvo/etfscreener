@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { ALL_FAMOUS_ETF_TICKERS, getTickerCategories } from "../../../lib/etfs";
 import { yahooFinance, priceOf, pctReturn, normalizeExpenseRatio, normalizeDateValue, ageInYears, withTimeout, NO_VALIDATE } from "../../../lib/yahoo";
 import { cacheGet, cacheSet } from "../../../lib/cache";
+import { computeLongTermMetrics } from "../../../lib/technical-metrics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -102,10 +103,15 @@ function rollingDrawdown(closes) {
 }
 
 function priceOnOrBefore(quotes, targetDate) {
+  const quote = quoteOnOrBefore(quotes, targetDate);
+  return quote ? priceOf(quote) : null;
+}
+
+function quoteOnOrBefore(quotes, targetDate) {
   const target = targetDate.getTime();
   for (let i = quotes.length - 1; i >= 0; i--) {
     const t = new Date(quotes[i].date).getTime();
-    if (t <= target) return priceOf(quotes[i]);
+    if (t <= target) return quotes[i];
   }
   return null;
 }
@@ -211,7 +217,7 @@ function computeStatus({ trend, rsi14, positive20, distanceSma20, rvol, volatili
 }
 
 async function getOne(ticker, forceRefresh = false) {
-  const cacheKey = `quote:${ticker}:v4`;
+  const cacheKey = `quote:${ticker}:v6`;
   if (!forceRefresh) {
     const cached = cacheGet(cacheKey, CACHE_MS);
     if (cached) return cached;
@@ -240,7 +246,8 @@ async function getOne(ticker, forceRefresh = false) {
     const lastDate = quotes[last]?.date ? new Date(quotes[last].date) : new Date();
     const monthTarget = new Date(lastDate);
     monthTarget.setUTCMonth(monthTarget.getUTCMonth() - 1);
-    const monthAgoPrice = priceOnOrBefore(quotes, monthTarget);
+    const monthAgoQuote = quoteOnOrBefore(quotes, monthTarget);
+    const monthAgoPrice = monthAgoQuote ? priceOf(monthAgoQuote) : null;
 
     const oneYearTarget = new Date(lastDate);
     oneYearTarget.setUTCFullYear(oneYearTarget.getUTCFullYear() - 1);
@@ -271,7 +278,8 @@ async function getOne(ticker, forceRefresh = false) {
       return prev && prev !== 0 ? ((value / prev) - 1) * 100 : null;
     }).filter((value) => value != null);
     const volatility20d = dailyReturns.length ? standardDeviation(dailyReturns) * Math.sqrt(252) : null;
-    const rangeHigh52w = Math.max(...closes.slice(-252));
+    const longTermMetrics = computeLongTermMetrics(closes, quotes.map((quote) => quote.date?.toISOString?.() || String(quote.date)));
+    const rangeHigh52w = longTermMetrics.range52wHigh;
     const distance52wHigh = current != null && rangeHigh52w ? ((current / rangeHigh52w) - 1) * 100 : null;
     const drawdown52w = rollingDrawdown(closes.slice(-252));
     const distanceSma20 = distanceFromSma(current, sma20);
@@ -348,6 +356,7 @@ async function getOne(ticker, forceRefresh = false) {
       threeDayReturn: pctReturn(current, at(3)),
       weekReturn: pctReturn(current, at(5)),
       monthReturn: pctReturn(current, monthAgoPrice),
+      monthStartDate: monthAgoQuote?.date || null,
       quarterReturn: pctReturn(current, at(60)),
       year1Return: pctReturn(current, oneYearAgoPrice),
       year3Return: pctReturn(current, threeYearAgoPrice),
@@ -359,14 +368,20 @@ async function getOne(ticker, forceRefresh = false) {
       sma200,
       trend,
       distanceSma20,
+      distanceSma200: longTermMetrics.distanceSma200,
+      smaCross: longTermMetrics.smaCross,
       positive10,
       positive20,
       streak,
       relativeVolume: rvol,
       volatility20d: volatility20d,
       range52wHigh: rangeHigh52w,
+      range52wLow: longTermMetrics.range52wLow,
+      range52wPosition: longTermMetrics.range52wPosition,
       distance52wHigh,
       maxDrawdown52w: drawdown52w,
+      athPrice: longTermMetrics.athPrice,
+      drawdownFromAth: longTermMetrics.drawdownFromAth,
       score,
       status: statusResult.status,
       statusPoints: statusResult.points,

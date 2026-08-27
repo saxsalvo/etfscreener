@@ -6,12 +6,12 @@ import { useEffect, useMemo, useState } from "react";
 const I18N = {
   it: {
     back: "Torna allo screener",
-    title: "ETF con stagionalita futura",
+    title: "ETF con stagionalità futura",
     subtitle: "Elenco dei fondi con una finestra stagionale favorevole in corso o imminente.",
     loading: "Caricamento in corso...",
     found: (n, avg) => `Trovati ${n} ETF · media success rate ${avg}%`,
     openDetails: "Apri dettaglio",
-    noRows: "Nessun ETF con stagionalita futura rilevata.",
+    noRows: "Nessun ETF con stagionalità futura rilevata.",
     ticker: "Ticker",
     name: "Nome ETF",
     window: "Finestra futura",
@@ -20,7 +20,7 @@ const I18N = {
     avgWindowRef: "Rendimento medio finestra (10a/15a/20a)",
     details: "Dettagli",
     loadingDetails: "Caricamento dettagli stagionali...",
-    modalFallback: "Stagionalita",
+    modalFallback: "stagionalità",
     modalHint: "Dettaglio completo delle finestre stagionali future e della distribuzione storica.",
     close: "Chiudi",
     seasonalWindows: "Finestre stagionali",

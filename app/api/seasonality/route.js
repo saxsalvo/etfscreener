@@ -22,7 +22,7 @@ export async function GET(request) {
     return NextResponse.json({ error: "Ticker non presente nella lista" }, { status: 400 });
   }
 
-  const key = `season:v2:${ticker}:${windows.join("-")}`;
+  const key = `season:v3:${ticker}:${windows.join("-")}`;
   const cached = cacheGet(key, CACHE_MS);
   if (cached) return NextResponse.json(cached);
 
@@ -30,12 +30,15 @@ export async function GET(request) {
     const period1 = new Date();
     period1.setUTCFullYear(period1.getUTCFullYear() - Math.max(...windows) - 1);
 
-    const [chart, quote] = await Promise.all([
+    const benchmarkPeriod = new Date(period1);
+    benchmarkPeriod.setUTCDate(benchmarkPeriod.getUTCDate() - 300);
+    const [chart, quote, benchmarkChart] = await Promise.all([
       withTimeout(yahooFinance.chart(ticker, { period1, interval: "1d", return: "array" }, NO_VALIDATE), 25000, "storico " + ticker),
       withTimeout(yahooFinance.quote(ticker, {}, NO_VALIDATE), 12000, "quote " + ticker).catch(() => null),
+      withTimeout(yahooFinance.chart("SPY", { period1: benchmarkPeriod, interval: "1d", return: "array" }, NO_VALIDATE), 25000, "storico SPY").catch(() => null),
     ]);
 
-    const seasonality = buildSeasonality(chart?.quotes || [], windows);
+    const seasonality = buildSeasonality(chart?.quotes || [], windows, benchmarkChart?.quotes || []);
     const payload = {
       ticker,
       name: quote?.longName || quote?.shortName || ticker,
