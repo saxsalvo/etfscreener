@@ -1278,6 +1278,7 @@ export default function Home() {
   const [guideOpen, setGuideOpen] = useState(false);
   const [cookieConsent, setCookieConsent] = useState(null);
   const [statusModal, setStatusModal] = useState(null);
+  const [analysisModal, setAnalysisModal] = useState(null);
   const [watchlist, setWatchlist] = useState([]);
   const [watchlistOnly, setWatchlistOnly] = useState(false);
   const [profile, setProfile] = useState({ mode: "long", selectedMetrics: PROFILE_METRICS.long });
@@ -1626,7 +1627,7 @@ export default function Home() {
     if (key === "trend") {
       return (
         <td className="col-trend" title={tooltip(t.tooltip.trend, t.tooltipBody.trend)}>
-          <span className={`trendBadge ${trendTone(trendLabel)}`}>{trendLabel}</span>
+          <button type="button" className={`trendBadge ${trendTone(trendLabel)}`} onClick={() => setAnalysisModal({ type: "trend", row, trendLabel })}>{trendLabel}</button>
         </td>
       );
     }
@@ -1637,7 +1638,7 @@ export default function Home() {
           <button
             type="button"
             className={`statusBadge ${statusTone(statusKey)}`}
-            onClick={() => setStatusModal({ ticker: row.ticker, name: row.name, statusKey, points: profileStatus.score, reasons: profileStatus.reasons, profileMode: profileStatus.mode, smaCross: row.smaCross })}
+            onClick={() => setStatusModal({ ticker: row.ticker, name: row.name, statusKey, points: profileStatus.score, reasons: profileStatus.reasons, profileMode: profileStatus.mode, selectedMetrics: profileStatus.selectedMetrics, row, smaCross: row.smaCross })}
           >
             {t.statusLabels[statusKey] || statusKey}
           </button>
@@ -1661,7 +1662,7 @@ export default function Home() {
     if (key === "score") {
       return (
         <td className="col-score" title={tooltip(t.tooltip.score, t.tooltipBody.score)}>
-          <span className={`scoreBadge ${scoreTone(score)}`}>{score}</span>
+          <button type="button" className={`scoreBadge ${scoreTone(score)}`} onClick={() => setAnalysisModal({ type: "score", row, score })}>{score}</button>
         </td>
       );
     }
@@ -1727,7 +1728,7 @@ export default function Home() {
           >
             Visiona metriche
           </button>
-          <button type="button" className="button topAction" onClick={() => setProfileOpen(true)}>Impostazioni</button>
+          <button type="button" className="button topAction" onClick={() => setProfileOpen(true)}>Term</button>
           <button type="button" className="button topAction" onClick={() => setGuideOpen(true)}>{t.guideButton}</button>
           <a
             className="iconButton"
@@ -1977,6 +1978,8 @@ export default function Home() {
         />
       )}
 
+      {analysisModal && <MetricAnalysisModal data={analysisModal} lang={lang} onClose={() => setAnalysisModal(null)} />}
+
       {cookieConsent == null && (
         <CookieConsentModal
           t={t}
@@ -2216,13 +2219,19 @@ function StatusModal({ t, lang, data, onClose }) {
           <button className="button" onClick={onClose}>{t.modalClose}</button>
         </div>
         {data.points != null && (
-          <div className="hint">{t.statusPointsLabel}: <strong>{data.points}</strong></div>
+          <div className="hint">{t.statusPointsLabel}: <strong>{data.points}/100</strong> · Strong Buy &gt;=75 · Buy &gt;=55 · Hold &gt;=35 · Sell &lt;35.</div>
         )}
         {data.smaCross && (
           <div className="hint">
             {data.smaCross.regime === "golden" ? "Golden Regime" : "Death Regime"} · ultimo cross: {data.smaCross.lastCrossDate ? new Date(data.smaCross.lastCrossDate).toLocaleDateString(lang === "it" ? "it-IT" : "en-US") : "storico non disponibile"} · {data.smaCross.sessionsSinceCross ?? "-"} sedute · SMA50/SMA200 {fmt(data.smaCross.distancePercent, 1)}%{data.smaCross.isRecent ? " · SEGNALE RECENTE" : ""}
           </div>
         )}
+        <div className="analysisGrid">
+          {(data.selectedMetrics || []).map((metric) => {
+            const detail = profileMetricDetail(metric, data.row);
+            return <div className="analysisRow" key={metric}><span><strong>{detail.label}</strong><small>{detail.value} · {detail.rule}</small></span><strong className={detail.points > 0 ? "positive" : detail.points < 0 ? "negative" : "muted"}>{detail.points > 0 ? "+" : ""}{detail.points}</strong></div>;
+          })}
+        </div>
         <ul className="statusReasonList">
           {reasons.map((reason, idx) => (
             <li key={idx}>{reason}</li>
@@ -2231,6 +2240,90 @@ function StatusModal({ t, lang, data, onClose }) {
       </div>
     </div>
   );
+}
+
+function profileMetricDetail(metric, row = {}) {
+  const value = row[metric];
+  const details = {
+    trend: ["Trend", row.trend || "-", "Forte = +2; Debole = -2; Neutro = 0", row.trend === "Forte" ? 2 : row.trend === "Debole" ? -2 : 0],
+    rsi14: ["RSI 14", fmt(value, 1), "55-69.9 = +2; 45-54.9 = 0; altri valori = -1", value >= 55 && value < 70 ? 2 : value >= 45 && value < 55 ? 0 : -1],
+    positive10: ["Positivi 10G", `${value ?? "-"}/10`, ">=7 = +2; 5-6 = 0; <5 = -2", value >= 7 ? 2 : value >= 5 ? 0 : -2],
+    positive20: ["Positivi 20G", `${value ?? "-"}/20`, ">=14 = +2; 10-13 = +1; 7-9 = 0; <7 = -2", value >= 14 ? 2 : value >= 10 ? 1 : value >= 7 ? 0 : -2],
+    streak: ["Serie positiva 20G", `${value ?? "-"} sedute`, ">=3 = +1; 0 = -1; altrimenti = 0", value >= 3 ? 1 : value === 0 ? -1 : 0],
+    distanceSma20: ["Distanza SMA20", `${fmt(value, 1)}%`, "tra -3% e +10% = +1; oltre |20%| = -2; altrimenti = -1", value >= -3 && value <= 10 ? 1 : Math.abs(value) > 20 ? -2 : -1],
+    rvol: ["RVOL", `${fmt(row.relativeVolume, 2)}x`, ">=1.3x = +1; <0.7x = -1; altrimenti = 0", row.relativeVolume >= 1.3 ? 1 : row.relativeVolume < 0.7 ? -1 : 0],
+    volatility20d: ["Volatilita 20G", `${fmt(value, 1)}%`, "<=18% = +1; >32% = -1; altrimenti = 0", value <= 18 ? 1 : value > 32 ? -1 : 0],
+    monthReturn: ["Rendimento 1M", `${fmt(value, 1)}%`, ">+3% = +1; <-3% = -1; altrimenti = 0", value > 3 ? 1 : value < -3 ? -1 : 0],
+    dailyReturn: ["Rendimento 1G", `${fmt(value, 1)}%`, ">0% = +1; <0% = -1", value > 0 ? 1 : value < 0 ? -1 : 0],
+    threeDayReturn: ["Rendimento 3G", `${fmt(value, 1)}%`, ">0% = +1; <0% = -1", value > 0 ? 1 : value < 0 ? -1 : 0],
+    weekReturn: ["Rendimento 1S", `${fmt(value, 1)}%`, ">0% = +1; <0% = -1", value > 0 ? 1 : value < 0 ? -1 : 0],
+    distance52wHigh: ["Distanza massimo 52S", `${fmt(value, 1)}%`, ">=-5% = +1; <-30% = -1; altrimenti = 0", value >= -5 ? 1 : value < -30 ? -1 : 0],
+    maxDrawdown52w: ["Drawdown massimo 52S", `${fmt(value, 1)}%`, ">=-12% = +1; <-30% = -1; altrimenti = 0", value >= -12 ? 1 : value < -30 ? -1 : 0],
+    distanceSma200: ["Distanza SMA200", `${fmt(value, 1)}%`, "tra -8% e -3% = +2; tra -3% e +8% = +1; <-15% = -1", value >= -8 && value <= -3 ? 2 : value >= -3 && value <= 8 ? 1 : value < -15 ? -1 : 0],
+    smaCross: ["Cross SMA50/200", row.smaCross?.regime || "-", "Golden = +2; Death = -2", row.smaCross?.regime === "golden" ? 2 : row.smaCross?.regime === "death" ? -2 : 0],
+    drawdownFromAth: ["Drawdown da ATH", `${fmt(value, 1)}%`, "<=-25% = +2; <=-15% = +1; <=-5% = 0; altrimenti = -1", value <= -25 ? 2 : value <= -15 ? 1 : value <= -5 ? 0 : -1],
+    range52wPosition: ["Posizione 52W", `${fmt(value, 1)}%`, "20%-40% = +2; <20% = +1; >80% = -1", value >= 20 && value <= 40 ? 2 : value < 20 ? 1 : value > 80 ? -1 : 0],
+    year1Return: ["Rendimento 1Y", `${fmt(value, 1)}%`, ">+8% = +1; <0% = -1; altrimenti = 0", value > 8 ? 1 : value < 0 ? -1 : 0],
+    quality: ["Qualita fondo", `${value ?? 0}/5`, ">=3 = +1; <=1 = -1; altrimenti = 0", value >= 3 ? 1 : value <= 1 ? -1 : 0],
+  };
+  const [label, formattedValue, rule, points] = details[metric] || [metric, "-", "Nessuna regola", 0];
+  return { label, value: formattedValue, rule, points };
+}
+
+function MetricAnalysisModal({ data, lang, onClose }) {
+  const row = data.row;
+  const isTrend = data.type === "trend";
+  const scoreParts = [
+    ["Prezzo > SMA20", row.price != null && row.sma20 != null, row.price > row.sma20 ? 12 : 0],
+    ["SMA20 > SMA50", row.sma20 != null && row.sma50 != null, row.sma20 > row.sma50 ? 10 : 0],
+    ["SMA50 > SMA200", row.sma50 != null && row.sma200 != null, row.sma50 > row.sma200 ? 10 : 0],
+    ["RSI14", row.rsi14 != null, row.rsi14 == null ? 0 : Math.min(Math.max((row.rsi14 - 35) / 1.3, 0), 20)],
+    ["Positivi 20G", row.positive20 != null, row.positive20 == null ? 0 : Math.min(Math.max((row.positive20 / 20) * 18, 0), 18)],
+    ["RVOL", row.relativeVolume != null, row.relativeVolume == null ? 0 : Math.min(Math.max((row.relativeVolume - 0.8) * 12, 0), 10)],
+    ["Volatilita 20G", row.volatility20d != null, row.volatility20d == null ? 0 : Math.min(Math.max((35 - row.volatility20d) * 0.16, 0), 10)],
+    ["Distanza SMA20", row.distanceSma20 != null, row.distanceSma20 == null ? 0 : Math.min(Math.max((30 - Math.abs(row.distanceSma20)) * 0.25, 0), 10)],
+    ["Qualita fondo", row.quality != null, row.quality || 0],
+  ];
+  const strong = row.price > row.sma20 && row.sma20 > row.sma50 && row.sma50 > row.sma200;
+  const weak = row.price <= row.sma20 && row.price <= row.sma50 && row.sma20 <= row.sma50;
+  return (
+    <div className="modalBackdrop" onMouseDown={onClose}>
+      <div className="modal statusModal" onMouseDown={(event) => event.stopPropagation()}>
+        <div className="modalHead"><div><h2>{row.ticker} · {isTrend ? `Trend ${data.trendLabel}` : `Score ${data.score}`}</h2><div className="hint">{row.name}</div></div><button className="button" onClick={onClose}>{lang === "it" ? "Chiudi" : "Close"}</button></div>
+        {isTrend ? (
+          <>
+            <p className="hint">Regola: Forte se Prezzo &gt; SMA20 &gt; SMA50 &gt; SMA200. Debole se Prezzo &lt;= SMA20, Prezzo &lt;= SMA50 e SMA20 &lt;= SMA50. Altrimenti Neutro.</p>
+            <ul className="statusReasonList">
+              <li>Prezzo {fmt(row.price, 2)} {row.price > row.sma20 ? ">" : "<="} SMA20 {fmt(row.sma20, 2)}.</li>
+              <li>SMA20 {fmt(row.sma20, 2)} {row.sma20 > row.sma50 ? ">" : "<="} SMA50 {fmt(row.sma50, 2)}.</li>
+              <li>SMA50 {fmt(row.sma50, 2)} {row.sma50 > row.sma200 ? ">" : "<="} SMA200 {fmt(row.sma200, 2)}.</li>
+              <li><strong>{strong ? "Tutte le condizioni rialziste sono vere: Trend Forte." : weak ? "Tutte le condizioni ribassiste sono vere: Trend Debole." : "Le condizioni non sono completamente allineate: Trend Neutro."}</strong></li>
+            </ul>
+          </>
+        ) : (
+          <>
+            <p className="hint">Score = somma delle componenti seguenti, limitata tra 0 e 100. La stagionalita non entra nel calcolo.</p>
+            <div className="analysisGrid">
+              {scoreParts.map(([label, available, points]) => <div className="analysisRow" key={label}><span>{label}<small>{available ? scoreInputValue(label, row) : "dato non disponibile"}</small></span><strong>{available ? `+${Number(points).toFixed(1)}` : "-"}</strong></div>)}
+            </div>
+            <p className="hint"><strong>Totale calcolato: {Math.round(scoreParts.reduce((total, [, available, points]) => total + (available ? points : 0), 0))}</strong> · Score esposto: {data.score}. Eventuali decimali vengono arrotondati dal backend.</p>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function scoreInputValue(label, row) {
+  if (label === "Prezzo > SMA20") return `Prezzo ${fmt(row.price, 2)} / SMA20 ${fmt(row.sma20, 2)}`;
+  if (label === "SMA20 > SMA50") return `SMA20 ${fmt(row.sma20, 2)} / SMA50 ${fmt(row.sma50, 2)}`;
+  if (label === "SMA50 > SMA200") return `SMA50 ${fmt(row.sma50, 2)} / SMA200 ${fmt(row.sma200, 2)}`;
+  if (label === "RSI14") return `RSI ${fmt(row.rsi14, 1)}: max(0, min(20, (RSI - 35) / 1.3))`;
+  if (label === "Positivi 20G") return `${row.positive20}/20: max(0, min(18, Positivi / 20 * 18))`;
+  if (label === "RVOL") return `${fmt(row.relativeVolume, 2)}x: max(0, min(10, (RVOL - 0.8) * 12))`;
+  if (label === "Volatilita 20G") return `${fmt(row.volatility20d, 1)}%: max(0, min(10, (35 - Vol) * 0.16))`;
+  if (label === "Distanza SMA20") return `${fmt(row.distanceSma20, 1)}%: max(0, min(10, (30 - |Dist|) * 0.25))`;
+  return `Punteggio qualita ${row.quality || 0}/5 (AUM, TER, eta fondo)`;
 }
 
 function ColumnSelectorModal({ t, visibleColumns, onToggleColumn, onPresetEssential, onPresetAll, onClose }) {

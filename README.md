@@ -1,169 +1,131 @@
 # ETF Performance Screener
 
-A Next.js ETF dashboard for screening large-cap, thematic, commodity, bond, crypto, and leveraged ETF exposure using Yahoo Finance data, trend metrics, seasonality windows, and filtering tools.
+ETF Performance Screener is a personal Next.js research dashboard for comparing ETFs with Yahoo Finance market data. It combines technical indicators, long-term risk context, seasonal analysis, profile-based status ratings, a local watchlist, and a relative market-rotation dashboard.
 
-This project is designed as a personal research and hobby tool. It is intended for analysis and experimentation, not for commercial deployment or monetized distribution.
+The application is for education and personal research. It is not investment advice, a brokerage service, or a source of certified fund-flow data.
 
-## Overview
+## Main features
 
-The application combines:
-- ETF universe filtering by category and market segment
-- live quote and historical metric extraction from Yahoo Finance
-- trend and momentum analysis
-- seasonality analysis based on historical windows
-- a main screener table optimized for rapid comparison
-- a dedicated future seasonality view
-- detailed modal windows with historical seasonal data
+- Screens a curated ETF universe by ticker, name, category, AUM, TER, seasonal success rate, and per-column numeric or categorical filters.
+- Sorts all available columns and lets users choose the visible table columns.
+- Saves the watchlist and investment profile in one-year technical browser cookies.
+- Opens TradingView charts using exchange-aware links for supported Yahoo ticker suffixes.
+- Provides a future-seasonality page for active or upcoming favorable seasonal windows.
 
-## Features
+## Metrics
 
-- ETF screening across a broad set of famous tickers
-- category-based filtering and multi-category exclusion
-- search by ticker, ETF name, or category
-- AUM and TER filtering
-- ranking by score and custom sort order
-- key metrics including:
-  - RSI 14
-  - positive trading days over 10 and 20 sessions
-  - streak of consecutive positive days
-  - distance from SMA20
-  - relative volume (RVOL)
-  - 20-day volatility
-  - 52-week distance from high
-  - maximum drawdown over 52 weeks
-  - AUM
-  - 1D / 3D / 1W / 1M returns
-  - seasonality alignment
-- seasonality modal showing:
-  - current-day seasonal view
-  - windows by historical depth
-  - intersection of positive seasonal days across 10/15/20-year analyses
-  - all daily and monthly seasonal tables
-- future seasonality page focused on upcoming seasonal opportunities
-- cache and timeout handling for Yahoo Finance requests
+Market calculations use Yahoo Finance adjusted close when it is available. Therefore returns, SMAs, drawdowns, and price ranges are dividend-adjusted total-return-style measures; they can differ from a price-only chart.
+
+### Short and medium term
+
+- `RSI 14`: simple-average RSI over 14 sessions.
+- `Positive 10D` and `Positive 20D`: number of positive closes in the recent window.
+- `Streak 20D`: current consecutive run of positive sessions.
+- `Dist SMA20`: $((Price / SMA20) - 1) * 100$.
+- `RVOL`: current volume divided by average 20-session volume.
+- `Vol 20D`: annualized standard deviation of 20 daily returns.
+- `1D`, `3D`, `1W`, `1M`, `1Y`, `3Y`, `5Y`, `10Y`: cumulative adjusted-close returns.
+
+### Long-term structure and risk
+
+- `Dist SMA200`: $((Price / SMA200) - 1) * 100$, the price distance from the 200-session simple moving average.
+- `Cross SMA50/200`: Golden regime when $SMA50 > SMA200$, Death regime when $SMA50 < SMA200$. An asterisk marks a cross detected in the latest five trading sessions.
+- `DD da ATH`: $((CurrentPrice / AvailableATH) - 1) * 100$, the current decline from the highest available adjusted-close price.
+- `Posizione 52W`: $((Price - Low52W) / (High52W - Low52W)) * 100$ over roughly 252 sessions.
+- `52W High`: distance from the 52-week high.
+- `Max DD 52W`: worst peak-to-trough drawdown observed inside the last 52 weeks.
+- `AUM`: assets under management reported by the provider when available.
+
+Click a column label for its short description. `Visiona metriche` opens formula, purpose, and example cards for every metric.
+
+## Trend, Score, and Status dialogs
+
+The Trend badge opens a row-specific dialog. It lists price, SMA20, SMA50, and SMA200 and evaluates the exact rules:
+
+- Strong: $Price > SMA20 > SMA50 > SMA200$
+- Weak: $Price \le SMA20$, $Price \le SMA50$, and $SMA20 \le SMA50$
+- Neutral: every other combination
+
+The Score badge opens a row-specific scorecard. It shows each backend component and its contribution: price/SMA20, SMA alignment, RSI, positive sessions, RVOL, volatility, SMA20 distance, and fund-quality points. Score is capped at 100 and does not include seasonality.
+
+The Status badge opens a detailed rating dialog. It shows the active profile, score thresholds, actual metric values, each profile rule, contribution, SMA50/200 regime, last cross date, and recent-cross warning.
+
+## Term profiles
+
+The `Term` button controls how `Strong Buy`, `Buy`, `Hold`, and `Sell` are calculated.
+
+- `Long term` uses Dist SMA200, SMA50/200 regime, drawdown from ATH, 52-week range position, 1-year return, and fund quality.
+- `Short term` uses trend, RSI, positive 20-day sessions, Dist SMA20, RVOL, 20-day volatility, and 1-month return.
+- `Custom` lets the user choose from all supported trend, momentum, risk, return, and long-term inputs.
+
+The normalized status score maps to Strong Buy at $\ge 75$, Buy at $\ge 55$, Hold at $\ge 35$, and Sell below 35.
+
+## Watchlist
+
+Use the star beside a ticker to add or remove it from the watchlist. The `Solo watchlist` control in the filters panel shows only saved ETFs. The watchlist is stored in the `etf_watchlist` technical cookie for one year and survives page refreshes in the same browser.
+
+## Capital flows and rotation
+
+The Capital Flows dialog is a relative rotation dashboard, not an observation of actual subscriptions, redemptions, or transfers between funds. Yahoo Finance does not provide certified ETF net-flow or investor-transfer data.
+
+It shows:
+
+- ETF strength and weakness rankings by actual approximately one-month observation dates, return, category, and RVOL.
+- Categories currently showing stronger relative demand, ranked by average 1-month return, average RVOL, average score, and number of ETFs.
+- Candidate rotations from weaker to stronger ETFs as analytical comparisons only, never as confirmed investor transactions.
+
+## Seasonality and Bull/Bear context
+
+The seasonal engine examines daily and monthly ETF returns across 10, 15, and 20 years where available. It identifies favorable windows containing the current date using positive average return and a configurable minimum success rate.
+
+Historical daily and monthly samples are additionally classified with SPY:
+
+- `Bull`: SPY adjusted close is at or above its SMA200 on that sample date.
+- `Bear`: SPY adjusted close is below its SMA200 on that sample date.
+
+The seasonality dialog displays the current SPY regime and Bull/Bear averages and sample counts. These classifications provide context for the market environment; they do not predict outcomes and are not universal across every asset class.
 
 ## Project structure
 
-- app/
-  - main UI and routes
-  - api/etfs/route.js: ETF data aggregation
-  - api/seasonality/route.js: seasonal analysis endpoint
-  - future-seasonality/page.js: dedicated future-seasonality dashboard
-- lib/
-  - etfs.js: ETF ticker catalog and category mapping
-  - seasonality.js: seasonal analysis engine
-  - yahoo.js: Yahoo Finance wrappers and normalization
-  - cache.js: request cache logic
-- scripts/
-  - verify-etfs.js: ticker verification helper
+- `app/page.js`: main screener UI, filters, dialogs, profiles, watchlist, and rotation dashboard.
+- `app/api/etfs/route.js`: Yahoo data aggregation, return, trend, score, risk, and long-term metric payload.
+- `app/api/seasonality/route.js`: seasonality endpoint and SPY benchmark retrieval.
+- `app/future-seasonality/page.js`: future seasonality view.
+- `lib/technical-metrics.js`: SMA200 distance, ATH drawdown, range position, and SMA cross calculations.
+- `lib/investment-status.js`: profile-based status engine.
+- `lib/seasonality.js`: seasonal statistics and Bull/Bear sample separation.
+- `lib/visible-columns.js`: visible-column preference migration.
 
-## Prerequisites
+## Setup
 
-- Node.js 22+
-- npm
-
-## Installation
+Requires Node.js 22 or later.
 
 ```bash
 npm install
-```
-
-## Running locally
-
-Development mode:
-
-```bash
 npm run dev
 ```
 
-Then open:
+Open `http://localhost:3000`.
 
-```text
-http://localhost:3000
-```
-
-Production build:
+For a production build:
 
 ```bash
 npm run build
 npm run start
 ```
 
-## Environment
-
-This project runs as a Next.js app using the App Router. It fetches data dynamically from Yahoo Finance and computes derived metrics on the server before returning data to the client.
-
-## Data model and logic
-
-### ETF data
-
-The ETF endpoint aggregates multiple metrics for each ticker, including momentum, trend, price structure, seasonality alignment, and quality indicators. Each ETF row is normalized before being displayed in the screener.
-
-### Seasonality analysis
-
-The project builds seasonal windows around the current date and compares them with historical performance over 10, 15, and 20 years. The logic identifies whether the current date falls within a favorable seasonal window and highlights it in the UI.
-
-### Score calculation
-
-The screener uses a weighted score combining:
-- relative trend strength
-- RSI status
-- number of positive sessions
-- RVOL participation
-- volatility balance
-- distance from SMA20
-- ETF quality proxy
-- seasonality alignment
-
-This score is a decision support metric, not a guarantee of future performance.
-
-## Filtering behavior
-
-The main screen supports:
-- search by ticker, ETF name, or category
-- category-only filtering
-- exclusion of categories
-- minimum AUM threshold
-- maximum TER threshold
-- missing data inclusion/exclusion
-- minimum seasonal success-rate threshold
-
-## Seasonality interpretation
-
-The seasonal engine is intended to provide context, not certainty. Seasonal windows can be useful for identifying recurring behaviors, but they are never a prediction of future outcomes on their own.
-
-In practical terms:
-- a positive seasonal window adds context to a broader trend
-- a strong score and favorable seasonality together are more meaningful than either metric alone
-- a weak trend with a positive seasonal pattern still needs caution
-
-## Why this project exists
-
-The tool is intended as a personal investment-research and hobby dashboard. It helps compare ETFs across trend, quality, volatility, and recurring historical timing behavior.
-
-It is not provided as a financial advisor platform, commercial analytics product, or brokerage application.
-
 ## Verification
 
-The project includes a lightweight verification script for ETF ticker validation:
-
 ```bash
+node --test lib/*.test.js
+npm run build
 npm run verify
 ```
 
-## License
-
-This project is provided under a personal-hobby license:
-
-- free for personal, educational, and hobby use
-- not permitted for commercial use
-- no resale, monetization, paid SaaS deployment, or commercial integration without written permission
-
-See the LICENSE file for the full text.
-
 ## Disclaimer
 
-This project is for educational and personal analysis purposes only. It does not constitute financial advice, investment advice, legal advice, or trading recommendations.
+All metrics, ratings, seasonal windows, and rotation signals are informational. Past performance, technical signals, historical seasonal behavior, and relative strength do not guarantee future results. Review fund documentation, trading costs, currency exposure, liquidity, tax treatment, and personal risk tolerance before acting.
 
-Use your own judgment, run your own due diligence, and consider professional advice before making any investment decisions.
+## License
 
+This project is licensed for personal, educational, and hobby use only. Commercial use, resale, monetized deployment, and commercial integration require written permission. See [LICENSE](LICENSE).

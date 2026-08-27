@@ -383,6 +383,7 @@ async function getOne(ticker, forceRefresh = false) {
       athPrice: longTermMetrics.athPrice,
       drawdownFromAth: longTermMetrics.drawdownFromAth,
       score,
+      quality,
       status: statusResult.status,
       statusPoints: statusResult.points,
       statusReasons: statusResult.reasons,

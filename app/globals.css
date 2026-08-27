@@ -995,6 +995,35 @@ select {
   line-height: 1.35;
 }
 
+.analysisGrid {
+  display: grid;
+  gap: 0;
+  margin-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.analysisRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.analysisRow small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.trendBadge,
+.scoreBadge {
+  cursor: pointer;
+}
+
 .legalFooter {
   margin-top: 22px;
   padding: 16px;
