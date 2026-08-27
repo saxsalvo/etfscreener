@@ -14,6 +14,7 @@ const COOKIE_CONSENT_KEY = "cookie_consent_choice";
 const COOKIE_WATCHLIST = "etf_watchlist";
 const COOKIE_INVESTMENT_PROFILE = "etf_investment_profile";
 const COOKIE_TOUR_COMPLETED = "etf_tour_completed";
+const COOKIE_COLUMN_FILTERS = "etf_column_filters";
 
 const ALL_COLUMN_KEYS = [
   "ticker",
@@ -1250,6 +1251,18 @@ function deleteCookie(name) {
   document.cookie = `${name}=; path=/; max-age=0; samesite=lax`;
 }
 
+function normalizeColumnFilters(savedFilters) {
+  if (!savedFilters || typeof savedFilters !== "object" || Array.isArray(savedFilters)) return {};
+  return Object.fromEntries(Object.entries(savedFilters).filter(([key, value]) => {
+    if (!ALL_COLUMN_KEYS.includes(key)) return false;
+    if (NUMERIC_COLUMN_KEYS.has(key)) {
+      return value && typeof value === "object" && !Array.isArray(value) &&
+        (typeof value.min === "string" || typeof value.max === "string");
+    }
+    return Array.isArray(value) && value.every((item) => typeof item === "string");
+  }));
+}
+
 export default function Home() {
   const [lang, setLang] = useState("it");
   const [rows, setRows] = useState([]);
@@ -1319,6 +1332,7 @@ export default function Home() {
     const savedWatchlist = readCookieJson(COOKIE_WATCHLIST);
     if (Array.isArray(savedWatchlist)) setWatchlist([...new Set(savedWatchlist.filter((ticker) => typeof ticker === "string"))]);
     setProfile(normalizeProfile(readCookieJson(COOKIE_INVESTMENT_PROFILE)));
+    setColumnFilters(normalizeColumnFilters(readCookieJson(COOKIE_COLUMN_FILTERS)));
     setPreferencesHydrated(true);
   }, []);
 
@@ -1346,6 +1360,11 @@ export default function Home() {
     if (!preferencesHydrated) return;
     writeCookieJson(COOKIE_INVESTMENT_PROFILE, profile);
   }, [profile, preferencesHydrated]);
+
+  useEffect(() => {
+    if (!preferencesHydrated) return;
+    writeCookieJson(COOKIE_COLUMN_FILTERS, columnFilters);
+  }, [columnFilters, preferencesHydrated]);
 
   useEffect(() => {
     if (!preferencesHydrated || readCookieJson(COOKIE_TOUR_COMPLETED)) return;
@@ -1798,6 +1817,10 @@ export default function Home() {
 
         <Field label="Watchlist">
           <button className={`button ${watchlistOnly ? "primary" : ""}`} onClick={() => setWatchlistOnly((value) => !value)}>Solo watchlist ({watchlist.length})</button>
+        </Field>
+
+        <Field label="Filtri colonne">
+          <button className="button" onClick={() => { setColumnFilters({}); setOpenFilterKey(null); }}>Azzera filtri colonne</button>
         </Field>
       </div>}
 
