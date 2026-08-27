@@ -144,6 +144,62 @@ select {
   color: var(--warning);
 }
 
+.tourLayer {
+  position: fixed;
+  z-index: 90;
+  inset: 0;
+  background: rgba(3, 9, 18, 0.68);
+}
+
+.tourFocus {
+  position: fixed;
+  z-index: 91;
+  border: 2px solid var(--accent-2);
+  border-radius: 8px;
+  box-shadow: 0 0 0 4px rgba(56, 212, 178, 0.18);
+  pointer-events: none;
+}
+
+.tourBubble {
+  position: fixed;
+  z-index: 92;
+  width: min(344px, calc(100vw - 32px));
+  padding: 16px;
+  border: 1px solid #6caee6;
+  border-radius: 8px;
+  background: #14233a;
+  box-shadow: var(--shadow);
+}
+
+.tourBubble h2,
+.tourBubble p {
+  margin: 0;
+}
+
+.tourBubble h2 {
+  margin-top: 4px;
+  font-size: 17px;
+}
+
+.tourBubble p {
+  margin-top: 8px;
+  color: #c6d9ec;
+  line-height: 1.45;
+}
+
+.tourCount {
+  color: var(--accent-2);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tourActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 14px;
+}
+
 .filters {
   display: grid;
   grid-template-columns: repeat(7, minmax(170px, 1fr));

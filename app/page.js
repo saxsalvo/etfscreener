@@ -13,6 +13,7 @@ const COOKIE_SORT = "etf_sort";
 const COOKIE_CONSENT_KEY = "cookie_consent_choice";
 const COOKIE_WATCHLIST = "etf_watchlist";
 const COOKIE_INVESTMENT_PROFILE = "etf_investment_profile";
+const COOKIE_TOUR_COMPLETED = "etf_tour_completed";
 
 const ALL_COLUMN_KEYS = [
   "ticker",
@@ -1279,6 +1280,7 @@ export default function Home() {
   const [cookieConsent, setCookieConsent] = useState(null);
   const [statusModal, setStatusModal] = useState(null);
   const [analysisModal, setAnalysisModal] = useState(null);
+  const [tourStep, setTourStep] = useState(null);
   const [watchlist, setWatchlist] = useState([]);
   const [watchlistOnly, setWatchlistOnly] = useState(false);
   const [profile, setProfile] = useState({ mode: "long", selectedMetrics: PROFILE_METRICS.long });
@@ -1344,6 +1346,11 @@ export default function Home() {
     if (!preferencesHydrated) return;
     writeCookieJson(COOKIE_INVESTMENT_PROFILE, profile);
   }, [profile, preferencesHydrated]);
+
+  useEffect(() => {
+    if (!preferencesHydrated || readCookieJson(COOKIE_TOUR_COMPLETED)) return;
+    setTourStep(0);
+  }, [preferencesHydrated]);
 
   useEffect(() => {
     function closeTooltipOnOutsideClick(event) {
@@ -1728,7 +1735,7 @@ export default function Home() {
           >
             Visiona metriche
           </button>
-          <button type="button" className="button topAction" onClick={() => setProfileOpen(true)}>Term</button>
+          <button type="button" className="button topAction" data-tour="term" onClick={() => setProfileOpen(true)}>Term: {profile.mode === "long" ? "Long" : profile.mode === "short" ? "Short" : "Custom"}</button>
           <button type="button" className="button topAction" onClick={() => setGuideOpen(true)}>{t.guideButton}</button>
           <a
             className="iconButton"
@@ -1745,7 +1752,7 @@ export default function Home() {
         </div>
       </header>
 
-      {filtersOpen && <div className="filters">
+      {filtersOpen && <div className="filters" data-tour="filters">
         <Field label={t.searchLabel}>
           <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t.searchPlaceholder} />
         </Field>
@@ -1794,7 +1801,7 @@ export default function Home() {
         </Field>
       </div>}
 
-      <div className="actions">
+      <div className="actions" data-tour="actions">
         <button className="button primary" onClick={() => setColumnPickerOpen(true)}>{t.selectColumnsButton}</button>
         <button className="button" onClick={() => setFiltersOpen((v) => !v)}>{filtersOpen ? t.hideFilters : t.showFilters}</button>
         <button className="button" onClick={clearFilters}>{t.resetFilters}</button>
@@ -1819,7 +1826,7 @@ export default function Home() {
       )}
 
       <div className="tableHint">{t.scrollHint}</div>
-      <div className="tableWrap">
+      <div className="tableWrap" data-tour="table">
         <table className="table">
           <colgroup>
             {orderedVisibleColumns.map((key) => (
@@ -1987,6 +1994,8 @@ export default function Home() {
           onReject={() => onCookieConsent("rejected")}
         />
       )}
+
+      {tourStep != null && <GuidedTour step={tourStep} onChange={setTourStep} onClose={() => { writeCookieJson(COOKIE_TOUR_COMPLETED, true); setTourStep(null); }} />}
 
       <footer className="legalFooter">
         <h3>{t.legalTitle}</h3>
@@ -2452,6 +2461,45 @@ function ProfileSettingsModal({ profile, onChange, onClose }) {
         </div>
         {profile.mode === "custom" && <div className="columnGrid">{metrics.map((metric) => <label key={metric} className="columnOption"><input type="checkbox" checked={profile.selectedMetrics.includes(metric)} onChange={() => toggleMetric(metric)} /><span>{labels[metric]}</span></label>)}</div>}
       </div>
+    </div>
+  );
+}
+
+function GuidedTour({ step, onChange, onClose }) {
+  const [position, setPosition] = useState(null);
+  const steps = [
+    { target: "filters", title: "Filtri", body: "Cerca ETF, restringi per categoria, AUM, TER e stagionalita. Solo watchlist mostra esclusivamente i titoli salvati." },
+    { target: "term", title: "Term", body: "Scegli Long, Short o Custom. Lo status di ogni ETF usa le metriche del profilo selezionato." },
+    { target: "actions", title: "Strumenti", body: "Personalizza le colonne, aggiorna le quotazioni, consulta la rotazione relativa e analizza la stagionalita degli ETF filtrati." },
+    { target: "table", title: "Tabella ETF", body: "Clicca ticker, Trend, Score o Status per il dettaglio della riga. La stella aggiunge o rimuove l'ETF dalla watchlist." },
+  ];
+  const current = steps[step];
+
+  useEffect(() => {
+    function placeBubble() {
+      const target = document.querySelector(`[data-tour="${current.target}"]`);
+      if (!target) return setPosition(null);
+      target.scrollIntoView({ block: "center" });
+      const rect = target.getBoundingClientRect();
+      setPosition({
+        focus: { top: Math.max(6, rect.top - 6), left: Math.max(6, rect.left - 6), width: Math.min(window.innerWidth - 12, rect.width + 12), height: Math.min(window.innerHeight - 12, rect.height + 12) },
+        top: Math.min(window.innerHeight - 210, Math.max(16, rect.bottom + 14)),
+        left: Math.min(window.innerWidth - 360, Math.max(16, rect.left)),
+      });
+    }
+    placeBubble();
+    window.addEventListener("resize", placeBubble);
+    window.addEventListener("scroll", placeBubble, true);
+    return () => {
+      window.removeEventListener("resize", placeBubble);
+      window.removeEventListener("scroll", placeBubble, true);
+    };
+  }, [current.target]);
+
+  return (
+    <div className="tourLayer" role="dialog" aria-modal="true" aria-label="Tour guidato">
+      {position && <div className="tourFocus" style={position.focus} />}
+      {position && <div className="tourBubble" style={{ top: position.top, left: position.left }}><div className="tourCount">{step + 1} / {steps.length}</div><h2>{current.title}</h2><p>{current.body}</p><div className="tourActions"><button className="button small ghost" onClick={onClose}>Chiudi tour</button><button className="button small primary" onClick={() => step === steps.length - 1 ? onClose() : onChange(step + 1)}>{step === steps.length - 1 ? "Fine" : "Avanti"}</button></div></div>}
     </div>
   );
 }
