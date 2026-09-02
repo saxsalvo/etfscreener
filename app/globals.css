@@ -1158,6 +1158,21 @@ select {
   line-height: 1.35;
 }
 
+.flowReturns {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 6px !important;
+}
+
+.flowReturns span {
+  white-space: nowrap;
+}
+
+.flowReturns strong {
+  font-weight: 700;
+}
+
 .analysisGrid {
   display: grid;
   gap: 0;

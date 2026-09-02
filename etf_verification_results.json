@@ -8,6 +8,14 @@
     ]
   },
   {
+    "ticker": "2B7C",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "AAXJ",
     "ok": true,
     "name": "iShares MSCI All Country Asia ex Japan ETF",
@@ -648,6 +656,23 @@
     ]
   },
   {
+    "ticker": "BNK",
+    "ok": true,
+    "name": "BNK",
+    "quoteType": "MUTUALFUND",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
+    "ticker": "BNKE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "BNO",
     "ok": true,
     "name": "United States Brent Oil Fund, LP",
@@ -1169,6 +1194,14 @@
     ]
   },
   {
+    "ticker": "DEFS",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "DEM",
     "ok": true,
     "name": "WisdomTree Emerging Markets High Dividend Fund",
@@ -1237,6 +1270,24 @@
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "DFND",
+    "ok": true,
+    "name": "Siren DIVCON Dividend Defender ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
+    "ticker": "DFNS",
+    "ok": true,
+    "name": "T3 Defense Inc.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "requestedEtfs2"
     ]
   },
   {
@@ -1847,6 +1898,22 @@
     ]
   },
   {
+    "ticker": "ESIF",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
+    "ticker": "ESIN",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "ESPO",
     "ok": true,
     "name": "VanEck Video Gaming and eSports ETF",
@@ -2098,6 +2165,14 @@
     ]
   },
   {
+    "ticker": "EXH4",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "EXH6",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
@@ -2131,11 +2206,35 @@
     ]
   },
   {
+    "ticker": "EXV1",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
+    "ticker": "EXV8",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "EXV9",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "requestedEtfs"
+    ]
+  },
+  {
+    "ticker": "EXX1",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
     ]
   },
   {
@@ -2932,6 +3031,14 @@
     ]
   },
   {
+    "ticker": "GUARD",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "GUR",
     "ok": true,
     "name": "SPDR S&P Emerging Europe ETF",
@@ -3532,6 +3639,23 @@
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "extendedReit"
+    ]
+  },
+  {
+    "ticker": "INDG",
+    "ok": true,
+    "name": "INDG",
+    "quoteType": "MUTUALFUND",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
+    "ticker": "INDGW",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
     ]
   },
   {
@@ -5227,6 +5351,14 @@
     ]
   },
   {
+    "ticker": "QDVH",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "QETH",
     "ok": true,
     "name": "Invesco Galaxy Ethereum ETF",
@@ -6367,6 +6499,14 @@
     ]
   },
   {
+    "ticker": "STQX",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "SUAS",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
@@ -6478,6 +6618,15 @@
     "quoteType": "ETF",
     "categories": [
       "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SXLI",
+    "ok": true,
+    "name": "SPDR S&P U.S. Industrials Select Sector UCITS ETF (USD)",
+    "quoteType": "ETF",
+    "categories": [
+      "requestedEtfs2"
     ]
   },
   {
@@ -7878,11 +8027,27 @@
     ]
   },
   {
+    "ticker": "XDWF",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
+    ]
+  },
+  {
     "ticker": "XDWH",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "XDWI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs2"
     ]
   },
   {

@@ -8,6 +8,12 @@ import { computeProfileStatus, CUSTOM_METRICS, normalizeProfile, PROFILE_METRICS
 
 const PAGE_SIZE = 25;
 const CAPITAL_FLOW_LIMIT = 10;
+const FLOW_PERIODS = [
+  { key: "dailyReturn", label: "1G" },
+  { key: "threeDayReturn", label: "3G" },
+  { key: "weekReturn", label: "1S" },
+  { key: "monthReturn", label: "1M" },
+];
 const COOKIE_VISIBLE_COLUMNS = "visible_etf_columns";
 const COOKIE_SORT = "etf_sort";
 const COOKIE_CONSENT_KEY = "cookie_consent_choice";
@@ -1330,6 +1336,7 @@ export default function Home() {
   const [scanProgress, setScanProgress] = useState(null);
   const [minSuccess, setMinSuccess] = useState(60);
   const [flowOpen, setFlowOpen] = useState(false);
+  const [flowPeriod, setFlowPeriod] = useState("monthReturn");
   const [openHeaderKey, setOpenHeaderKey] = useState(null);
   const [columnFilters, setColumnFilters] = useState({});
   const [openFilterKey, setOpenFilterKey] = useState(null);
@@ -1539,16 +1546,30 @@ export default function Home() {
   }, [rows, search, only, excluded, minAum, maxTer, missing, sort, columnFilters, t, seasonCache, minSuccess, watchlistOnly, watchlist]);
 
   const capitalFlow = useMemo(() => {
-    const ranked = [...rows]
-      .filter((x) => x.ok && Number.isFinite(Number(x.monthReturn)))
-      .sort((a, b) => Number(b.monthReturn ?? 0) - Number(a.monthReturn ?? 0));
-
-    const weak = [...rows]
-      .filter((x) => x.ok && Number.isFinite(Number(x.monthReturn)))
-      .sort((a, b) => Number(a.monthReturn ?? 0) - Number(b.monthReturn ?? 0));
+    const availableRows = rows.filter((row) => row.ok);
+    const makeItem = (row) => ({
+      ticker: row.ticker,
+      name: row.name || row.ticker,
+      category: row.categories?.[0] || "-",
+      rvol: row.relativeVolume,
+      score: row.score,
+      dailyReturn: row.dailyReturn,
+      threeDayReturn: row.threeDayReturn,
+      weekReturn: row.weekReturn,
+      monthReturn: row.monthReturn,
+    });
+    const rankings = Object.fromEntries(FLOW_PERIODS.map(({ key }) => {
+      const ranked = availableRows
+        .filter((row) => Number.isFinite(Number(row[key])))
+        .sort((a, b) => Number(b[key]) - Number(a[key]));
+      return [key, {
+        inflow: ranked.slice(0, CAPITAL_FLOW_LIMIT).map(makeItem),
+        outflow: ranked.slice(-CAPITAL_FLOW_LIMIT).reverse().map(makeItem),
+      }];
+    }));
 
     const categoryMap = new Map();
-    for (const row of ranked) {
+    for (const row of availableRows.filter((item) => Number.isFinite(Number(item[flowPeriod])))) {
       for (const category of row.categories || ["Altri"]) {
         const current = categoryMap.get(category) || [];
         current.push(row);
@@ -1559,23 +1580,17 @@ export default function Home() {
       .map(([category, items]) => ({
         category,
         count: items.length,
-        monthReturn: items.reduce((sum, item) => sum + Number(item.monthReturn || 0), 0) / items.length,
+        value: items.reduce((sum, item) => sum + Number(item[flowPeriod] || 0), 0) / items.length,
         rvol: items.filter((item) => Number.isFinite(Number(item.relativeVolume))).reduce((sum, item, _, valid) => sum + Number(item.relativeVolume), 0) / items.filter((item) => Number.isFinite(Number(item.relativeVolume))).length || null,
         score: items.reduce((sum, item) => sum + Number(item.score || 0), 0) / items.length,
       }))
-      .sort((a, b) => b.monthReturn - a.monthReturn || b.score - a.score);
+      .sort((a, b) => b.value - a.value || b.score - a.score);
 
     return {
-      inflow: ranked
-        .slice(0, CAPITAL_FLOW_LIMIT)
-        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0), weeklyValue: x.weekReturn, rvol: x.relativeVolume, start: x.monthStartDate, end: x.lastDate, category: x.categories?.[0] || "-" })),
-      outflow: weak
-        .slice(0, CAPITAL_FLOW_LIMIT)
-        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0), weeklyValue: x.weekReturn, rvol: x.relativeVolume, start: x.monthStartDate, end: x.lastDate, category: x.categories?.[0] || "-" })),
+      rankings,
       categoryDemand: categoryDemand.slice(0, CAPITAL_FLOW_LIMIT),
-      rotationPairs: ranked.slice(0, 5).map((target, index) => ({ from: weak[index], to: target })),
     };
-  }, [rows]);
+  }, [rows, flowPeriod]);
 
   const visibleSet = useMemo(() => new Set(visibleColumns), [visibleColumns]);
   const orderedVisibleColumns = useMemo(
@@ -1805,6 +1820,7 @@ export default function Home() {
   const statusText = `${t.statusLoaded(loaded, total, filtered.length)}${loading ? ` · ${t.statusLoading}` : ""}${
     scanProgress ? ` · ${t.statusSeasonality(scanProgress.done, scanProgress.total)}` : ""
   }`;
+  const selectedFlow = capitalFlow.rankings[flowPeriod] || { inflow: [], outflow: [] };
 
   return (
     <main className="page">
@@ -2008,18 +2024,21 @@ export default function Home() {
             <div className="modalHead">
               <div>
                 <h2>{t.flowTitle}</h2>
-                <div className="hint">Proxy di rotazione, non flussi netti certificati: Yahoo Finance non rileva sottoscrizioni o riscatti. La classifica usa 1M e mostra 1W come conferma recente.</div>
+                <div className="hint">Proxy di rotazione, non flussi netti certificati: Yahoo Finance non rileva sottoscrizioni o riscatti. Ogni classifica usa il rendimento del periodo scelto; 1G, 3G, 1S e 1M permettono di distinguere spinta recente e trend consolidato.</div>
               </div>
               <button className="button" onClick={() => setFlowOpen(false)}>{t.modalClose}</button>
+            </div>
+            <div className="tabs flowTabs">
+              {FLOW_PERIODS.map((period) => <button key={period.key} className={`tab ${flowPeriod === period.key ? "active" : ""}`} onClick={() => setFlowPeriod(period.key)}>{period.label}</button>)}
             </div>
             <div className="flowGrid">
               <div className="flowPanel">
                 <h3>{t.flowIn} (Top {CAPITAL_FLOW_LIMIT})</h3>
-                {capitalFlow.inflow.length ? (
-                  capitalFlow.inflow.map((item) => (
+                {selectedFlow.inflow.length ? (
+                  selectedFlow.inflow.map((item) => (
                     <div key={item.ticker} className="flowRow">
-                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · {item.start ? new Date(item.start).toLocaleDateString("it-IT") : "inizio n/d"} → {item.end ? new Date(item.end).toLocaleDateString("it-IT") : "fine n/d"} · 1W {pct(item.weeklyValue)} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small></span>
-                      <strong className={cls(item.value)}>1M {pct(item.value)}</strong>
+                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · Score {fmt(item.score, 0)} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small><FlowReturns item={item} /></span>
+                      <strong className={cls(item[flowPeriod])}>{pct(item[flowPeriod])}</strong>
                     </div>
                   ))
                 ) : (
@@ -2028,11 +2047,11 @@ export default function Home() {
               </div>
               <div className="flowPanel">
                 <h3>{t.flowOut} (Top {CAPITAL_FLOW_LIMIT})</h3>
-                {capitalFlow.outflow.length ? (
-                  capitalFlow.outflow.map((item) => (
+                {selectedFlow.outflow.length ? (
+                  selectedFlow.outflow.map((item) => (
                     <div key={item.ticker} className="flowRow">
-                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · {item.start ? new Date(item.start).toLocaleDateString("it-IT") : "inizio n/d"} → {item.end ? new Date(item.end).toLocaleDateString("it-IT") : "fine n/d"} · 1W {pct(item.weeklyValue)} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small></span>
-                      <strong className={cls(item.value)}>1M {pct(item.value)}</strong>
+                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · Score {fmt(item.score, 0)} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small><FlowReturns item={item} /></span>
+                      <strong className={cls(item[flowPeriod])}>{pct(item[flowPeriod])}</strong>
                     </div>
                   ))
                 ) : (
@@ -2042,16 +2061,14 @@ export default function Home() {
             </div>
             <div className="flowGrid">
               <div className="flowPanel">
-                <h3>Asset piu richiesti</h3>
+                <h3>Forza media categorie</h3>
                 {capitalFlow.categoryDemand.map((item) => (
-                  <div key={item.category} className="flowRow"><span><strong>{item.category}</strong><small>{item.count} ETF · RVOL medio {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`} · score medio {fmt(item.score, 0)}</small></span><strong className={cls(item.monthReturn)}>{pct(item.monthReturn)}</strong></div>
+                  <div key={item.category} className="flowRow"><span><strong>{item.category}</strong><small>{item.count} ETF · RVOL medio {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`} · score medio {fmt(item.score, 0)}</small></span><strong className={cls(item.value)}>{pct(item.value)}</strong></div>
                 ))}
               </div>
               <div className="flowPanel">
-                <h3>Rotazioni candidate</h3>
-                {capitalFlow.rotationPairs.map(({ from, to }) => (
-                  <div key={`${from.ticker}-${to.ticker}`} className="flowRow"><span><strong>Da {from.ticker}</strong> ({from.categories?.[0] || "-"})<small>A {to.ticker} ({to.categories?.[0] || "-"}) · confronto su 1 mese</small></span><strong className="positive">{pct(to.monthReturn)}</strong></div>
-                ))}
+                <h3>Lettura del segnale</h3>
+                <div className="hint">Un ETF presente in alto su 1G/3G ma debole su 1S/1M sta rimbalzando nel breve. Un ETF forte anche su 1S e 1M mostra una rotazione piu persistente. I segnali divergenti non misurano flussi reali di capitale.</div>
               </div>
             </div>
           </div>
@@ -2324,6 +2341,14 @@ function ColumnFilterPanel({ type, options, value, onChange, onClear, t }) {
 
 function Th({ children, className }) {
   return <th className={className}>{children}</th>;
+}
+
+function FlowReturns({ item }) {
+  return (
+    <small className="flowReturns">
+      {FLOW_PERIODS.map((period) => <span key={period.key}>{period.label} <strong className={cls(item[period.key])}>{pct(item[period.key])}</strong></span>)}
+    </small>
+  );
 }
 
 function PurchaseModal({ t, draft, onChange, onConfirm, onClose }) {
