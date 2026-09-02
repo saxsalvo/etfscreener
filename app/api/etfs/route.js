@@ -356,6 +356,7 @@ async function getOne(ticker, forceRefresh = false) {
       threeDayReturn: pctReturn(current, at(3)),
       weekReturn: pctReturn(current, at(5)),
       monthReturn: pctReturn(current, monthAgoPrice),
+      fiveDayReturn: pctReturn(current, at(5)),
       monthStartDate: monthAgoQuote?.date || null,
       quarterReturn: pctReturn(current, at(60)),
       year1Return: pctReturn(current, oneYearAgoPrice),

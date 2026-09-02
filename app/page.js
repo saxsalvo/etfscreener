@@ -15,6 +15,7 @@ const COOKIE_WATCHLIST = "etf_watchlist";
 const COOKIE_INVESTMENT_PROFILE = "etf_investment_profile";
 const COOKIE_TOUR_COMPLETED = "etf_tour_completed";
 const COOKIE_COLUMN_FILTERS = "etf_column_filters";
+const SIMULATIONS_STORAGE_KEY = "etf_simulations";
 
 const ALL_COLUMN_KEYS = [
   "ticker",
@@ -22,6 +23,7 @@ const ALL_COLUMN_KEYS = [
   "category",
   "status",
   "score",
+  "price",
   "dailyReturn",
   "threeDayReturn",
   "weekReturn",
@@ -56,6 +58,7 @@ const DEFAULT_VISIBLE_COLUMNS = [
   "trend",
   "status",
   "score",
+  "price",
   "dailyReturn",
   "threeDayReturn",
   "weekReturn",
@@ -70,12 +73,13 @@ const DEFAULT_VISIBLE_COLUMNS = [
 ];
 
 const COLUMN_WIDTHS = {
-  ticker: "94px",
+  ticker: "108px",
   name: "250px",
   category: "160px",
   trend: "82px",
   status: "128px",
   score: "66px",
+  price: "108px",
   dailyReturn: "88px",
   threeDayReturn: "88px",
   weekReturn: "88px",
@@ -148,6 +152,21 @@ const I18N = {
     filterNoOptions: "Nessun valore",
     refreshQuotes: "Aggiorna quotazioni",
     capitalFlows: "Flussi di capitale",
+    simulations: "Simulazioni",
+    buy: "Buy",
+    buyTitle: "Aggiungi simulazione",
+    buyQuantity: "Quantita",
+    buyPrice: "Prezzo di acquisto",
+    buyConfirm: "Registra acquisto",
+    simulationsTitle: "Simulazioni acquisto",
+    simulationsHint: "Le metriche di acquisto sono congelate; il rendimento usa l'ultima quotazione disponibile.",
+    simulationDate: "Data acquisto",
+    currentPrice: "Prezzo attuale",
+    investment: "Investito",
+    currentValue: "Valore attuale",
+    returnSinceBuy: "Rendimento",
+    frozenMetrics: "Metriche all'acquisto",
+    removeSimulation: "Rimuovi simulazione",
     futureSeasonality: "Stagionalità future",
     analyzeFiltered: "Analizza stagionalità ETF filtrati",
     hint: "Questo screener combina momentum, trend, volume, rischio e stagionalità. I tooltip aiutano a interpretare velocemente la lettura.",
@@ -318,6 +337,7 @@ const I18N = {
       maxDrawdown52w: "Max DD 52W",
       netAssets: "AUM",
       score: "Score",
+      price: "Prezzo",
       dailyReturn: "1D",
       threeDayReturn: "3D",
       weekReturn: "1W",
@@ -350,14 +370,15 @@ const I18N = {
       maxDrawdown52w: "Massima discesa registrata nell'ultimo anno.",
       netAssets: "Asset under management del fondo.",
       score: "Punteggio sintetico 0-100.",
+      price: "Ultimo prezzo di chiusura disponibile sul mercato di quotazione.",
       dailyReturn: "Performance ultimo giorno.",
       threeDayReturn: "Performance ultime 3 sedute.",
       weekReturn: "Performance ultima settimana.",
       monthReturn: "Performance ultimo mese.",
-      year1Return: "Rendimento totale negli ultimi 12 mesi (dividendi reinvestiti).",
-      year3Return: "Rendimento totale cumulato sugli ultimi 3 anni (dividendi reinvestiti).",
-      year5Return: "Rendimento totale cumulato sugli ultimi 5 anni (dividendi reinvestiti).",
-      year10Return: "Rendimento totale cumulato sugli ultimi 10 anni (dividendi reinvestiti).",
+      year1Return: "Rendimento di prezzo negli ultimi 12 mesi.",
+      year3Return: "Rendimento di prezzo cumulato negli ultimi 3 anni.",
+      year5Return: "Rendimento di prezzo cumulato negli ultimi 5 anni.",
+      year10Return: "Rendimento di prezzo cumulato negli ultimi 10 anni.",
       seasonality: "Allineamento con stagionalità favorevole.",
       borsa: "Mercato di quotazione del fondo.",
     },
@@ -531,22 +552,22 @@ const I18N = {
         example: "109 vs 100 => +9.00% nell'ultimo mese.",
       },
       year1Return: {
-        formula: "((Close_oggi / Close_di circa 252 sedute fa) - 1) * 100, dove Close e il prezzo rettificato per i dividendi (adjusted close di Yahoo Finance).",
-        purpose: "Misura il rendimento totale sull'ultimo anno (dividendi reinvestiti), utile per valutare la qualita del trend oltre il rumore tattico di breve periodo.",
-        example: "128 vs 100 => +28% nell'ultimo anno. Nota: usando l'adjusted close, il valore e piu alto del rendimento di solo prezzo mostrato da grafici come TradingView (che di norma non reinvestono i dividendi); il divario cresce con dividendi piu alti e orizzonti piu lunghi.",
+        formula: "((Close_oggi / Close_di circa 252 sedute fa) - 1) * 100, dove Close e il prezzo di chiusura non rettificato di Yahoo Finance.",
+        purpose: "Misura il rendimento di prezzo sull'ultimo anno, confrontabile con la quotazione esposta da Yahoo Finance e JustETF.",
+        example: "128 vs 100 => +28% nell'ultimo anno. I dividendi non vengono reinvestiti nel calcolo.",
       },
       year3Return: {
-        formula: "((Close_oggi / Close_di circa 3 anni fa) - 1) * 100, su prezzi rettificati per i dividendi (adjusted close).",
+        formula: "((Close_oggi / Close_di circa 3 anni fa) - 1) * 100, su prezzi di chiusura non rettificati.",
         purpose: "Aiuta a distinguere forza strutturale da fasi brevi favorevoli, su un orizzonte di medio periodo.",
         example: "160 vs 100 => +60% cumulato in 3 anni. Trattandosi di rendimento totale (dividendi reinvestiti), puo risultare piu alto del rendimento di solo prezzo riportato da TradingView.",
       },
       year5Return: {
-        formula: "((Close_oggi / Close_di circa 5 anni fa) - 1) * 100, su prezzi rettificati per i dividendi (adjusted close).",
+        formula: "((Close_oggi / Close_di circa 5 anni fa) - 1) * 100, su prezzi di chiusura non rettificati.",
         purpose: "Utile per confrontare la resilienza di un ETF attraverso un ciclo di mercato piu completo.",
         example: "210 vs 100 => +110% cumulato in 5 anni. Su orizzonti lunghi lo scarto rispetto al rendimento di solo prezzo (es. TradingView) diventa piu marcato per effetto della capitalizzazione dei dividendi.",
       },
       year10Return: {
-        formula: "((Close_oggi / Close_di circa 10 anni fa) - 1) * 100, su prezzi rettificati per i dividendi (adjusted close).",
+        formula: "((Close_oggi / Close_di circa 10 anni fa) - 1) * 100, su prezzi di chiusura non rettificati.",
         purpose: "Misura la capacita del tema o dell'indice di creare valore nel lungo periodo, dividendi inclusi.",
         example: "330 vs 100 => +230% cumulato in 10 anni. Esempio reale: GREK mostra un 10Y molto piu alto in questa app che su TradingView perche qui i dividendi sono reinvestiti nel calcolo, mentre il grafico prezzi di TradingView di default non li include.",
       },
@@ -644,6 +665,21 @@ const I18N = {
     filterNoOptions: "No values",
     refreshQuotes: "Refresh quotes",
     capitalFlows: "Capital flows",
+    simulations: "Simulations",
+    buy: "Buy",
+    buyTitle: "Add simulation",
+    buyQuantity: "Quantity",
+    buyPrice: "Purchase price",
+    buyConfirm: "Record purchase",
+    simulationsTitle: "Purchase simulations",
+    simulationsHint: "Purchase metrics are frozen; return uses the latest available quote.",
+    simulationDate: "Purchase date",
+    currentPrice: "Current price",
+    investment: "Invested",
+    currentValue: "Current value",
+    returnSinceBuy: "Return",
+    frozenMetrics: "Metrics at purchase",
+    removeSimulation: "Remove simulation",
     futureSeasonality: "Future seasonality",
     analyzeFiltered: "Analyze filtered ETF seasonality",
     hint: "This screener combines momentum, trend, volume, risk, and seasonality. Tooltips help you read signals quickly.",
@@ -813,6 +849,7 @@ const I18N = {
       maxDrawdown52w: "Max DD 52W",
       netAssets: "AUM",
       score: "Score",
+      price: "Price",
       dailyReturn: "1D",
       threeDayReturn: "3D",
       weekReturn: "1W",
@@ -845,14 +882,15 @@ const I18N = {
       maxDrawdown52w: "Worst drawdown over last year.",
       netAssets: "Assets under management.",
       score: "Synthetic 0-100 score.",
+      price: "Latest available closing price on the listing exchange.",
       dailyReturn: "Last day performance.",
       threeDayReturn: "Last 3 sessions performance.",
       weekReturn: "Last week performance.",
       monthReturn: "Last month performance.",
-      year1Return: "Performance over the last 12 months (total return, dividends reinvested).",
-      year3Return: "Cumulative return over the last 3 years (total return, dividends reinvested).",
-      year5Return: "Cumulative return over the last 5 years (total return, dividends reinvested).",
-      year10Return: "Cumulative return over the last 10 years (total return, dividends reinvested).",
+      year1Return: "Price return over the last 12 months.",
+      year3Return: "Cumulative price return over the last 3 years.",
+      year5Return: "Cumulative price return over the last 5 years.",
+      year10Return: "Cumulative price return over the last 10 years.",
       seasonality: "Alignment with favorable seasonal windows.",
       borsa: "Listing exchange.",
     },
@@ -1025,22 +1063,22 @@ const I18N = {
         example: "109 vs 100 => +9.00% over the last month.",
       },
       year1Return: {
-        formula: "((Today's Close / Close about 252 sessions ago) - 1) * 100, where Close is the dividend-adjusted price (Yahoo Finance's adjusted close).",
-        purpose: "Measures the total return over the last year (dividends reinvested), useful to assess trend quality beyond short-term tactical noise.",
-        example: "128 vs 100 => +28% over the last year. Note: since it uses adjusted close, this is higher than the price-only return shown by charts like TradingView (which by default do not reinvest dividends); the gap widens with higher yields and longer horizons.",
+        formula: "((Today's Close / Close about 252 sessions ago) - 1) * 100, using Yahoo Finance's unadjusted closing price.",
+        purpose: "Measures price return over the last year, comparable with the price shown by Yahoo Finance and JustETF.",
+        example: "128 vs 100 => +28% over the last year. Dividends are not reinvested in this calculation.",
       },
       year3Return: {
-        formula: "((Today's Close / Close about 3 years ago) - 1) * 100, on dividend-adjusted prices (adjusted close).",
+        formula: "((Today's Close / Close about 3 years ago) - 1) * 100, on unadjusted closing prices.",
         purpose: "Helps separate structural strength from short-lived favorable phases, over a medium-term horizon.",
         example: "160 vs 100 => +60% cumulative over 3 years. Being a total return (dividends reinvested), it can be higher than the price-only return reported by TradingView.",
       },
       year5Return: {
-        formula: "((Today's Close / Close about 5 years ago) - 1) * 100, on dividend-adjusted prices (adjusted close).",
+        formula: "((Today's Close / Close about 5 years ago) - 1) * 100, on unadjusted closing prices.",
         purpose: "Useful to compare resilience across a more complete market cycle.",
         example: "210 vs 100 => +110% cumulative over 5 years. Over longer horizons the gap versus price-only returns (e.g. TradingView) becomes more pronounced due to dividend compounding.",
       },
       year10Return: {
-        formula: "((Today's Close / Close about 10 years ago) - 1) * 100, on dividend-adjusted prices (adjusted close).",
+        formula: "((Today's Close / Close about 10 years ago) - 1) * 100, on unadjusted closing prices.",
         purpose: "Measures the theme's or index's ability to create value over the long term, dividends included.",
         example: "330 vs 100 => +230% cumulative over 10 years. Real example: GREK shows a much higher 10Y figure here than on TradingView because dividends are reinvested in this calculation, while TradingView's default price chart does not include them.",
       },
@@ -1121,6 +1159,11 @@ const formatAum = (v, currency) => {
   return `${s}${currency ? ` ${currency}` : ""}`;
 };
 
+const formatPrice = (value, currency) =>
+  value == null || !Number.isFinite(Number(value))
+    ? "-"
+    : `${Number(value).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 4 })}${currency ? ` ${currency}` : ""}`;
+
 const formatDateKey = (key) => {
   if (!key) return "-";
   const [m, d] = String(key).split("-");
@@ -1144,6 +1187,7 @@ function localizedTrendLabel(value, t) {
 
 const NUMERIC_COLUMN_KEYS = new Set([
   "score",
+  "price",
   "dailyReturn",
   "threeDayReturn",
   "weekReturn",
@@ -1298,6 +1342,9 @@ export default function Home() {
   const [watchlistOnly, setWatchlistOnly] = useState(false);
   const [profile, setProfile] = useState({ mode: "long", selectedMetrics: PROFILE_METRICS.long });
   const [profileOpen, setProfileOpen] = useState(false);
+  const [simulations, setSimulations] = useState([]);
+  const [simulationsOpen, setSimulationsOpen] = useState(false);
+  const [purchaseDraft, setPurchaseDraft] = useState(null);
   const [guideView, setGuideView] = useState("guide");
   const [preferencesHydrated, setPreferencesHydrated] = useState(false);
   const abortRef = useRef(null);
@@ -1333,6 +1380,12 @@ export default function Home() {
     if (Array.isArray(savedWatchlist)) setWatchlist([...new Set(savedWatchlist.filter((ticker) => typeof ticker === "string"))]);
     setProfile(normalizeProfile(readCookieJson(COOKIE_INVESTMENT_PROFILE)));
     setColumnFilters(normalizeColumnFilters(readCookieJson(COOKIE_COLUMN_FILTERS)));
+    try {
+      const savedSimulations = JSON.parse(localStorage.getItem(SIMULATIONS_STORAGE_KEY) || "[]");
+      if (Array.isArray(savedSimulations)) setSimulations(savedSimulations.filter((item) => item?.ticker && item?.snapshot));
+    } catch {
+      localStorage.removeItem(SIMULATIONS_STORAGE_KEY);
+    }
     setPreferencesHydrated(true);
   }, []);
 
@@ -1365,6 +1418,11 @@ export default function Home() {
     if (!preferencesHydrated) return;
     writeCookieJson(COOKIE_COLUMN_FILTERS, columnFilters);
   }, [columnFilters, preferencesHydrated]);
+
+  useEffect(() => {
+    if (!preferencesHydrated) return;
+    localStorage.setItem(SIMULATIONS_STORAGE_KEY, JSON.stringify(simulations));
+  }, [simulations, preferencesHydrated]);
 
   useEffect(() => {
     if (!preferencesHydrated || readCookieJson(COOKIE_TOUR_COMPLETED)) return;
@@ -1510,10 +1568,10 @@ export default function Home() {
     return {
       inflow: ranked
         .slice(0, CAPITAL_FLOW_LIMIT)
-        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0), rvol: x.relativeVolume, start: x.monthStartDate, end: x.lastDate, category: x.categories?.[0] || "-" })),
+        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0), weeklyValue: x.weekReturn, rvol: x.relativeVolume, start: x.monthStartDate, end: x.lastDate, category: x.categories?.[0] || "-" })),
       outflow: weak
         .slice(0, CAPITAL_FLOW_LIMIT)
-        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0), rvol: x.relativeVolume, start: x.monthStartDate, end: x.lastDate, category: x.categories?.[0] || "-" })),
+        .map((x) => ({ ticker: x.ticker, name: x.name || x.ticker, value: Number(x.monthReturn ?? 0), weeklyValue: x.weekReturn, rvol: x.relativeVolume, start: x.monthStartDate, end: x.lastDate, category: x.categories?.[0] || "-" })),
       categoryDemand: categoryDemand.slice(0, CAPITAL_FLOW_LIMIT),
       rotationPairs: ranked.slice(0, 5).map((target, index) => ({ from: weak[index], to: target })),
     };
@@ -1563,6 +1621,30 @@ export default function Home() {
 
   function toggleWatchlist(ticker) {
     setWatchlist((current) => current.includes(ticker) ? current.filter((item) => item !== ticker) : [...current, ticker]);
+  }
+
+  function startPurchase(row, rowState) {
+    setPurchaseDraft({ row, rowState, quantity: "1", price: row.price == null ? "" : String(row.price) });
+  }
+
+  function savePurchase() {
+    if (!purchaseDraft) return;
+    const quantity = Number(purchaseDraft.quantity);
+    const purchasePrice = Number(purchaseDraft.price);
+    if (!Number.isFinite(quantity) || quantity <= 0 || !Number.isFinite(purchasePrice) || purchasePrice <= 0) return;
+    const { row, rowState } = purchaseDraft;
+    setSimulations((current) => [...current, {
+      id: `${row.ticker}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      ticker: row.ticker,
+      name: row.name || row.ticker,
+      currency: row.currency || null,
+      quantity,
+      purchasePrice,
+      purchasedAt: new Date().toISOString(),
+      snapshot: { ...row, trendLabel: rowState.trendLabel, profileStatus: rowState.profileStatus },
+    }]);
+    setPurchaseDraft(null);
+    setSimulationsOpen(true);
   }
 
   function clearFilters() {
@@ -1622,28 +1704,31 @@ export default function Home() {
         <td className="tickerCell">
           <div className="tickerCellInner">
             <button className="tickerButton" onClick={() => { void getSeasonality(row.ticker, true); }}>{row.ticker}</button>
-            <button
-              type="button"
-              className={`watchlistButton ${watchlist.includes(row.ticker) ? "active" : ""}`}
-              onClick={() => toggleWatchlist(row.ticker)}
-              title={watchlist.includes(row.ticker) ? "Rimuovi dalla watchlist" : "Aggiungi alla watchlist"}
-              aria-label={watchlist.includes(row.ticker) ? "Rimuovi dalla watchlist" : "Aggiungi alla watchlist"}
-            >
-              {watchlist.includes(row.ticker) ? "★" : "☆"}
-            </button>
-            <a
-              className="chartLink"
-              href={tradingViewUrl(row.ticker)}
-              target="_blank"
-              rel="noreferrer"
-              title={t.chartLinkTitle}
-              aria-label={t.chartLinkTitle}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <svg className="chartIcon" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M1.5 14.5h13M3 12.5V8m3.2 4.5V5m3.2 7.5V3m3.1 9.5V6.5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
+            <div className="tickerActions">
+              <button
+                type="button"
+                className={`watchlistButton ${watchlist.includes(row.ticker) ? "active" : ""}`}
+                onClick={() => toggleWatchlist(row.ticker)}
+                title={watchlist.includes(row.ticker) ? "Rimuovi dalla watchlist" : "Aggiungi alla watchlist"}
+                aria-label={watchlist.includes(row.ticker) ? "Rimuovi dalla watchlist" : "Aggiungi alla watchlist"}
+              >
+                {watchlist.includes(row.ticker) ? "★" : "☆"}
+              </button>
+              <a
+                className="chartLink"
+                href={tradingViewUrl(row.ticker)}
+                target="_blank"
+                rel="noreferrer"
+                title={t.chartLinkTitle}
+                aria-label={t.chartLinkTitle}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <svg className="chartIcon" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M1.5 14.5h13M3 12.5V8m3.2 4.5V5m3.2 7.5V3m3.1 9.5V6.5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+              <button type="button" className="buyButton" onClick={() => startPurchase(row, rowState)} title={t.buyTitle} aria-label={t.buyTitle}>{t.buy}</button>
+            </div>
           </div>
         </td>
       );
@@ -1692,6 +1777,7 @@ export default function Home() {
         </td>
       );
     }
+    if (key === "price") return <td title={t.columnHelp.price}>{formatPrice(row.price, row.currency)}</td>;
     if (key === "dailyReturn") return <td className={cls(row.dailyReturn)} title={tooltip(t.tooltip.d1, t.tooltipBody.d1)}>{pct(row.dailyReturn)}</td>;
     if (key === "threeDayReturn") return <td className={cls(row.threeDayReturn)} title={tooltip(t.tooltip.d3, t.tooltipBody.d3)}>{pct(row.threeDayReturn)}</td>;
     if (key === "weekReturn") return <td className={cls(row.weekReturn)} title={tooltip(t.tooltip.w1, t.tooltipBody.w1)}>{pct(row.weekReturn)}</td>;
@@ -1830,6 +1916,7 @@ export default function Home() {
         <button className="button" onClick={clearFilters}>{t.resetFilters}</button>
         <button className="button" onClick={() => loadAll(true)}>{t.refreshQuotes}</button>
         <button className="button primary" onClick={() => setFlowOpen(true)}>{t.capitalFlows}</button>
+        <button className="button primary" onClick={() => setSimulationsOpen(true)}>{t.simulations} ({simulations.length})</button>
         <Link href="/future-seasonality" className="button">{t.futureSeasonality}</Link>
         <button
           className="button primary"
@@ -1921,7 +2008,7 @@ export default function Home() {
             <div className="modalHead">
               <div>
                 <h2>{t.flowTitle}</h2>
-                <div className="hint">Proxy di rotazione, non flussi netti certificati: Yahoo Finance non rileva trasferimenti reali tra ETF. La finestra usa il rendimento da circa un mese fino all'ultima quotazione disponibile.</div>
+                <div className="hint">Proxy di rotazione, non flussi netti certificati: Yahoo Finance non rileva sottoscrizioni o riscatti. La classifica usa 1M e mostra 1W come conferma recente.</div>
               </div>
               <button className="button" onClick={() => setFlowOpen(false)}>{t.modalClose}</button>
             </div>
@@ -1931,8 +2018,8 @@ export default function Home() {
                 {capitalFlow.inflow.length ? (
                   capitalFlow.inflow.map((item) => (
                     <div key={item.ticker} className="flowRow">
-                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · {item.start ? new Date(item.start).toLocaleDateString("it-IT") : "inizio n/d"} → {item.end ? new Date(item.end).toLocaleDateString("it-IT") : "fine n/d"} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small></span>
-                      <strong className="positive">{pct(item.value)}</strong>
+                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · {item.start ? new Date(item.start).toLocaleDateString("it-IT") : "inizio n/d"} → {item.end ? new Date(item.end).toLocaleDateString("it-IT") : "fine n/d"} · 1W {pct(item.weeklyValue)} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small></span>
+                      <strong className={cls(item.value)}>1M {pct(item.value)}</strong>
                     </div>
                   ))
                 ) : (
@@ -1944,8 +2031,8 @@ export default function Home() {
                 {capitalFlow.outflow.length ? (
                   capitalFlow.outflow.map((item) => (
                     <div key={item.ticker} className="flowRow">
-                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · {item.start ? new Date(item.start).toLocaleDateString("it-IT") : "inizio n/d"} → {item.end ? new Date(item.end).toLocaleDateString("it-IT") : "fine n/d"} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small></span>
-                      <strong className="negative">{pct(item.value)}</strong>
+                      <span><strong>{item.ticker}</strong> · {item.name}<small>{item.category} · {item.start ? new Date(item.start).toLocaleDateString("it-IT") : "inizio n/d"} → {item.end ? new Date(item.end).toLocaleDateString("it-IT") : "fine n/d"} · 1W {pct(item.weeklyValue)} · RVOL {item.rvol == null ? "-" : `${fmt(item.rvol, 1)}x`}</small></span>
+                      <strong className={cls(item.value)}>1M {pct(item.value)}</strong>
                     </div>
                   ))
                 ) : (
@@ -1970,6 +2057,10 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      {purchaseDraft && <PurchaseModal t={t} draft={purchaseDraft} onChange={setPurchaseDraft} onConfirm={savePurchase} onClose={() => setPurchaseDraft(null)} />}
+
+      {simulationsOpen && <SimulationsModal t={t} lang={lang} simulations={simulations} rows={rows} onClose={() => setSimulationsOpen(false)} onRemove={(id) => setSimulations((current) => current.filter((item) => item.id !== id))} />}
 
       {(modalLoading || modal) && (
         <SeasonModal
@@ -2233,6 +2324,49 @@ function ColumnFilterPanel({ type, options, value, onChange, onClear, t }) {
 
 function Th({ children, className }) {
   return <th className={className}>{children}</th>;
+}
+
+function PurchaseModal({ t, draft, onChange, onConfirm, onClose }) {
+  const valid = Number(draft.quantity) > 0 && Number(draft.price) > 0;
+  return (
+    <div className="modalBackdrop" onMouseDown={onClose}>
+      <div className="modal purchaseModal" onMouseDown={(event) => event.stopPropagation()}>
+        <div className="modalHead"><div><h2>{t.buyTitle}</h2><div className="hint">{draft.row.ticker} · {draft.row.name}</div></div><button className="button" onClick={onClose}>{t.modalClose}</button></div>
+        <div className="purchaseFields">
+          <Field label={t.buyQuantity}><input autoFocus type="number" min="0.0001" step="any" value={draft.quantity} onChange={(event) => onChange({ ...draft, quantity: event.target.value })} /></Field>
+          <Field label={`${t.buyPrice} (${draft.row.currency || "-"})`}><input type="number" min="0.0001" step="any" value={draft.price} onChange={(event) => onChange({ ...draft, price: event.target.value })} /></Field>
+        </div>
+        <button className="button primary" disabled={!valid} onClick={onConfirm}>{t.buyConfirm}</button>
+      </div>
+    </div>
+  );
+}
+
+function SimulationsModal({ t, lang, simulations, rows, onClose, onRemove }) {
+  const currentByTicker = new Map(rows.filter((row) => row.ok).map((row) => [row.ticker, row]));
+  const locale = lang === "it" ? "it-IT" : "en-US";
+  return (
+    <div className="modalBackdrop" onMouseDown={onClose}>
+      <div className="modal simulationsModal" onMouseDown={(event) => event.stopPropagation()}>
+        <div className="modalHead"><div><h2>{t.simulationsTitle}</h2><div className="hint">{t.simulationsHint}</div></div><button className="button" onClick={onClose}>{t.modalClose}</button></div>
+        {!simulations.length ? <div className="loadingBox">{t.noData}</div> : <div className="simulationList">
+          {simulations.map((simulation) => {
+            const current = currentByTicker.get(simulation.ticker)?.price;
+            const invested = simulation.quantity * simulation.purchasePrice;
+            const currentValue = Number.isFinite(Number(current)) ? simulation.quantity * current : null;
+            const returnValue = currentValue == null ? null : ((currentValue / invested) - 1) * 100;
+            const frozen = simulation.snapshot;
+            return <section className="simulationRow" key={simulation.id}>
+              <div className="simulationMain"><strong>{simulation.ticker}</strong><span>{simulation.name}</span><small>{t.simulationDate}: {new Date(simulation.purchasedAt).toLocaleDateString(locale)} · {simulation.quantity} x {formatPrice(simulation.purchasePrice, simulation.currency)}</small></div>
+              <div className="simulationValues"><span>{t.currentPrice}<strong>{formatPrice(current, simulation.currency)}</strong></span><span>{t.investment}<strong>{formatPrice(invested, simulation.currency)}</strong></span><span>{t.currentValue}<strong>{formatPrice(currentValue, simulation.currency)}</strong></span><span>{t.returnSinceBuy}<strong className={cls(returnValue)}>{pct(returnValue)}</strong></span></div>
+              <div className="frozenMetrics"><strong>{t.frozenMetrics}</strong><span>Score {frozen.score ?? "-"} · {frozen.trendLabel || frozen.trend || "-"} · {t.statusLabels[frozen.profileStatus?.status] || frozen.profileStatus?.status || "-"}</span><small>RSI {fmt(frozen.rsi14, 1)} · 1M {pct(frozen.monthReturn)} · RVOL {fmt(frozen.relativeVolume, 1)}x · Vol 20D {fmt(frozen.volatility20d, 1)}%</small></div>
+              <button className="button small" onClick={() => onRemove(simulation.id)}>{t.removeSimulation}</button>
+            </section>;
+          })}
+        </div>}
+      </div>
+    </div>
+  );
 }
 
 function StatusModal({ t, lang, data, onClose }) {

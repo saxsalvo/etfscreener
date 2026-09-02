@@ -1,5 +1,13 @@
 [
   {
+    "ticker": "2B7A",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "AAXJ",
     "ok": true,
     "name": "iShares MSCI All Country Asia ex Japan ETF",
@@ -1813,6 +1821,14 @@
     ]
   },
   {
+    "ticker": "ESGO",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "ESGU",
     "ok": true,
     "name": "iShares ESG Aware MSCI USA ETF",
@@ -2082,6 +2098,22 @@
     ]
   },
   {
+    "ticker": "EXH6",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
+    "ticker": "EXH8",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "EXS1",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
@@ -2096,6 +2128,14 @@
     "quoteType": "ETF",
     "categories": [
       "europeUCITS"
+    ]
+  },
+  {
+    "ticker": "EXV9",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
     ]
   },
   {
@@ -3522,6 +3562,15 @@
     ]
   },
   {
+    "ticker": "INFR",
+    "ok": true,
+    "name": "ClearBridge Sustainable Infrastructure ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "INRG",
     "ok": true,
     "name": "iShares Global Clean Energy ETF USD Dist",
@@ -3618,6 +3667,14 @@
     "quoteType": "ETF",
     "categories": [
       "broadMarketUS"
+    ]
+  },
+  {
+    "ticker": "IU5C",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
     ]
   },
   {
@@ -4483,6 +4540,15 @@
     ]
   },
   {
+    "ticker": "METL",
+    "ok": true,
+    "name": "Sprott Active Metals & Miners ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "METV",
     "ok": true,
     "name": "Roundhill Ball Metaverse ETF",
@@ -5153,6 +5219,14 @@
     ]
   },
   {
+    "ticker": "QDVE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "QETH",
     "ok": true,
     "name": "Invesco Galaxy Ethereum ETF",
@@ -5246,12 +5320,30 @@
     ]
   },
   {
+    "ticker": "RARE",
+    "ok": true,
+    "name": "Ultragenyx Pharmaceutical Inc.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "RAVI",
     "ok": true,
     "name": "Northern Trust Ultra-Short Fixed Income ETF",
     "quoteType": "ETF",
     "categories": [
       "extendedBonds"
+    ]
+  },
+  {
+    "ticker": "RBOT",
+    "ok": true,
+    "name": "Vicarious Surgical Inc.",
+    "quoteType": "EQUITY",
+    "categories": [
+      "requestedEtfs"
     ]
   },
   {
@@ -5511,6 +5603,14 @@
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SC00",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
     ]
   },
   {
@@ -7660,6 +7760,15 @@
     ]
   },
   {
+    "ticker": "WMAT",
+    "ok": true,
+    "name": "SPDR MSCI World Materials UCITS ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "WOOD",
     "ok": true,
     "name": "iShares Global Timber & Forestry ETF",
@@ -7710,6 +7819,15 @@
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "XAIX",
+    "ok": true,
+    "name": "Xtrackers Artificial Intelligence and Big Data ETF",
+    "quoteType": "ETF",
+    "categories": [
+      "requestedEtfs"
     ]
   },
   {
@@ -8177,6 +8295,14 @@
     "quoteType": "ETF",
     "categories": [
       "leveragedInverse"
+    ]
+  },
+  {
+    "ticker": "ZPRI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
     ]
   },
   {

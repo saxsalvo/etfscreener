@@ -1,5 +1,13 @@
 [
   {
+    "ticker": "2B7A",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "AGED",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
@@ -136,6 +144,14 @@
     ]
   },
   {
+    "ticker": "ESGO",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "EUNL",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
@@ -144,11 +160,35 @@
     ]
   },
   {
+    "ticker": "EXH6",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
+    "ticker": "EXH8",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "EXS1",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "EXV9",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
     ]
   },
   {
@@ -240,6 +280,14 @@
     ]
   },
   {
+    "ticker": "IU5C",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "IUIT",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
@@ -328,6 +376,14 @@
     ]
   },
   {
+    "ticker": "QDVE",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
+    ]
+  },
+  {
     "ticker": "RJI",
     "ok": false,
     "error": "Cannot read properties of undefined (reading 'longName')",
@@ -349,6 +405,14 @@
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "SC00",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
     ]
   },
   {
@@ -653,6 +717,14 @@
     "error": "Cannot read properties of undefined (reading 'longName')",
     "categories": [
       "extendedEuropeUCITS"
+    ]
+  },
+  {
+    "ticker": "ZPRI",
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'longName')",
+    "categories": [
+      "requestedEtfs"
     ]
   }
 ]

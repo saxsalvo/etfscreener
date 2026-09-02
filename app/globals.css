@@ -559,6 +559,13 @@ select {
 
 .tickerCellInner {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.tickerActions {
+  display: flex;
   align-items: center;
   gap: 6px;
 }
@@ -586,6 +593,22 @@ select {
 .chartIcon {
   width: 13px;
   height: 13px;
+}
+
+.buyButton {
+  min-height: 22px;
+  border: 1px solid rgba(56, 212, 178, 0.65);
+  border-radius: 5px;
+  background: rgba(28, 111, 95, 0.45);
+  color: #9cf4d9;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+}
+
+.buyButton:hover {
+  background: rgba(37, 142, 119, 0.7);
 }
 
 .tickerButton {
@@ -838,6 +861,90 @@ select {
 
 .cookieModal {
   width: min(520px, 92vw);
+}
+
+.purchaseModal {
+  width: min(460px, 92vw);
+}
+
+.simulationsModal {
+  width: min(1080px, 95vw);
+}
+
+.purchaseFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 18px 0 12px;
+}
+
+.simulationList {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.simulationRow {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.4fr) minmax(360px, 2fr) minmax(230px, 1.5fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(19, 34, 54, 0.88);
+}
+
+.simulationMain,
+.frozenMetrics {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.simulationMain span,
+.frozenMetrics span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.simulationMain small,
+.frozenMetrics small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.simulationValues {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(78px, 1fr));
+  gap: 8px;
+}
+
+.simulationValues span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.simulationValues strong {
+  display: block;
+  margin-top: 3px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.simulationValues strong.positive,
+.simulationValues strong.negative {
+  color: inherit;
+}
+
+.simulationValues .positive {
+  color: var(--positive) !important;
+}
+
+.simulationValues .negative {
+  color: var(--negative) !important;
 }
 
 .cookieActions {
@@ -1137,6 +1244,10 @@ select {
   .columnGrid {
     grid-template-columns: 1fr;
   }
+
+  .simulationRow {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1154,6 +1265,15 @@ select {
 
   .button {
     width: 100%;
+  }
+
+  .purchaseFields,
+  .simulationRow {
+    grid-template-columns: 1fr;
+  }
+
+  .simulationValues {
+    grid-template-columns: 1fr 1fr;
   }
 
   .langButton {
