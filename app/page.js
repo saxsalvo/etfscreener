@@ -115,7 +115,7 @@ const COLUMN_WIDTHS = {
 const I18N = {
   it: {
     pageTitle: "ETF Performance Screener",
-    pageSubtitle: "Momentum, trend, volume, rischio e stagionalità in una sola vista",
+    pageSubtitle: " Momentum, trend, volume, rischio e stagionalità in una sola vista",
     langItalian: "Italiano",
     langEnglish: "Inglese",
     guideButton: "Guida",
